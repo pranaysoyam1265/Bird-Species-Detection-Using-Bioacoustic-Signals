@@ -1,8 +1,8 @@
 # Python cache and virtual environments
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
+*.pyd
 .Python
 env/
 venv/
@@ -10,67 +10,40 @@ venv/
 *.egg-info/
 dist/
 build/
+.eggs/
 
-# Large binary files
-*.npy
-*.npz
-*.h5
-*.pth
-*.pb
-*.pkl
-*.pickle
-*.tar
-*.tar.gz
-*.zip
+# Raw audio files only (too large)
+01_Raw_Data/Audio_Recordings/
+01_Raw_Data/External_Data/BirdCLEF_Spectrograms_NOT_USED_28975_images/
 
-# Large audio files
-*.wav
-*.mp3
-*.ogg
-*.flac
-
-# Checkpoint and temporary files
-*_checkpoint.*
+# Temp and cache files
 *.tmp
 *.bak
+.DS_Store
+.cache/
+*.swp
+*.swo
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+.vscode/
+.env.local
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# OS
 .DS_Store
-.cache/
+Thumbs.db
 
-# Large directories
-01_Raw_Data/Audio_Recordings/
-01_Raw_Data/External_Data/BirdCLEF_Spectrograms_NOT_USED_28975_images/
-02_Preprocessed/Audio_Chunks/
-02_Preprocessed/Standardized_Audio/
-03_Features/Spectrograms_Precomputed/
-05_Model/Checkpoints/
-05_Model/Saved_Models/
-05_Model/Training_Logs/
-06_Explainability/Attention_Maps/
-06_Explainability/GradCAM/
-06_Explainability/Temporal_Localization/
-07_Evaluation/Predictions/
-07_Evaluation/Confusion_Matrices/
-10_Outputs/Exports/
-10_Outputs/Visualizations/
-09_Utils/Temp/
-09_Utils/Logs/
-
-# Keep important files/configs
-!*/
-!*.py
-!*.json
-!*.yaml
-!*.yml
-!*.csv
-!*.md
-!*.txt
-!*.sh
-!*.bat
-!*.gitignore
-!*.gitkeep
+# Only exclude truly redundant intermediate files
+node_modules/
+__pycache__/
+.pytest_cache/
+.egg-info/
