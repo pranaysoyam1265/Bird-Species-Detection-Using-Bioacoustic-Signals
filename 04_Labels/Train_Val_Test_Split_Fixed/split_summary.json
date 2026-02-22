@@ -1,0 +1,27 @@
+{
+  "created": "2026-02-11T21:34:06.397471",
+  "random_seed": 42,
+  "total_recordings": 1830,
+  "total_chunks": 33906,
+  "duplicates_removed": 905,
+  "train": {
+    "recordings": 1281,
+    "chunks": 23630,
+    "species": 54
+  },
+  "val": {
+    "recordings": 274,
+    "chunks": 4718,
+    "species": 54
+  },
+  "test": {
+    "recordings": 275,
+    "chunks": 5558,
+    "species": 54
+  },
+  "overlap_check": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  }
+}
