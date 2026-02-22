@@ -1,0 +1,20 @@
+{
+  "model_name": "efficientnet_b0",
+  "pretrained": true,
+  "num_classes": 54,
+  "batch_size": 16,
+  "epochs": 30,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "label_smoothing": 0.1,
+  "patience": 7,
+  "min_delta": 0.001,
+  "use_amp": true,
+  "num_workers": 4,
+  "pin_memory": true,
+  "use_augmentation": true,
+  "mixup_alpha": 0.2,
+  "spec_augment": true,
+  "n_mels": 128,
+  "time_steps": 216
+}

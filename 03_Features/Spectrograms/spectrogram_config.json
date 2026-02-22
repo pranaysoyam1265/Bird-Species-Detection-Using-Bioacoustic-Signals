@@ -1,0 +1,12 @@
+{
+  "sample_rate": 22050,
+  "n_mels": 128,
+  "n_fft": 2048,
+  "hop_length": 512,
+  "fmin": 150,
+  "fmax": 15000,
+  "duration": 5.0,
+  "train_spectrograms": 23839,
+  "val_spectrograms": 5568,
+  "test_spectrograms": 5404
+}

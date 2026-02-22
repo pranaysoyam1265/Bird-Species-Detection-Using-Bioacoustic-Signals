@@ -1,0 +1,10 @@
+{
+    "target_sample_rate": 22050,
+    "chunk_length_sec": 5,
+    "overlap_percent": 50,
+    "channels": 1,
+    "processed_date": "2026-02-06 20:57:08",
+    "input_files": 4521,
+    "standardized_files": 4477,
+    "total_chunks": 83001
+}
