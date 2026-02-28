@@ -45,7 +45,7 @@ export function TerminalCard() {
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center gap-2 border-b-2 border-foreground px-4 py-2">
-        <span className="h-2 w-2 bg-[#ea580c]" />
+        <span className="h-2 w-2 bg-accent" />
         <span className="h-2 w-2 bg-foreground" />
         <span className="h-2 w-2 border border-foreground" />
         <span className="ml-auto text-[10px] tracking-widest text-muted-foreground uppercase">
@@ -63,7 +63,7 @@ export function TerminalCard() {
               {line}
             </span>
           ))}
-          <span className="text-xs text-[#ea580c] font-mono animate-blink">{"_"}</span>
+          <span className="text-xs text-accent font-mono animate-blink">{"_"}</span>
         </div>
       </div>
     </div>

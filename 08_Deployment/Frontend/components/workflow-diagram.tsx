@@ -197,7 +197,7 @@ export function WorkflowDiagram() {
             <motion.circle
               key={`left-packet-${i}`}
               r={3}
-              fill="#ea580c"
+              fill="var(--accent-hex)"
               initial={{ cx: pillX + 80, cy: pillY + 13 }}
               animate={{
                 cx: [pillX + 80, centerX - 40],
@@ -221,7 +221,7 @@ export function WorkflowDiagram() {
             <motion.circle
               key={`right-packet-${i}`}
               r={3}
-              fill="#ea580c"
+              fill="var(--accent-hex)"
               initial={{ cx: centerX + 40, cy: centerY }}
               animate={{
                 cx: [centerX + 40, pillX],

@@ -1,6 +1,6 @@
 "use client"
 
-import { TerminalCard } from "@/components/bento/terminal-card"
+import { ModelComparisonAnimation } from "@/components/model-comparison/ModelComparisonAnimation"
 import { DitherCard } from "@/components/bento/dither-card"
 import { MetricsCard } from "@/components/bento/metrics-card"
 import { StatusCard } from "@/components/bento/status-card"
@@ -42,13 +42,13 @@ export function FeatureGrid() {
         viewport={{ once: true, margin: "-60px" }}
         className="grid grid-cols-1 md:grid-cols-2 border-2 border-foreground"
       >
-        {/* Terminal */}
+        {/* Model Comparison Animation */}
         <motion.div
           custom={0}
           variants={cardVariants}
           className="border-b-2 md:border-b-0 md:border-r-2 border-foreground min-h-[280px]"
         >
-          <TerminalCard />
+          <ModelComparisonAnimation />
         </motion.div>
 
         {/* Dither */}

@@ -3,6 +3,18 @@
 import { useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
 
+// 4x4 Bayer threshold matrix
+const BAYER_4X4 = [
+  [0, 8, 2, 10],
+  [12, 4, 14, 6],
+  [3, 11, 1, 9],
+  [15, 7, 13, 5],
+]
+
+function bayer(x: number, y: number): number {
+  return BAYER_4X4[y % 4][x % 4] / 16
+}
+
 export function DitherCard() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { resolvedTheme } = useTheme()
@@ -13,63 +25,121 @@ export function DitherCard() {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    const w = 320
-    const h = 240
-    canvas.width = w
-    canvas.height = h
+    const W = 480
+    const H = 320
+    canvas.width = W
+    canvas.height = H
 
     const isDark = resolvedTheme === "dark"
-    const darkVal = isDark ? 230 : 10
-    const lightVal = isDark ? 15 : 230
+    const bg = isDark ? 20 : 235
+    const fg = isDark ? 240 : 10
 
-    const imageData = ctx.createImageData(w, h)
-    const data = imageData.data
+    // --- Draw bird silhouette into an offscreen canvas ---
+    const off = document.createElement("canvas")
+    off.width = W
+    off.height = H
+    const oc = off.getContext("2d")!
 
-    for (let y = 0; y < h; y++) {
-      for (let x = 0; x < w; x++) {
-        const idx = (y * w + x) * 4
+    // Background gradient (gives the dithered noise texture)
+    const grad = oc.createRadialGradient(W / 2, H / 2, 10, W / 2, H / 2, W * 0.65)
+    grad.addColorStop(0, isDark ? "#555" : "#bbb")
+    grad.addColorStop(1, isDark ? "#111" : "#f0f0f0")
+    oc.fillStyle = grad
+    oc.fillRect(0, 0, W, H)
 
-        const cx = w / 2
-        const cy = h / 2
-        const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2)
-        const maxDist = Math.sqrt(cx ** 2 + cy ** 2)
-        const gradient = 1 - dist / maxDist
+    // Bird silhouette (centered, wings-up shape)
+    const cx = W / 2
+    const cy = H / 2 - 10
+    const sc = 1.15
+    oc.save()
+    oc.translate(cx, cy)
+    oc.scale(sc, sc)
 
-        const wave = Math.sin(x * 0.05) * Math.cos(y * 0.03) * 0.3
+    // Main body
+    oc.beginPath()
+    oc.ellipse(0, 20, 38, 55, 0, 0, Math.PI * 2)
+    oc.fillStyle = isDark ? "#ddd" : "#fff"
+    oc.fill()
 
-        const bayerMatrix = [
-          [0, 2],
-          [3, 1],
-        ]
-        const bayerValue = bayerMatrix[y % 2][x % 2] / 4
+    // Left wing (sweeping up-left)
+    oc.beginPath()
+    oc.moveTo(-10, -10)
+    oc.bezierCurveTo(-60, -60, -130, -40, -155, 10)
+    oc.bezierCurveTo(-130, 30, -70, 20, -10, 30)
+    oc.closePath()
+    oc.fill()
 
-        const value = gradient + wave
-        const dithered = value > bayerValue ? darkVal : lightVal
+    // Right wing (sweeping up-right)
+    oc.beginPath()
+    oc.moveTo(10, -10)
+    oc.bezierCurveTo(60, -60, 130, -40, 155, 10)
+    oc.bezierCurveTo(130, 30, 70, 20, 10, 30)
+    oc.closePath()
+    oc.fill()
 
-        data[idx] = dithered
-        data[idx + 1] = dithered
-        data[idx + 2] = dithered
-        data[idx + 3] = 255
+    // Head
+    oc.beginPath()
+    oc.ellipse(0, -42, 26, 28, 0, 0, Math.PI * 2)
+    oc.fill()
+
+    // Beak
+    oc.beginPath()
+    oc.moveTo(8, -48)
+    oc.lineTo(28, -44)
+    oc.lineTo(8, -38)
+    oc.closePath()
+    oc.fillStyle = isDark ? "#aaa" : "#ccc"
+    oc.fill()
+
+    // Tail feathers (bottom)
+    oc.beginPath()
+    oc.moveTo(-18, 65)
+    oc.lineTo(-30, 110)
+    oc.lineTo(-10, 78)
+    oc.lineTo(0, 115)
+    oc.lineTo(10, 78)
+    oc.lineTo(30, 110)
+    oc.lineTo(18, 65)
+    oc.closePath()
+    oc.fillStyle = isDark ? "#ddd" : "#fff"
+    oc.fill()
+
+    oc.restore()
+
+    // --- Bayer dither the offscreen canvas into the main canvas ---
+    const src = oc.getImageData(0, 0, W, H)
+    const out = ctx.createImageData(W, H)
+
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const i = (y * W + x) * 4
+        const lum = (src.data[i] * 0.299 + src.data[i + 1] * 0.587 + src.data[i + 2] * 0.114) / 255
+        const threshold = bayer(x, y)
+        const val = lum > threshold ? fg : bg
+        out.data[i] = val
+        out.data[i + 1] = val
+        out.data[i + 2] = val
+        out.data[i + 3] = 255
       }
     }
 
-    ctx.putImageData(imageData, 0, 0)
+    ctx.putImageData(out, 0, 0)
   }, [resolvedTheme])
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between border-b-2 border-foreground px-4 py-2">
         <span className="text-[10px] tracking-widest text-muted-foreground uppercase">
-          spectrogram.render
+          birdsense.detect
         </span>
-        <span className="text-[10px] tracking-widest text-muted-foreground">320x240</span>
+        <span className="text-[10px] tracking-widest text-muted-foreground">dither_4x4</span>
       </div>
       <div className="flex-1 flex items-center justify-center p-4 bg-background overflow-hidden">
         <canvas
           ref={canvasRef}
           className="w-full h-auto"
           style={{ imageRendering: "pixelated" }}
-          aria-label="Dithered spectrogram visualization of bird audio"
+          aria-label="Bayer dithered bird visualization for BirdSense"
           role="img"
         />
       </div>
