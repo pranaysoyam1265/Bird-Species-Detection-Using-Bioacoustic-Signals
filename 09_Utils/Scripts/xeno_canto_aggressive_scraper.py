@@ -20,7 +20,9 @@ from pathlib import Path
 # CONFIGURATION
 # ============================================================
 
-API_KEY = "8566d5355ba7b7b38edc52924626d3c0e642a4e3"
+import os
+
+API_KEY = os.getenv("XENO_CANTO_API_KEY", "your_api_key_here")
 BASE_URL = "https://xeno-canto.org/api/3/recordings"
 
 # Paths
