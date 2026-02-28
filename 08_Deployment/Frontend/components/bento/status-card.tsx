@@ -46,7 +46,7 @@ export function StatusCard() {
               <span
                 className="h-1.5 w-1.5"
                 style={{
-                  backgroundColor: species.status === "DETECTED" ? "#ea580c" : "hsl(var(--muted-foreground))",
+                  backgroundColor: species.status === "DETECTED" ? "var(--accent-hex)" : "hsl(var(--muted-foreground))",
                 }}
               />
               <span className="text-xs font-mono text-muted-foreground">{species.status}</span>

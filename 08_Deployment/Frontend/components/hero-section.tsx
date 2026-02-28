@@ -3,10 +3,19 @@
 import { WorkflowDiagram } from "@/components/workflow-diagram"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
+import { useAuth } from "@/contexts/auth-context"
+import { useRouter } from "next/navigation"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
 export function HeroSection() {
+  const { user } = useAuth()
+  const router = useRouter()
+
+  const handleUploadClick = () => {
+    router.push(user ? "/analyze" : "/login")
+  }
+
   return (
     <section className="relative w-full px-12 pt-6 pb-12 lg:px-24 lg:pt-10 lg:pb-16">
       <div className="flex flex-col items-center text-center">
@@ -51,16 +60,17 @@ export function HeroSection() {
           BirdSense is the AI-powered detection layer between field recordings and species identification. 96% accuracy. 87 species. Spectrogram-level analysis.
         </motion.p>
 
-        {/* CTA Button */}
         <motion.button
+          type="button"
+          onClick={handleUploadClick}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6, ease }}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="group flex items-center gap-0 bg-foreground text-background text-sm font-mono tracking-wider uppercase"
+          className="group inline-flex items-center gap-0 bg-foreground text-background text-sm font-mono tracking-wider uppercase cursor-pointer"
         >
-          <span className="flex items-center justify-center w-10 h-10 bg-[#ea580c]">
+          <span className="flex items-center justify-center w-10 h-10 bg-accent">
             <motion.span
               className="inline-flex"
               whileHover={{ x: 3 }}

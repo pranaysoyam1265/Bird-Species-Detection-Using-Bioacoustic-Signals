@@ -156,10 +156,10 @@ export function BirdSenseLoader({
       {/* Icon container with border */}
       <div className="relative border-2 border-foreground p-6 bg-background">
         {/* Corner accents */}
-        <span className="absolute -top-[3px] -left-[3px] w-2 h-2 bg-[#ea580c]" />
-        <span className="absolute -top-[3px] -right-[3px] w-2 h-2 bg-[#ea580c]" />
-        <span className="absolute -bottom-[3px] -left-[3px] w-2 h-2 bg-[#ea580c]" />
-        <span className="absolute -bottom-[3px] -right-[3px] w-2 h-2 bg-[#ea580c]" />
+        <span className="absolute -top-[3px] -left-[3px] w-2 h-2 bg-accent" />
+        <span className="absolute -top-[3px] -right-[3px] w-2 h-2 bg-accent" />
+        <span className="absolute -bottom-[3px] -left-[3px] w-2 h-2 bg-accent" />
+        <span className="absolute -bottom-[3px] -right-[3px] w-2 h-2 bg-accent" />
 
         {/* Animated icon */}
         <AnimatePresence mode="wait">
@@ -186,7 +186,7 @@ export function BirdSenseLoader({
               width: i === activeStep ? 16 : 6,
               backgroundColor:
                 i === activeStep
-                  ? "#ea580c"
+                  ? "var(--accent-hex)"
                   : "hsl(var(--muted-foreground))",
             }}
           />
@@ -222,7 +222,7 @@ export function BirdSenseLoader({
           <line x1="12" y1="12" x2="36" y2="36" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
           <line x1="36" y1="12" x2="12" y2="36" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
           {/* Pulsing orange ring */}
-          <circle cx="24" cy="24" r="18" fill="none" stroke="#ea580c" strokeWidth="1.5">
+          <circle cx="24" cy="24" r="18" fill="none" stroke="var(--accent-hex)" strokeWidth="1.5">
             <animate attributeName="r" values="18;22;18" dur="2s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite" />
           </circle>

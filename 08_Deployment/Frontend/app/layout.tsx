@@ -3,6 +3,11 @@ import { JetBrains_Mono } from 'next/font/google'
 import { GeistPixelGrid } from 'geist/font/pixel'
 import { ThemeProvider } from '@/components/theme-provider'
 
+import { AuthProvider } from '@/contexts/auth-context'
+import { ClientProviders } from '@/components/client-providers'
+
+import { Toaster } from '@/components/ui/toaster'
+
 import './globals.css'
 
 const jetbrainsMono = JetBrains_Mono({
@@ -80,7 +85,12 @@ export default function RootLayout({
     <html lang="en" className={`${jetbrainsMono.variable} ${GeistPixelGrid.variable}`} suppressHydrationWarning>
       <body className="font-mono antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          {children}
+          <AuthProvider>
+            <ClientProviders>
+              {children}
+            </ClientProviders>
+          </AuthProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

@@ -13,7 +13,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="w-8 h-8 border border-foreground/20" aria-hidden="true" />
+      <div className="w-10 h-10 border border-foreground/20" aria-hidden="true" />
     )
   }
 
@@ -24,7 +24,7 @@ export function ThemeToggle() {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.92 }}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="relative w-8 h-8 flex items-center justify-center border border-foreground/20 bg-background/50 hover:bg-foreground/5 transition-colors duration-200"
+      className="relative w-10 h-10 flex items-center justify-center border border-foreground/20 bg-background/50 hover:bg-foreground/5 transition-colors duration-200"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       <AnimatePresence mode="wait" initial={false}>
@@ -36,7 +36,7 @@ export function ThemeToggle() {
             exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Sun size={14} strokeWidth={1.5} />
+            <Sun size={18} strokeWidth={1.5} />
           </motion.span>
         ) : (
           <motion.span
@@ -46,7 +46,7 @@ export function ThemeToggle() {
             exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Moon size={14} strokeWidth={1.5} />
+            <Moon size={18} strokeWidth={1.5} />
           </motion.span>
         )}
       </AnimatePresence>

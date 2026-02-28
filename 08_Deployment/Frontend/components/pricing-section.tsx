@@ -19,7 +19,7 @@ function StatusLine() {
 
   return (
     <div className="flex items-center gap-2 text-[10px] tracking-widest text-muted-foreground uppercase font-mono">
-      <span className="h-1.5 w-1.5 bg-[#ea580c]" />
+      <span className="h-1.5 w-1.5 bg-accent" />
       <span>detection accuracy: {accuracy}%</span>
     </div>
   )
@@ -27,7 +27,7 @@ function StatusLine() {
 
 /* ── blinking cursor indicator ── */
 function BlinkDot() {
-  return <span className="inline-block h-2 w-2 bg-[#ea580c] animate-blink" />
+  return <span className="inline-block h-2 w-2 bg-accent animate-blink" />
 }
 
 /* ── feature config ── */
@@ -123,7 +123,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
         </span>
         <div className="flex items-center gap-2">
           {feature.tag && (
-            <span className="bg-[#ea580c] text-background text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 font-mono">
+            <span className="bg-accent text-background text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 font-mono">
               {feature.tag}
             </span>
           )}
@@ -170,7 +170,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
               <Check
                 size={12}
                 strokeWidth={2.5}
-                className="mt-0.5 shrink-0 text-[#ea580c]"
+                className="mt-0.5 shrink-0 text-accent"
               />
               <span className="text-xs font-mono leading-relaxed">
                 {bullet}
@@ -190,7 +190,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
             : "bg-foreground text-background"
             }`}
         >
-          <span className="flex items-center justify-center w-9 h-9 bg-[#ea580c]">
+          <span className="flex items-center justify-center w-9 h-9 bg-accent">
             <ArrowRight size={14} strokeWidth={2} className="text-background" />
           </span>
           <span className="flex-1 py-2.5">{feature.cta}</span>
@@ -201,7 +201,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
 }
 
 /* ── main features section ── */
-export function PricingSection() {
+export function FeaturesSection() {
   return (
     <section className="w-full px-6 py-20 lg:px-12">
       {/* Section label */}

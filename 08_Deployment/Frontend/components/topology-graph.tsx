@@ -34,7 +34,7 @@ function DataPacket({ x1, y1, x2, y2, delay }: { x1: number; y1: number; x2: num
   return (
     <motion.circle
       r={4}
-      fill="#ea580c"
+      fill="var(--accent-hex)"
       initial={{ cx: x1 + 60, cy: y1 + 20 }}
       animate={{
         cx: [x1 + 60, x2 + 60],
@@ -156,7 +156,7 @@ export function TopologyGraph() {
               {node.label}
             </text>
             {/* Status indicator */}
-            <circle cx={node.x + 110} cy={node.y + 10} r={3} fill="#ea580c">
+            <circle cx={node.x + 110} cy={node.y + 10} r={3} fill="var(--accent-hex)">
               <animate
                 attributeName="opacity"
                 values="1;0.3;1"
