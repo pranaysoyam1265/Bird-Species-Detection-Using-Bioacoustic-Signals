@@ -15,6 +15,14 @@ build/
 # Raw audio files only (too large)
 01_Raw_Data/Audio_Recordings/
 01_Raw_Data/External_Data/BirdCLEF_Spectrograms_NOT_USED_28975_images/
+01_Raw_Data/Metadata/  # Contains port numbers in bird data CSVs - causes false positive secret scan
+
+# Training labels and splits (contains port numbers in data)
+04_Labels/Train_Val_Test_Split/
+
+# Utility logs and state files
+09_Utils/Logs/
+09_Utils/Scripts/arena_context/
 
 # Temp and cache files
 *.tmp

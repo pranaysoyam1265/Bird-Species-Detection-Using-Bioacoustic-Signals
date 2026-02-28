@@ -1,2 +1,5 @@
+[build]
+  publish = "."
+
 [build.environment]
-  SECRETS_SCAN_OMIT_PATHS = "README.md,09_Utils/Scripts/xeno_canto_api_scraper.py,09_Utils/Scripts/xeno_canto_aggressive_scraper.py"
+  SECRETS_SCAN_OMIT_KEYS = "FASTAPI_PORT"
