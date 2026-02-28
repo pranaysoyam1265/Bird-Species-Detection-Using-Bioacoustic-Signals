@@ -21,7 +21,7 @@ OUTPUT_FILE = os.path.join(METADATA_FOLDER, "scraped_metadata_v3.csv")
 CHECKPOINT_FILE = os.path.join(METADATA_FOLDER, "checkpoint_v3.json")
 
 # YOUR API KEY
-API_KEY = "8566d5355ba7b7b38edc52924626d3c0e642a4e3"
+API_KEY = os.getenv("XENO_CANTO_API_KEY", "your_api_key_here")
 
 # API Settings
 BASE_URL = "https://xeno-canto.org/api/3/recordings"
