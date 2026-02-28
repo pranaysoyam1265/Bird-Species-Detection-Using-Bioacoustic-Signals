@@ -1,5 +1,7 @@
 [build]
-  publish = "."
+  base = "08_Deployment/Frontend"
+  command = "npm install && npm run build"
+  publish = "out"
 
 [build.environment]
   SECRETS_SCAN_OMIT_KEYS = "FASTAPI_PORT,ALLOWED_ORIGINS"
