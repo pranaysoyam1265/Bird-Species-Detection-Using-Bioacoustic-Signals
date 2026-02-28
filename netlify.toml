@@ -2,4 +2,4 @@
   publish = "."
 
 [build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "FASTAPI_PORT"
+  SECRETS_SCAN_OMIT_KEYS = "FASTAPI_PORT,ALLOWED_ORIGINS"
