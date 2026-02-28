@@ -1,6 +1,6 @@
 [build]
   base = "08_Deployment/Frontend"
-  command = "npm run build"
+  command = "pnpm install --no-frozen-lockfile && pnpm run build"
   publish = "out"
 
 [build.environment]
