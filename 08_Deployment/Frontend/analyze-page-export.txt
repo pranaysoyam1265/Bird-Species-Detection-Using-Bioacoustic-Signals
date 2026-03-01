@@ -1,0 +1,1304 @@
+﻿BIRDSENSE ANALYZE PAGE - COMPLETE CODE EXPORT
+Generated: 2026-02-23 16:27:37
+
+================================================================================
+FEATURES LIST
+
+================================================================================
+1. UPLOAD ZONE - Drag & drop or click to upload audio (WAV, MP3, FLAC, OGG, M4A)
+2. AUDIO PLAYER - Web Audio API waveform, play/pause, seek, volume controls
+3. RECORDING INFO BAR - Duration, sample rate, quality indicator, SNR
+4. ANALYZE SIDEBAR - Mode toggle (Detect All / Search Species), noise reduction,
+   chunk duration (3-7s), top-K slider (1-10), min confidence slider (1-50%),
+   species search with sensitivity, action buttons (Save/Export/Analyze New)
+5. TOP RESULT CARD - Species name, scientific name, confidence bar
+6. PREDICTIONS CHART - Horizontal bar chart for top-K predictions
+7. SPECTROGRAM VIEW - Canvas-based spectrogram from AudioBuffer FFT data
+8. DETECTION TIMELINE - Segment blocks along time axis with play buttons
+9. STATE MACHINE - idle -> loading -> uploaded -> analyzing -> results -> error
+10. LOADING STATE - Spinner while audio is decoded with filename/size display
+11. RESPONSIVE LAYOUT - Sidebar collapses on mobile with toggle button
+12. MOCK ANALYSIS - 2s simulated processing with progress bar
+13. EXPORT RESULTS - Downloads results as JSON
+14. SEARCH MODE - Target species banner, sensitivity control
+
+================================================================================
+
+FILE: app\analyze\page.tsx
+--------------------------------------------------------------------------------
+"use client"
+
+import { useState, useCallback } from "react"
+import { Navbar } from "@/components/navbar"
+import { UploadZone } from "@/components/analyze/upload-zone"
+import { AudioPlayer } from "@/components/analyze/audio-player"
+import { RecordingInfo } from "@/components/analyze/recording-info"
+import { TopResultCard } from "@/components/analyze/top-result-card"
+import { PredictionsChart } from "@/components/analyze/predictions-chart"
+import { SpectrogramView } from "@/components/analyze/spectrogram-view"
+import { DetectionTimeline, type DetectionSegment } from "@/components/analyze/detection-timeline"
+import { AnalyzeSidebar, type SidebarSettings } from "@/components/analyze/analyze-sidebar"
+import { Menu, X, Zap, Loader2 } from "lucide-react"
+
+// â”€â”€ Types â”€â”€
+type PageState = "idle" | "loading" | "uploaded" | "analyzing" | "results" | "error"
+
+interface MockResults {
+  topSpecies: string
+  topScientific: string
+  topConfidence: number
+  predictions: { species: string; confidence: number }[]
+  segments: DetectionSegment[]
+}
+
+// â”€â”€ Mock data generator â”€â”€
+function generateMockResults(settings: SidebarSettings): MockResults {
+  const allBirds = [
+    { species: "Northern Cardinal", scientific: "Cardinalis cardinalis", conf: 96.5 },
+    { species: "Pyrrhuloxia", scientific: "Cardinalis sinuatus", conf: 42.3 },
+    { species: "Summer Tanager", scientific: "Piranga rubra", conf: 38.1 },
+    { species: "Scarlet Tanager", scientific: "Piranga olivacea", conf: 28.7 },
+    { species: "House Finch", scientific: "Haemorhous mexicanus", conf: 21.2 },
+    { species: "American Robin", scientific: "Turdus migratorius", conf: 15.8 },
+    { species: "Blue Jay", scientific: "Cyanocitta cristata", conf: 12.4 },
+    { species: "European Starling", scientific: "Sturnus vulgaris", conf: 8.9 },
+    { species: "Song Sparrow", scientific: "Melospiza melodia", conf: 6.3 },
+    { species: "Red-winged Blackbird", scientific: "Agelaius phoeniceus", conf: 4.1 },
+  ]
+
+  const filtered = allBirds
+    .filter(b => b.conf >= settings.minConfidence)
+    .slice(0, settings.topK)
+
+  const top = filtered[0] || allBirds[0]
+
+  const segments: DetectionSegment[] = [
+    { startTime: 0, endTime: settings.chunkDuration, confidence: 96.5, species: top.species },
+    { startTime: settings.chunkDuration + 3, endTime: settings.chunkDuration * 2 + 3, confidence: 94.2, species: top.species },
+    { startTime: settings.chunkDuration * 2 + 8, endTime: settings.chunkDuration * 3 + 8, confidence: 92.1, species: top.species },
+    { startTime: settings.chunkDuration * 3 + 14, endTime: settings.chunkDuration * 4 + 14, confidence: 89.0, species: top.species },
+  ]
+
+  return {
+    topSpecies: top.species,
+    topScientific: top.scientific,
+    topConfidence: top.conf,
+    predictions: filtered.map(b => ({ species: b.species, confidence: b.conf })),
+    segments,
+  }
+}
+
+export default function AnalyzePage() {
+  const [pageState, setPageState] = useState<PageState>("idle")
+  const [file, setFile] = useState<File | null>(null)
+  const [audioBuffer, setAudioBuffer] = useState<AudioBuffer | null>(null)
+  const [results, setResults] = useState<MockResults | null>(null)
+  const [uploadError, setUploadError] = useState("")
+  const [progress, setProgress] = useState(0)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const [settings, setSettings] = useState<SidebarSettings>({
+    mode: "detect",
+    noiseReduction: false,
+    chunkDuration: 5,
+    topK: 5,
+    minConfidence: 10,
+    searchSpecies: "",
+    sensitivity: 5,
+  })
+
+  const handleFileSelect = useCallback((f: File) => {
+    setFile(f)
+    setUploadError("")
+    setResults(null)
+    setAudioBuffer(null)
+    setPageState("loading")
+  }, [])
+
+  const handleRemoveFile = useCallback(() => {
+    setFile(null)
+    setAudioBuffer(null)
+    setResults(null)
+    setPageState("idle")
+  }, [])
+
+  const handleAudioDecoded = useCallback((buffer: AudioBuffer) => {
+    setAudioBuffer(buffer)
+    setPageState("uploaded")
+  }, [])
+
+  const handleAnalyze = useCallback(() => {
+    setPageState("analyzing")
+    setProgress(0)
+
+    // Simulate analysis progress
+    const steps = 20
+    let step = 0
+    const interval = setInterval(() => {
+      step++
+      setProgress(Math.round((step / steps) * 100))
+      if (step >= steps) {
+        clearInterval(interval)
+        const mockResults = generateMockResults(settings)
+        setResults(mockResults)
+        setPageState("results")
+      }
+    }, 100)
+  }, [settings])
+
+  const handleAnalyzeNew = useCallback(() => {
+    setFile(null)
+    setAudioBuffer(null)
+    setResults(null)
+    setUploadError("")
+    setPageState("idle")
+    setProgress(0)
+  }, [])
+
+  const handleExport = useCallback(() => {
+    if (!results) return
+    const data = JSON.stringify(results, null, 2)
+    const blob = new Blob([data], { type: "application/json" })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download = "birdsense-results.json"
+    a.click()
+    URL.revokeObjectURL(url)
+  }, [results])
+
+  const handleSave = useCallback(() => {
+    // Placeholder
+    alert("Results saved to history!")
+  }, [])
+
+  const duration = audioBuffer?.duration ?? 0
+  const sampleRate = audioBuffer?.sampleRate ?? 0
+
+  return (
+    <div className="min-h-screen dot-grid-bg flex flex-col">
+      <Navbar />
+
+      {/* Mobile sidebar toggle */}
+      <div className="lg:hidden px-4 pt-4">
+        <button
+          type="button"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="flex items-center gap-2 px-4 py-2 border-2 border-foreground font-mono text-xs tracking-[0.15em] uppercase cursor-pointer hover:bg-muted"
+        >
+          {sidebarOpen ? <X size={14} /> : <Menu size={14} />}
+          {sidebarOpen ? "CLOSE SETTINGS" : "SETTINGS"}
+        </button>
+      </div>
+
+      <main className="flex-1 flex flex-col lg:flex-row p-4 lg:p-6 gap-4 lg:gap-6">
+        {/* SIDEBAR */}
+        <div className={`${sidebarOpen ? "block" : "hidden"} lg:block`}>
+          <AnalyzeSidebar
+            settings={settings}
+            onSettingsChange={setSettings}
+            hasResults={pageState === "results"}
+            onAnalyzeNew={handleAnalyzeNew}
+            onExport={handleExport}
+            onSave={handleSave}
+          />
+        </div>
+
+        {/* MAIN CONTENT */}
+        <div className="flex-1 space-y-4 lg:space-y-6 min-w-0">
+          {/* Upload Zone (always visible when idle, collapsed when file selected) */}
+          {pageState === "idle" && (
+            <UploadZone
+              onFileSelect={handleFileSelect}
+              currentFile={file}
+              error={uploadError}
+            />
+          )}
+
+          {/* Loading state while audio is being decoded */}
+          {pageState === "loading" && file && (
+            <div className="border-2 border-foreground bg-background p-8 flex flex-col items-center justify-center gap-4 min-h-[200px]">
+              <Loader2 size={32} className="animate-spin text-[#ea580c]" />
+              <div className="text-center space-y-2">
+                <p className="font-mono text-xs tracking-[0.2em] uppercase text-foreground font-bold">
+                  DECODING AUDIO...
+                </p>
+                <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
+                  {file.name} â€¢ {(file.size / (1024 * 1024)).toFixed(2)} MB
+                </p>
+                <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground animate-blink">
+                  EXTRACTING WAVEFORM DATA...
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Audio Player + Info (when file decoded or later) */}
+          {file && pageState !== "idle" && pageState !== "loading" && (
+            <>
+              <AudioPlayer
+                file={file}
+                onRemove={handleRemoveFile}
+                onAudioDecoded={handleAudioDecoded}
+              />
+
+              {audioBuffer && (
+                <RecordingInfo duration={duration} sampleRate={sampleRate} />
+              )}
+            </>
+          )}
+
+          {/* Analyze Button (when uploaded and not yet analyzing) */}
+          {pageState === "uploaded" && (
+            <button
+              type="button"
+              onClick={handleAnalyze}
+              className="w-full py-4 border-2 border-[#ea580c] bg-[#ea580c] text-white font-mono text-sm tracking-[0.2em] uppercase font-bold shadow-[4px_4px_0px_0px_rgba(234,88,12,0.3)] hover:bg-background hover:text-[#ea580c] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-none cursor-pointer flex items-center justify-center gap-3"
+            >
+              <Zap size={16} />
+              {">>> ANALYZE AUDIO <<<"}
+            </button>
+          )}
+
+          {/* Progress Bar (when analyzing) */}
+          {pageState === "analyzing" && (
+            <div className="border-2 border-foreground bg-background p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-xs tracking-[0.2em] uppercase text-foreground font-bold">
+                  ANALYZING...
+                </span>
+                <span className="font-mono text-xs tracking-wider text-[#ea580c] font-bold">
+                  {progress}%
+                </span>
+              </div>
+              <div className="w-full h-3 border-2 border-foreground bg-background overflow-hidden">
+                <div
+                  className="h-full bg-[#ea580c] transition-all duration-100"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground animate-blink">
+                PROCESSING AUDIO SEGMENTS...
+              </p>
+            </div>
+          )}
+
+          {/* Results (when analysis complete) */}
+          {pageState === "results" && results && (
+            <div className="space-y-4 lg:space-y-6">
+              {/* Search mode banner */}
+              {settings.mode === "search" && settings.searchSpecies && (
+                <div className="border-2 border-[#ea580c] bg-[#ea580c]/10 px-4 py-3 font-mono text-xs tracking-[0.15em] uppercase text-[#ea580c] flex items-center gap-2">
+                  <span>ðŸŽ¯</span>
+                  SEARCHING FOR: <span className="font-bold">{settings.searchSpecies.toUpperCase()}</span>
+                </div>
+              )}
+
+              {/* Top result + Predictions side by side on desktop */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+                <TopResultCard
+                  species={results.topSpecies}
+                  scientificName={results.topScientific}
+                  confidence={results.topConfidence}
+                />
+                <PredictionsChart predictions={results.predictions} />
+              </div>
+
+              <SpectrogramView audioBuffer={audioBuffer} />
+
+              <DetectionTimeline
+                segments={results.segments}
+                totalDuration={Math.max(duration, 30)}
+              />
+            </div>
+          )}
+
+          {/* Empty state tips (when idle) */}
+          {pageState === "idle" && (
+            <div className="border border-foreground/20 bg-background/50 p-6 space-y-3">
+              <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground/60 block">
+                QUICK START
+              </span>
+              <div className="space-y-2 font-mono text-xs text-muted-foreground">
+                <p className="flex items-start gap-2">
+                  <span className="text-[#ea580c] shrink-0">01.</span>
+                  Upload a field recording (WAV, MP3, FLAC, OGG, M4A)
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-[#ea580c] shrink-0">02.</span>
+                  Configure detection settings in the sidebar
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-[#ea580c] shrink-0">03.</span>
+                  Click ANALYZE to identify bird species
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-[#ea580c] shrink-0">04.</span>
+                  Export results or save to your detection history
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Status bar */}
+          <div className="border border-foreground/30 bg-muted/30 px-4 py-3 font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase text-muted-foreground flex items-center gap-2">
+            <span className="mr-1 select-none">SYS_STATUS:</span>
+            <span className="inline-flex items-center gap-1">
+              {pageState === "idle" && "AWAITING AUDIO INPUT"}
+              {pageState === "loading" && "DECODING AUDIO..."}
+              {pageState === "uploaded" && "FILE LOADED â€” READY TO ANALYZE"}
+              {pageState === "analyzing" && "PROCESSING..."}
+              {pageState === "results" && "ANALYSIS COMPLETE"}
+              {pageState === "error" && "ERROR OCCURRED"}
+              <span className="inline-block w-1.5 h-3.5 bg-[#ea580c] animate-blink" />
+            </span>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
+
+
+================================================================================
+
+FILE: components\analyze\analyze-sidebar.tsx
+--------------------------------------------------------------------------------
+"use client"
+
+import { Settings, Search, Save, FileDown, RotateCcw } from "lucide-react"
+
+export type AnalyzeMode = "detect" | "search"
+
+export interface SidebarSettings {
+  mode: AnalyzeMode
+  noiseReduction: boolean
+  chunkDuration: number
+  topK: number
+  minConfidence: number
+  searchSpecies: string
+  sensitivity: number
+}
+
+interface AnalyzeSidebarProps {
+  settings: SidebarSettings
+  onSettingsChange: (s: SidebarSettings) => void
+  hasResults: boolean
+  onAnalyzeNew: () => void
+  onExport: () => void
+  onSave: () => void
+}
+
+export function AnalyzeSidebar({ settings, onSettingsChange, hasResults, onAnalyzeNew, onExport, onSave }: AnalyzeSidebarProps) {
+  const update = (partial: Partial<SidebarSettings>) =>
+    onSettingsChange({ ...settings, ...partial })
+
+  return (
+    <aside className="w-full lg:w-[280px] lg:min-w-[280px] flex flex-col gap-4">
+      {/* MODE TOGGLE */}
+      <div className="border-2 border-foreground bg-background">
+        <div className="border-b-2 border-foreground px-4 py-2">
+          <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+            MODE
+          </span>
+        </div>
+        <div className="p-4 space-y-2">
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <span
+              className={`w-4 h-4 border-2 border-foreground flex items-center justify-center ${settings.mode === "detect" ? "bg-[#ea580c]" : ""
+                }`}
+            >
+              {settings.mode === "detect" && <span className="w-2 h-2 bg-white" />}
+            </span>
+            <button
+              type="button"
+              onClick={() => update({ mode: "detect" })}
+              className="font-mono text-xs tracking-[0.15em] uppercase text-foreground group-hover:text-[#ea580c] cursor-pointer bg-transparent border-none p-0"
+            >
+              DETECT ALL
+            </button>
+          </label>
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <span
+              className={`w-4 h-4 border-2 border-foreground flex items-center justify-center ${settings.mode === "search" ? "bg-[#ea580c]" : ""
+                }`}
+            >
+              {settings.mode === "search" && <span className="w-2 h-2 bg-white" />}
+            </span>
+            <button
+              type="button"
+              onClick={() => update({ mode: "search" })}
+              className="font-mono text-xs tracking-[0.15em] uppercase text-foreground group-hover:text-[#ea580c] cursor-pointer bg-transparent border-none p-0"
+            >
+              SEARCH SPECIES
+            </button>
+          </label>
+        </div>
+      </div>
+
+      {/* SETTINGS */}
+      <div className="border-2 border-foreground bg-background">
+        <div className="border-b-2 border-foreground px-4 py-2 flex items-center gap-2">
+          <Settings size={12} />
+          <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+            SETTINGS
+          </span>
+        </div>
+        <div className="p-4 space-y-5">
+          {/* Noise Reduction */}
+          <label className="flex items-center gap-3 cursor-pointer">
+            <span
+              onClick={() => update({ noiseReduction: !settings.noiseReduction })}
+              className={`w-4 h-4 border-2 border-foreground cursor-pointer flex items-center justify-center ${settings.noiseReduction ? "bg-foreground" : ""
+                }`}
+            >
+              {settings.noiseReduction && <span className="text-background text-[10px] font-bold">âœ“</span>}
+            </span>
+            <span className="font-mono text-xs tracking-[0.15em] uppercase text-foreground">
+              NOISE REDUCTION
+            </span>
+          </label>
+
+          {/* Chunk Duration */}
+          <div className="space-y-2">
+            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground block">
+              CHUNK DURATION
+            </span>
+            <div className="flex gap-1">
+              {[3, 4, 5, 6, 7].map((v) => (
+                <button
+                  key={v}
+                  type="button"
+                  onClick={() => update({ chunkDuration: v })}
+                  className={`flex-1 py-1.5 font-mono text-[10px] tracking-wider uppercase border-2 border-foreground cursor-pointer transition-none ${settings.chunkDuration === v
+                      ? "bg-[#ea580c] text-white border-[#ea580c]"
+                      : "bg-background text-foreground hover:bg-muted"
+                    }`}
+                >
+                  {v}s
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Top Predictions */}
+          <div className="space-y-2">
+            <div className="flex justify-between">
+              <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+                TOP PREDICTIONS
+              </span>
+              <span className="font-mono text-[10px] tracking-wider text-[#ea580c] font-bold">
+                {settings.topK}
+              </span>
+            </div>
+            <input
+              type="range"
+              min={1}
+              max={10}
+              value={settings.topK}
+              onChange={(e) => update({ topK: parseInt(e.target.value) })}
+              className="w-full h-1 appearance-none bg-foreground/20 outline-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-[#ea580c] [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:cursor-pointer"
+            />
+          </div>
+
+          {/* Min Confidence */}
+          <div className="space-y-2">
+            <div className="flex justify-between">
+              <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+                MIN CONFIDENCE
+              </span>
+              <span className="font-mono text-[10px] tracking-wider text-[#ea580c] font-bold">
+                {settings.minConfidence}%
+              </span>
+            </div>
+            <input
+              type="range"
+              min={1}
+              max={50}
+              value={settings.minConfidence}
+              onChange={(e) => update({ minConfidence: parseInt(e.target.value) })}
+              className="w-full h-1 appearance-none bg-foreground/20 outline-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-[#ea580c] [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* SEARCH MODE (shown only when search active) */}
+      {settings.mode === "search" && (
+        <div className="border-2 border-foreground bg-background">
+          <div className="border-b-2 border-foreground px-4 py-2 flex items-center gap-2">
+            <Search size={12} />
+            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+              TARGET SPECIES
+            </span>
+          </div>
+          <div className="p-4 space-y-4">
+            <input
+              type="text"
+              placeholder="Search bird..."
+              value={settings.searchSpecies}
+              onChange={(e) => update({ searchSpecies: e.target.value })}
+              className="w-full border-2 border-foreground bg-background px-3 py-2 font-mono text-xs tracking-wider uppercase placeholder:text-muted-foreground/40 outline-none focus:border-[#ea580c]"
+            />
+            <div className="space-y-2">
+              <div className="flex justify-between">
+                <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+                  SENSITIVITY
+                </span>
+                <span className="font-mono text-[10px] tracking-wider text-[#ea580c] font-bold">
+                  {settings.sensitivity}%
+                </span>
+              </div>
+              <input
+                type="range"
+                min={1}
+                max={20}
+                value={settings.sensitivity}
+                onChange={(e) => update({ sensitivity: parseInt(e.target.value) })}
+                className="w-full h-1 appearance-none bg-foreground/20 outline-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-[#ea580c] [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ACTIONS */}
+      <div className="border-2 border-foreground bg-background">
+        <div className="border-b-2 border-foreground px-4 py-2">
+          <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+            ACTIONS
+          </span>
+        </div>
+        <div className="p-4 space-y-2">
+          <button
+            type="button"
+            onClick={onSave}
+            disabled={!hasResults}
+            className="w-full flex items-center gap-3 px-4 py-2.5 border-2 border-foreground font-mono text-xs tracking-[0.15em] uppercase cursor-pointer transition-none hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <Save size={14} /> SAVE TO HISTORY
+          </button>
+          <button
+            type="button"
+            onClick={onExport}
+            disabled={!hasResults}
+            className="w-full flex items-center gap-3 px-4 py-2.5 border-2 border-foreground font-mono text-xs tracking-[0.15em] uppercase cursor-pointer transition-none hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <FileDown size={14} /> EXPORT RESULTS
+          </button>
+          <button
+            type="button"
+            onClick={onAnalyzeNew}
+            className="w-full flex items-center gap-3 px-4 py-2.5 border-2 border-[#ea580c] text-[#ea580c] font-mono text-xs tracking-[0.15em] uppercase font-bold cursor-pointer transition-none hover:bg-[#ea580c] hover:text-white"
+          >
+            <RotateCcw size={14} /> ANALYZE NEW
+          </button>
+        </div>
+      </div>
+    </aside>
+  )
+}
+
+
+================================================================================
+
+FILE: components\analyze\upload-zone.tsx
+--------------------------------------------------------------------------------
+"use client"
+
+import { useRef, useState, useCallback } from "react"
+import { Upload, Check, AlertCircle, Music } from "lucide-react"
+
+interface UploadZoneProps {
+  onFileSelect: (file: File) => void
+  currentFile: File | null
+  error?: string
+}
+
+const ACCEPTED = ".wav,.mp3,.flac,.ogg,.m4a"
+const ACCEPTED_TYPES = ["audio/wav", "audio/mpeg", "audio/flac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/x-wav", "audio/wave"]
+
+export function UploadZone({ onFileSelect, currentFile, error }: UploadZoneProps) {
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [dragOver, setDragOver] = useState(false)
+
+  const handleFile = useCallback((file: File) => {
+    if (file && (ACCEPTED_TYPES.some(t => file.type.includes(t.split("/")[1])) || file.name.match(/\.(wav|mp3|flac|ogg|m4a)$/i))) {
+      onFileSelect(file)
+    }
+  }, [onFileSelect])
+
+  const onDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(false)
+    const file = e.dataTransfer.files[0]
+    if (file) handleFile(file)
+  }, [handleFile])
+
+  const onDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(true)
+  }, [])
+
+  const onDragLeave = useCallback(() => setDragOver(false), [])
+
+  const onClick = useCallback(() => inputRef.current?.click(), [])
+
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) handleFile(file)
+  }, [handleFile])
+
+  const hasFile = !!currentFile
+  const hasError = !!error
+
+  return (
+    <div
+      onClick={onClick}
+      onDrop={onDrop}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      className={`
+        relative cursor-pointer transition-none
+        border-2 p-8 sm:p-12
+        flex flex-col items-center justify-center gap-4 text-center
+        min-h-[200px]
+        ${hasError
+          ? "border-red-500 bg-red-500/5"
+          : hasFile
+            ? "border-[#ea580c] bg-[#ea580c]/5"
+            : dragOver
+              ? "border-[#ea580c] border-solid bg-[#ea580c]/5"
+              : "border-dashed border-foreground/30 hover:border-foreground/60 bg-background"
+        }
+      `}
+    >
+      <input
+        ref={inputRef}
+        type="file"
+        accept={ACCEPTED}
+        onChange={onChange}
+        className="hidden"
+      />
+
+      {hasError ? (
+        <>
+          <AlertCircle size={32} className="text-red-500" />
+          <p className="font-mono text-xs tracking-[0.2em] uppercase text-red-500">{error}</p>
+        </>
+      ) : hasFile ? (
+        <>
+          <div className="flex items-center gap-3">
+            <Check size={20} className="text-[#ea580c]" />
+            <Music size={20} className="text-[#ea580c]" />
+          </div>
+          <p className="font-mono text-xs tracking-[0.15em] uppercase text-foreground font-bold">
+            {currentFile.name}
+          </p>
+          <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+            {(currentFile.size / (1024 * 1024)).toFixed(2)} MB â€¢ CLICK TO CHANGE
+          </p>
+        </>
+      ) : (
+        <>
+          <Upload size={32} className="text-muted-foreground" />
+          <p className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase text-foreground font-bold">
+            DRAG & DROP AUDIO FILE HERE
+          </p>
+          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
+            or click to browse
+          </p>
+          <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground/60 mt-2">
+            WAV â€¢ MP3 â€¢ FLAC â€¢ OGG â€¢ M4A
+          </p>
+        </>
+      )}
+
+      {/* Corner dots */}
+      <span className="absolute -top-[3px] -left-[3px] w-2 h-2 bg-[#ea580c]" />
+      <span className="absolute -top-[3px] -right-[3px] w-2 h-2 bg-[#ea580c]" />
+      <span className="absolute -bottom-[3px] -left-[3px] w-2 h-2 bg-[#ea580c]" />
+      <span className="absolute -bottom-[3px] -right-[3px] w-2 h-2 bg-[#ea580c]" />
+    </div>
+  )
+}
+
+
+================================================================================
+
+FILE: components\analyze\audio-player.tsx
+--------------------------------------------------------------------------------
+"use client"
+
+import { useRef, useState, useEffect, useCallback } from "react"
+import { Play, Pause, X, Volume2 } from "lucide-react"
+
+interface AudioPlayerProps {
+  file: File
+  onRemove: () => void
+  onAudioDecoded?: (buffer: AudioBuffer) => void
+}
+
+export function AudioPlayer({ file, onRemove, onAudioDecoded }: AudioPlayerProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const [playing, setPlaying] = useState(false)
+  const [currentTime, setCurrent] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [volume, setVolume] = useState(0.8)
+  const [waveform, setWaveform] = useState<number[]>([])
+  const [url, setUrl] = useState("")
+  const rafRef = useRef<number>(0)
+
+  // Create object URL for audio
+  useEffect(() => {
+    const u = URL.createObjectURL(file)
+    setUrl(u)
+    setPlaying(false)
+    setCurrent(0)
+    return () => URL.revokeObjectURL(u)
+  }, [file])
+
+  // Decode audio and extract waveform
+  useEffect(() => {
+    const reader = new FileReader()
+    reader.onload = async () => {
+      try {
+        const ctx = new AudioContext()
+        const buffer = await ctx.decodeAudioData(reader.result as ArrayBuffer)
+        onAudioDecoded?.(buffer)
+        setDuration(buffer.duration)
+
+        // Extract waveform peaks
+        const raw = buffer.getChannelData(0)
+        const samples = 200
+        const blockSize = Math.floor(raw.length / samples)
+        const peaks: number[] = []
+        for (let i = 0; i < samples; i++) {
+          let sum = 0
+          for (let j = 0; j < blockSize; j++) {
+            sum += Math.abs(raw[i * blockSize + j])
+          }
+          peaks.push(sum / blockSize)
+        }
+        // Normalize
+        const max = Math.max(...peaks, 0.01)
+        setWaveform(peaks.map(p => p / max))
+        ctx.close()
+      } catch {
+        // If decode fails, still set basic info
+        setWaveform(Array.from({ length: 200 }, () => Math.random() * 0.5 + 0.2))
+      }
+    }
+    reader.readAsArrayBuffer(file)
+  }, [file, onAudioDecoded])
+
+  // Draw waveform
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas || waveform.length === 0) return
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    const dpr = window.devicePixelRatio || 1
+    const rect = canvas.getBoundingClientRect()
+    canvas.width = rect.width * dpr
+    canvas.height = rect.height * dpr
+    ctx.scale(dpr, dpr)
+
+    const W = rect.width
+    const H = rect.height
+    const barW = W / waveform.length
+    const progress = duration > 0 ? currentTime / duration : 0
+
+    ctx.clearRect(0, 0, W, H)
+
+    waveform.forEach((v, i) => {
+      const x = i * barW
+      const h = v * H * 0.8
+      const y = (H - h) / 2
+      const pct = i / waveform.length
+      ctx.fillStyle = pct <= progress ? "#ea580c" : "hsl(0 0% 40%)"
+      ctx.fillRect(x, y, Math.max(barW - 1, 1), h)
+    })
+  }, [waveform, currentTime, duration])
+
+  // Animation frame for time update
+  useEffect(() => {
+    const tick = () => {
+      if (audioRef.current) {
+        setCurrent(audioRef.current.currentTime)
+      }
+      rafRef.current = requestAnimationFrame(tick)
+    }
+    if (playing) {
+      rafRef.current = requestAnimationFrame(tick)
+    }
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [playing])
+
+  const togglePlay = useCallback(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (playing) {
+      audio.pause()
+    } else {
+      audio.play()
+    }
+    setPlaying(!playing)
+  }, [playing])
+
+  const seek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const t = parseFloat(e.target.value)
+    if (audioRef.current) {
+      audioRef.current.currentTime = t
+      setCurrent(t)
+    }
+  }, [])
+
+  const changeVolume = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const v = parseFloat(e.target.value)
+    setVolume(v)
+    if (audioRef.current) audioRef.current.volume = v
+  }, [])
+
+  const fmt = (s: number) => {
+    const m = Math.floor(s / 60)
+    const sec = Math.floor(s % 60)
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`
+  }
+
+  return (
+    <div className="border-2 border-foreground bg-background">
+      <audio ref={audioRef} src={url} onEnded={() => setPlaying(false)} />
+
+      {/* Header */}
+      <div className="flex items-center justify-between border-b-2 border-foreground px-4 py-2">
+        <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground truncate max-w-[80%]">
+          {file.name}
+        </span>
+        <button
+          type="button"
+          onClick={onRemove}
+          className="text-muted-foreground hover:text-red-500 cursor-pointer"
+        >
+          <X size={14} />
+        </button>
+      </div>
+
+      {/* Waveform */}
+      <div className="px-4 py-4">
+        <canvas
+          ref={canvasRef}
+          className="w-full h-[80px]"
+          style={{ imageRendering: "pixelated" }}
+        />
+      </div>
+
+      {/* Controls */}
+      <div className="border-t-2 border-foreground px-4 py-3 flex items-center gap-4">
+        <button
+          type="button"
+          onClick={togglePlay}
+          className="w-8 h-8 border-2 border-foreground flex items-center justify-center cursor-pointer hover:bg-[#ea580c] hover:border-[#ea580c] hover:text-white transition-none"
+        >
+          {playing ? <Pause size={14} /> : <Play size={14} />}
+        </button>
+
+        <input
+          type="range"
+          min={0}
+          max={duration || 0}
+          step={0.01}
+          value={currentTime}
+          onChange={seek}
+          className="flex-1 h-1 appearance-none bg-foreground/20 outline-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-[#ea580c] [&::-webkit-slider-thumb]:border-0"
+        />
+
+        <span className="font-mono text-[10px] tracking-wider text-muted-foreground whitespace-nowrap">
+          {fmt(currentTime)} / {fmt(duration)}
+        </span>
+
+        <div className="hidden sm:flex items-center gap-2">
+          <Volume2 size={12} className="text-muted-foreground" />
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.01}
+            value={volume}
+            onChange={changeVolume}
+            className="w-16 h-1 appearance-none bg-foreground/20 outline-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:bg-[#ea580c] [&::-webkit-slider-thumb]:border-0"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+================================================================================
+
+FILE: components\analyze\recording-info.tsx
+--------------------------------------------------------------------------------
+"use client"
+
+interface RecordingInfoProps {
+  duration: number
+  sampleRate: number
+}
+
+export function RecordingInfo({ duration, sampleRate }: RecordingInfoProps) {
+  const fmt = (s: number) => {
+    const m = Math.floor(s / 60)
+    const sec = Math.floor(s % 60)
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`
+  }
+
+  const quality = sampleRate >= 44100 ? "EXCELLENT" : sampleRate >= 22050 ? "GOOD" : "FAIR"
+  const qualityColor = quality === "EXCELLENT" ? "text-green-500" : quality === "GOOD" ? "text-[#ea580c]" : "text-yellow-500"
+
+  // Mock SNR â€” in real usage this would come from audio analysis
+  const snr = (18.5 + Math.random() * 4).toFixed(1)
+
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-4 border-2 border-foreground bg-background">
+      <div className="p-3 sm:p-4 border-b-2 sm:border-b-0 sm:border-r-2 border-foreground">
+        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground block mb-1">
+          DURATION
+        </span>
+        <span className="font-mono text-sm font-bold text-foreground">
+          {fmt(duration)}
+        </span>
+      </div>
+      <div className="p-3 sm:p-4 border-b-2 sm:border-b-0 sm:border-r-2 border-foreground">
+        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground block mb-1">
+          SAMPLE RATE
+        </span>
+        <span className="font-mono text-sm font-bold text-foreground">
+          {(sampleRate / 1000).toFixed(2)}kHz
+        </span>
+      </div>
+      <div className="p-3 sm:p-4 border-b-2 sm:border-b-0 sm:border-r-2 border-foreground">
+        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground block mb-1">
+          QUALITY
+        </span>
+        <span className={`font-mono text-sm font-bold ${qualityColor}`}>
+          {quality}
+        </span>
+      </div>
+      <div className="p-3 sm:p-4">
+        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground block mb-1">
+          SNR
+        </span>
+        <span className="font-mono text-sm font-bold text-foreground">
+          {snr} dB
+        </span>
+      </div>
+    </div>
+  )
+}
+
+
+================================================================================
+
+FILE: components\analyze\top-result-card.tsx
+--------------------------------------------------------------------------------
+"use client"
+
+interface TopResultCardProps {
+  species: string
+  scientificName: string
+  confidence: number
+}
+
+export function TopResultCard({ species, scientificName, confidence }: TopResultCardProps) {
+  return (
+    <div className="border-2 border-foreground bg-background">
+      <div className="border-b-2 border-foreground px-4 py-2">
+        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+          TOP DETECTION
+        </span>
+      </div>
+      <div className="p-6 sm:p-8 flex flex-col items-center text-center gap-4">
+        <span className="text-3xl">ðŸ¦</span>
+        <div>
+          <h3 className="font-mono text-lg sm:text-xl font-bold tracking-[0.1em] uppercase text-foreground">
+            {species}
+          </h3>
+          <p className="font-mono text-xs tracking-[0.15em] text-muted-foreground italic mt-1">
+            {scientificName}
+          </p>
+        </div>
+        {/* Confidence bar */}
+        <div className="w-full max-w-[280px] space-y-2">
+          <div className="w-full h-4 border-2 border-foreground bg-background overflow-hidden">
+            <div
+              className="h-full bg-[#ea580c] transition-all duration-1000 ease-out"
+              style={{ width: `${confidence}%` }}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <span className="font-mono text-2xl font-bold text-[#ea580c]">
+              {confidence.toFixed(1)}%
+            </span>
+            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+              CONFIDENCE
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+================================================================================
+
+FILE: components\analyze\predictions-chart.tsx
+--------------------------------------------------------------------------------
+"use client"
+
+interface Prediction {
+  species: string
+  confidence: number
+}
+
+interface PredictionsChartProps {
+  predictions: Prediction[]
+}
+
+export function PredictionsChart({ predictions }: PredictionsChartProps) {
+  const maxConf = Math.max(...predictions.map(p => p.confidence), 1)
+
+  return (
+    <div className="border-2 border-foreground bg-background">
+      <div className="border-b-2 border-foreground px-4 py-2">
+        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+          TOP PREDICTIONS
+        </span>
+      </div>
+      <div className="p-4 space-y-3">
+        {predictions.map((p, i) => (
+          <div key={i} className="flex items-center gap-3">
+            <span className="font-mono text-[10px] tracking-wider uppercase text-foreground w-[140px] sm:w-[180px] truncate shrink-0 text-right">
+              {p.species}
+            </span>
+            <div className="flex-1 h-5 bg-foreground/10 overflow-hidden">
+              <div
+                className="h-full bg-[#ea580c] transition-all duration-700 ease-out"
+                style={{ width: `${(p.confidence / maxConf) * 100}%` }}
+              />
+            </div>
+            <span className="font-mono text-[10px] tracking-wider text-muted-foreground w-[50px] shrink-0">
+              {p.confidence.toFixed(1)}%
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+
+================================================================================
+
+FILE: components\analyze\spectrogram-view.tsx
+--------------------------------------------------------------------------------
+"use client"
+
+import { useRef, useEffect } from "react"
+
+interface SpectrogramViewProps {
+  audioBuffer: AudioBuffer | null
+}
+
+export function SpectrogramView({ audioBuffer }: SpectrogramViewProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas || !audioBuffer) return
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    const dpr = window.devicePixelRatio || 1
+    const rect = canvas.getBoundingClientRect()
+    canvas.width = rect.width * dpr
+    canvas.height = rect.height * dpr
+    ctx.scale(dpr, dpr)
+
+    const W = rect.width
+    const H = rect.height
+    const data = audioBuffer.getChannelData(0)
+
+    // Simple spectrogram using short-time FFT approximation
+    const fftSize = 256
+    const cols = Math.min(Math.floor(data.length / fftSize), Math.floor(W))
+    const rows = fftSize / 2
+
+    // Color palette: black â†’ dark orange â†’ orange â†’ yellow â†’ white
+    const colorMap = (v: number): [number, number, number] => {
+      if (v < 0.2) return [10 + v * 200, 10 + v * 100, 10]
+      if (v < 0.5) return [60 + v * 350, 30 + v * 120, 10]
+      if (v < 0.75) return [234, 88, 12 + v * 100]
+      return [234 + (v - 0.75) * 80, 88 + (v - 0.75) * 600, 12 + v * 200]
+    }
+
+    for (let col = 0; col < cols; col++) {
+      const start = col * fftSize
+      // Compute magnitude spectrum approximation
+      for (let row = 0; row < rows; row++) {
+        let sum = 0
+        const binSize = 4
+        for (let k = 0; k < binSize; k++) {
+          const idx = start + row * (fftSize / rows) + k
+          if (idx < data.length) {
+            sum += Math.abs(data[idx])
+          }
+        }
+        const mag = Math.min(sum / binSize * 3, 1)
+        const [r, g, b] = colorMap(mag)
+        ctx.fillStyle = `rgb(${Math.floor(r)},${Math.floor(g)},${Math.floor(b)})`
+
+        const x = (col / cols) * W
+        const y = H - ((row + 1) / rows) * H
+        const cellW = W / cols + 1
+        const cellH = H / rows + 1
+        ctx.fillRect(x, y, cellW, cellH)
+      }
+    }
+
+    // Axis labels
+    ctx.fillStyle = "hsl(0 0% 60%)"
+    ctx.font = "9px monospace"
+    const sr = audioBuffer.sampleRate
+    const maxFreq = sr / 2
+
+    ctx.fillText(`${(maxFreq / 1000).toFixed(0)}kHz`, 2, 12)
+    ctx.fillText(`${(maxFreq / 2000).toFixed(0)}kHz`, 2, H / 2)
+    ctx.fillText("0Hz", 2, H - 4)
+
+    // Time labels
+    const dur = audioBuffer.duration
+    ctx.fillText("0s", 30, H - 4)
+    ctx.fillText(`${(dur / 2).toFixed(0)}s`, W / 2, H - 4)
+    ctx.fillText(`${dur.toFixed(0)}s`, W - 20, H - 4)
+
+  }, [audioBuffer])
+
+  return (
+    <div className="border-2 border-foreground bg-background">
+      <div className="border-b-2 border-foreground px-4 py-2">
+        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+          SPECTROGRAM
+        </span>
+      </div>
+      <div className="p-4">
+        {audioBuffer ? (
+          <canvas
+            ref={canvasRef}
+            className="w-full h-[140px] sm:h-[180px]"
+            style={{ imageRendering: "pixelated" }}
+          />
+        ) : (
+          <div className="w-full h-[140px] flex items-center justify-center">
+            <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground/40">
+              NO DATA
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+
+================================================================================
+
+FILE: components\analyze\detection-timeline.tsx
+--------------------------------------------------------------------------------
+"use client"
+
+import { Play } from "lucide-react"
+
+export interface DetectionSegment {
+  startTime: number
+  endTime: number
+  confidence: number
+  species: string
+}
+
+interface DetectionTimelineProps {
+  segments: DetectionSegment[]
+  totalDuration: number
+}
+
+export function DetectionTimeline({ segments, totalDuration }: DetectionTimelineProps) {
+  const fmt = (s: number) => {
+    const m = Math.floor(s / 60)
+    const sec = Math.floor(s % 60)
+    return `${m}:${sec.toString().padStart(2, "0")}`
+  }
+
+  return (
+    <div className="border-2 border-foreground bg-background">
+      <div className="border-b-2 border-foreground px-4 py-2">
+        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+          DETECTION TIMELINE
+        </span>
+      </div>
+      <div className="p-4 space-y-4">
+        {/* Timeline bar */}
+        <div className="relative w-full h-12 bg-foreground/5 border border-foreground/20">
+          {segments.map((seg, i) => {
+            const left = (seg.startTime / totalDuration) * 100
+            const width = ((seg.endTime - seg.startTime) / totalDuration) * 100
+            return (
+              <div
+                key={i}
+                className="absolute top-1 bottom-1 bg-[#ea580c]/80 border border-[#ea580c] flex items-center justify-center"
+                style={{ left: `${left}%`, width: `${Math.max(width, 2)}%` }}
+                title={`${seg.species} ${seg.confidence.toFixed(1)}%`}
+              >
+                <span className="font-mono text-[8px] text-white font-bold">
+                  {seg.confidence.toFixed(0)}%
+                </span>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Time axis */}
+        <div className="flex justify-between">
+          {Array.from({ length: 6 }, (_, i) => {
+            const t = (totalDuration / 5) * i
+            return (
+              <span key={i} className="font-mono text-[9px] text-muted-foreground">
+                {fmt(t)}
+              </span>
+            )
+          })}
+        </div>
+
+        {/* Segment buttons */}
+        <div className="flex flex-wrap gap-2">
+          {segments.map((seg, i) => (
+            <button
+              key={i}
+              type="button"
+              className="flex items-center gap-1.5 px-3 py-1.5 border border-foreground font-mono text-[10px] tracking-wider uppercase text-muted-foreground hover:text-foreground hover:border-[#ea580c] cursor-pointer transition-none"
+            >
+              <Play size={8} />
+              {fmt(seg.startTime)}-{fmt(seg.endTime)}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+================================================================================
+

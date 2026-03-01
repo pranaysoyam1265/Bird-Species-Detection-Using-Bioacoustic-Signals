@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.gitignore
+.env*.local
+*.md
+birdsense.db
+birdsense.db-shm
+birdsense.db-wal
+analyze-page-export.txt
+template_reference_document.md
+test.py
+proxy.ts
+__pycache__
+tsconfig.tsbuildinfo

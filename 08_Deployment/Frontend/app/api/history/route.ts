@@ -14,23 +14,15 @@ export async function GET(req: NextRequest) {
   const limit = Math.min(Number(searchParams.get("limit") || 50), 100)
   const offset = Math.max(Number(searchParams.get("offset") || 0), 0)
 
-  const rows = getDetectionsByUser(user.id, limit, offset)
-  const total = countDetectionsByUser(user.id)
+  // ── Call Backend History ──
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+  const backendRes = await fetch(`${API_URL}/history?user_id=${user.id}&limit=${limit}&offset=${offset}`)
 
-  // Parse JSON strings back to objects
-  const detections = rows.map((r) => ({
-    id: r.id,
-    filename: r.filename,
-    date: r.date,
-    time: r.time,
-    duration: r.duration,
-    topSpecies: r.top_species,
-    topScientific: r.top_scientific,
-    topConfidence: r.top_confidence,
-    predictions: JSON.parse(r.predictions),
-    segments: JSON.parse(r.segments),
-    audioUrl: r.audio_url,
-  }))
+  if (!backendRes.ok) {
+    return NextResponse.json({ error: "FAILED_TO_FETCH_HISTORY" }, { status: 500 })
+  }
+
+  const { detections, total } = await backendRes.json()
 
   return NextResponse.json({ detections, total, limit, offset })
 }
