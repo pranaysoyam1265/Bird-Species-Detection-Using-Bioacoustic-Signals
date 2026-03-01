@@ -4,8 +4,14 @@ import { insertDetection, getAllApiKeys, getUserSettings, findUserById } from "@
 import { randomUUID } from "crypto"
 import bcrypt from "bcryptjs"
 
-const FASTAPI_URL = process.env.FASTAPI_URL || "http://127.0.0.1:8000"
+const FASTAPI_URL = process.env.FASTAPI_URL || "http://localhost:8000"
 
+/**
+ * Proxy route for bird detection.
+ * In a split architecture, the frontend can call the backend directly,
+ * but this route is maintained for backward compatibility and to handle 
+ * authenticated sessions before forwarding to the ML service.
+ */
 export const dynamic = "force-dynamic"
 
 export async function POST(req: NextRequest) {
@@ -48,6 +54,7 @@ export async function POST(req: NextRequest) {
     const blob = new Blob([fileBytes], { type: fileType })
     const outgoing = new FormData()
     outgoing.append("audio_file", blob, fileName)
+    outgoing.append("user_id", user.id.toString())
 
     // Forward optional params
     const topK = incoming.get("top_k")

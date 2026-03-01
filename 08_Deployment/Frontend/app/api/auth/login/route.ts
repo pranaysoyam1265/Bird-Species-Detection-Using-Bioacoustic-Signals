@@ -21,30 +21,27 @@ export async function POST(request: Request) {
 
     const { email, password } = result.data
 
-    // Find user
-    const user = findUserByEmail(email)
-    if (!user) {
+    // ── Call Backend Auth ──
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+    const backendRes = await fetch(`${API_URL}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    })
+
+    if (!backendRes.ok) {
       return NextResponse.json(
         { error: "INVALID_CREDENTIALS" },
         { status: 401 }
       )
     }
 
-    // Compare password
-    const valid = await comparePassword(password, user.password)
-    if (!valid) {
-      return NextResponse.json(
-        { error: "INVALID_CREDENTIALS" },
-        { status: 401 }
-      )
-    }
+    const { user } = await backendRes.json()
 
-    // Set auth cookie
-    await setAuthCookie(user.id)
+    // ── Set auth cookie locally ──
+    await setAuthCookie(user)
 
-    // Return user without password
-    const { password: _, ...safeUser } = user
-    return NextResponse.json({ user: safeUser })
+    return NextResponse.json({ user })
   } catch (error) {
     console.error("Login error:", error)
     return NextResponse.json(
