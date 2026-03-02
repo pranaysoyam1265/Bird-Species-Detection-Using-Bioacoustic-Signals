@@ -1,0 +1,147 @@
+{
+  "scan_date": "2026-02-25T11:09:18.972908",
+  "project_root": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL",
+  "categories": {
+    "cache": [
+      {
+        "path": "__pycache__",
+        "type": "directory",
+        "size": 27990,
+        "size_formatted": "27.33 KB",
+        "file_count": 1
+      },
+      {
+        "path": "08_Deployment\\__pycache__",
+        "type": "directory",
+        "size": 3807,
+        "size_formatted": "3.72 KB",
+        "file_count": 1
+      },
+      {
+        "path": "08_Deployment\\Streamlit_Version\\__pycache__",
+        "type": "directory",
+        "size": 3856,
+        "size_formatted": "3.77 KB",
+        "file_count": 1
+      },
+      {
+        "path": "09_Utils\\Scripts\\__pycache__",
+        "type": "directory",
+        "size": 75547,
+        "size_formatted": "73.78 KB",
+        "file_count": 1
+      },
+      {
+        "path": "09_Utils\\Scripts\\__pycache__\\generate_report.cpython-311.pyc",
+        "type": "file",
+        "size": 75547,
+        "size_formatted": "73.78 KB"
+      },
+      {
+        "path": "__pycache__\\cleanup_scanner.cpython-311.pyc",
+        "type": "file",
+        "size": 27990,
+        "size_formatted": "27.33 KB"
+      }
+    ],
+    "old_versions": [
+      {
+        "path": "04_Labels\\Train_Val_Test_Split\\test_v2.csv",
+        "type": "file",
+        "size": 877259,
+        "size_formatted": "856.70 KB"
+      },
+      {
+        "path": "04_Labels\\Train_Val_Test_Split\\train_v2.csv",
+        "type": "file",
+        "size": 4093689,
+        "size_formatted": "3.90 MB"
+      },
+      {
+        "path": "04_Labels\\Train_Val_Test_Split\\val_v2.csv",
+        "type": "file",
+        "size": 877239,
+        "size_formatted": "856.68 KB"
+      },
+      {
+        "path": "05_Model\\Saved_Models\\best_model_v2.pth",
+        "type": "file",
+        "size": 52680397,
+        "size_formatted": "50.24 MB"
+      },
+      {
+        "path": "09_Utils\\Scripts\\metadata_diagnostic_v2.py",
+        "type": "file",
+        "size": 13424,
+        "size_formatted": "13.11 KB"
+      },
+      {
+        "path": "09_Utils\\Scripts\\remaining_scraper_v2.py",
+        "type": "file",
+        "size": 19438,
+        "size_formatted": "18.98 KB"
+      },
+      {
+        "path": "09_Utils\\Scripts\\train_with_augmentation_v2.py",
+        "type": "file",
+        "size": 15906,
+        "size_formatted": "15.53 KB"
+      }
+    ],
+    "duplicate_models": [
+      {
+        "path": "05_Model\\Checkpoints\\checkpoint_epoch_10.pth",
+        "type": "file",
+        "size": 102401957,
+        "size_formatted": "97.66 MB"
+      },
+      {
+        "path": "05_Model\\Checkpoints\\checkpoint_epoch_15.pth",
+        "type": "file",
+        "size": 102401957,
+        "size_formatted": "97.66 MB"
+      },
+      {
+        "path": "05_Model\\Checkpoints\\checkpoint_epoch_20.pth",
+        "type": "file",
+        "size": 102401957,
+        "size_formatted": "97.66 MB"
+      },
+      {
+        "path": "05_Model\\Checkpoints\\checkpoint_epoch_5.pth",
+        "type": "file",
+        "size": 102400512,
+        "size_formatted": "97.66 MB"
+      },
+      {
+        "path": "05_Model\\Saved_Models\\checkpoint_epoch_10.pth",
+        "type": "file",
+        "size": 52697912,
+        "size_formatted": "50.26 MB"
+      },
+      {
+        "path": "05_Model\\Saved_Models\\checkpoint_epoch_20.pth",
+        "type": "file",
+        "size": 52697912,
+        "size_formatted": "50.26 MB"
+      },
+      {
+        "path": "05_Model\\Saved_Models\\checkpoint_epoch_5.pth",
+        "type": "file",
+        "size": 52685260,
+        "size_formatted": "50.24 MB"
+      }
+    ]
+  },
+  "large_dirs": {},
+  "summary": {
+    "total_files": 528953,
+    "total_size": 122575442137,
+    "total_size_formatted": "114.16 GB",
+    "deletable_files": 20,
+    "deletable_size": 626479556,
+    "deletable_size_formatted": "597.46 MB",
+    "protected_files": 58011,
+    "protected_size": 1782553110
+  }
+}

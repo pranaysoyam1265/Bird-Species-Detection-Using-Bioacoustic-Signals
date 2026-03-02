@@ -30,6 +30,8 @@ export async function POST(request: Request) {
     })
 
     if (!backendRes.ok) {
+      const errorText = await backendRes.text()
+      console.error("Backend auth error:", backendRes.status, errorText)
       return NextResponse.json(
         { error: "INVALID_CREDENTIALS" },
         { status: 401 }
@@ -43,9 +45,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ user })
   } catch (error) {
-    console.error("Login error:", error)
+    const errorMsg = error instanceof Error ? error.message : String(error)
+    console.error("Login error:", errorMsg, "API_URL:", process.env.NEXT_PUBLIC_API_URL)
     return NextResponse.json(
-      { error: "INTERNAL_SERVER_ERROR" },
+      { error: "INTERNAL_SERVER_ERROR", details: errorMsg },
       { status: 500 }
     )
   }

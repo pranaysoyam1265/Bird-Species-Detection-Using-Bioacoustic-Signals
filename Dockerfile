@@ -11,12 +11,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy requirements and install (CPU-only PyTorch for smaller image)
 COPY 08_Deployment/Backend/requirements.txt .
-# Install regular Python dependencies from PyPI first
-RUN pip install --no-cache-dir -r requirements.txt
 
-# Install PyTorch and related heavy packages from the PyTorch CPU wheel index
+# Install PyTorch CPU packages first with special index
+# Using --extra-index-url adds to PyPI, not replaces it
 RUN pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu \
-    torch==2.3.0 torchvision==0.18.0 timm==1.0.3
+    torch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0
+
+# Install remaining dependencies from PyPI
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend source code (excluding large model files)
 COPY 08_Deployment/Backend/config.py 08_Deployment/Backend/main.py 08_Deployment/Backend/db_utils.py ./

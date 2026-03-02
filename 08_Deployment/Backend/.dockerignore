@@ -1,7 +1,20 @@
 __pycache__
+*.pyc
 .git
 .gitignore
 .env
 *.md
 uploads/*
 test_server.py
+
+# Large data folders (not needed for deployment)
+01_Raw_Data/
+02_Preprocessed/
+03_Features/
+04_Labels/
+05_Model/
+06_Explainability/
+07_Evaluation/
+09_Utils/
+10_Outputs/
+Testing/

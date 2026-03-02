@@ -3,7 +3,7 @@
 import { useEffect } from "react"
 
 const ACCENT_KEY = "birdsense-pref-accent"
-const DEFAULT_ACCENT = "var(--accent-hex)"
+const DEFAULT_ACCENT = "#ea580c" // Electric Orange
 
 /**
  * Convert a hex colour to an HSL string without the hsl() wrapper,

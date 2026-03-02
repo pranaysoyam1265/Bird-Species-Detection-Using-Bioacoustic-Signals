@@ -1,4 +1,4 @@
-# ── BirdSense Backend ── FastAPI + PyTorch ──
+# ── BirdSense Backend ── FastAPI + PyTorch (CPU) ──
 FROM python:3.11-slim
 
 WORKDIR /app
@@ -8,8 +8,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libsndfile1 ffmpeg curl && \
     rm -rf /var/lib/apt/lists/*
 
+# Install PyTorch CPU packages first with special index
+# Using --extra-index-url adds to PyPI, not replaces it
+RUN pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu \
+    torch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0
+
+# Copy and install remaining dependencies from PyPI
 COPY requirements.txt .
-RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy source code (excluding large model files)
 COPY config.py main.py db_utils.py ./
