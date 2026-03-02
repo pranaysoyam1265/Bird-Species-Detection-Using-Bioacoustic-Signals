@@ -1,4 +1,5 @@
 # ── BirdSense Backend ── FastAPI + PyTorch (CPU) ──
+# Build timestamp: 2026-03-02 05:30 UTC
 FROM python:3.11-slim
 
 WORKDIR /app
