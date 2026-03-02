@@ -2,9 +2,9 @@
 fastapi==0.115.0
 uvicorn[standard]==0.30.0
 python-multipart==0.0.9
-# CPU-only PyTorch (installed via --index-url in Dockerfile)
-torch==2.3.0
-timm==1.0.3
+# PyTorch and related heavy packages are installed separately in the Dockerfile
+# to allow using the PyTorch CPU wheel index without replacing PyPI.
+# (Do not add `torch`/`timm` here.)
 librosa==0.10.2
 soundfile==0.12.1
 noisereduce==3.0.2
