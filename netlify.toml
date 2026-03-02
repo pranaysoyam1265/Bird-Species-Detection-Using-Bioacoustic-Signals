@@ -4,6 +4,7 @@
   publish = ".next"
 
 [build.environment]
+  NEXT_PUBLIC_API_URL = "https://bird-species-detection-using-bioacoustic.onrender.com"
   SECRETS_SCAN_OMIT_KEYS = "FASTAPI_PORT,ALLOWED_ORIGINS"
 
 [[plugins]]
