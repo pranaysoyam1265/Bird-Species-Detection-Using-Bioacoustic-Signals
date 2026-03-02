@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getSession } from "@/lib/auth"
-import { getDetectionById, deleteDetectionById } from "@/lib/db"
 
 export const dynamic = "force-dynamic"
 
@@ -14,25 +13,15 @@ export async function GET(
   }
 
   const { id } = await params
-  const row = getDetectionById(user.id, id)
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+  const backendRes = await fetch(`${API_URL}/history/${id}?user_id=${user.id}`)
 
-  if (!row) {
+  if (!backendRes.ok) {
     return NextResponse.json({ error: "NOT_FOUND" }, { status: 404 })
   }
 
-  return NextResponse.json({
-    id: row.id,
-    filename: row.filename,
-    date: row.date,
-    time: row.time,
-    duration: row.duration,
-    topSpecies: row.top_species,
-    topScientific: row.top_scientific,
-    topConfidence: row.top_confidence,
-    predictions: JSON.parse(row.predictions),
-    segments: JSON.parse(row.segments),
-    audioUrl: row.audio_url,
-  })
+  const detection = await backendRes.json()
+  return NextResponse.json(detection)
 }
 
 export async function DELETE(
@@ -45,9 +34,12 @@ export async function DELETE(
   }
 
   const { id } = await params
-  const deleted = deleteDetectionById(user.id, id)
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+  const backendRes = await fetch(`${API_URL}/history/${id}?user_id=${user.id}`, {
+    method: "DELETE",
+  })
 
-  if (!deleted) {
+  if (!backendRes.ok) {
     return NextResponse.json({ error: "NOT_FOUND" }, { status: 404 })
   }
 

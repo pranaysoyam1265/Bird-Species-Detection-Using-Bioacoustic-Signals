@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 import { loginSchema } from "@/lib/validations"
-import { findUserByEmail } from "@/lib/db"
-import { comparePassword, setAuthCookie } from "@/lib/auth"
+import { setAuthCookie } from "@/lib/auth"
 
 export const dynamic = "force-dynamic"
 

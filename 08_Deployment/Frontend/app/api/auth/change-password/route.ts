@@ -1,21 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
-import { findUserByIdFull, updateUserPassword } from "@/lib/db"
-import { verifyToken } from "@/lib/auth"
-import bcrypt from "bcryptjs"
+import { getSession } from "@/lib/auth"
 
 export const dynamic = "force-dynamic"
 
 export async function POST(req: NextRequest) {
   try {
-    // Verify auth
-    const token = req.cookies.get("birdsense-token")?.value
-    if (!token) {
+    const user = await getSession()
+    if (!user) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 })
-    }
-
-    const payload = verifyToken(token)
-    if (!payload) {
-      return NextResponse.json({ error: "Invalid token" }, { status: 401 })
     }
 
     const { currentPassword, newPassword } = await req.json()
@@ -28,20 +20,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "New password must be at least 6 characters" }, { status: 400 })
     }
 
-    const user = findUserByIdFull(payload.userId)
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 })
-    }
+    // ── Call Backend to change password ──
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+    const backendRes = await fetch(`${API_URL}/auth/change-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: user.id,
+        current_password: currentPassword,
+        new_password: newPassword,
+      }),
+    })
 
-    // Verify current password
-    const valid = await bcrypt.compare(currentPassword, user.password)
-    if (!valid) {
-      return NextResponse.json({ error: "Current password is incorrect" }, { status: 403 })
+    if (!backendRes.ok) {
+      const err = await backendRes.json().catch(() => ({ detail: "Password change failed" }))
+      return NextResponse.json({ error: err.detail || "PASSWORD_CHANGE_FAILED" }, { status: backendRes.status })
     }
-
-    // Hash new password and update
-    const newHash = await bcrypt.hash(newPassword, 10)
-    updateUserPassword(user.id, newHash)
 
     return NextResponse.json({ success: true, message: "Password updated successfully" })
   } catch (err) {

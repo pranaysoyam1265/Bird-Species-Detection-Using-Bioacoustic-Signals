@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getSession } from "@/lib/auth"
-import { getDetectionsByUser, countDetectionsByUser, deleteDetectionsByUser } from "@/lib/db"
 
 export const dynamic = "force-dynamic"
 
@@ -42,6 +41,18 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: "INVALID_IDS" }, { status: 400 })
   }
 
-  const deleted = deleteDetectionsByUser(user.id, ids)
-  return NextResponse.json({ deleted })
+  // ── Call Backend to delete ──
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+  const backendRes = await fetch(`${API_URL}/history/bulk-delete`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user_id: user.id, ids }),
+  })
+
+  if (!backendRes.ok) {
+    return NextResponse.json({ error: "DELETE_FAILED" }, { status: 500 })
+  }
+
+  const result = await backendRes.json()
+  return NextResponse.json(result)
 }

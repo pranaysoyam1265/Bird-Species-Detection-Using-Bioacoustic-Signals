@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getSession } from "@/lib/auth"
-import { getUserSettings, getDb } from "@/lib/db"
 
 export const dynamic = "force-dynamic"
 
@@ -10,25 +9,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "UNAUTHORIZED" }, { status: 401 })
   }
 
-  const settings = getUserSettings(user.id)
-  const autoClearDays = Number(settings.autoClear) || 0
+  // ── Call Backend Cleanup ──
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+  const backendRes = await fetch(`${API_URL}/history/cleanup?user_id=${user.id}`, {
+    method: "POST",
+  })
 
-  if (autoClearDays <= 0) {
-    return NextResponse.json({ message: "Auto-clear is disabled for this user", deletedCount: 0 })
-  }
-
-  try {
-    const db = getDb() // Warning: assuming getDb is exported or we can just run a query
-
-    // SQLite DATE('now', '-X days')
-    const result = db.prepare(`
-      DELETE FROM detections 
-      WHERE user_id = ? AND date < DATE('now', '-' || ? || ' days')
-    `).run(user.id, autoClearDays)
-
-    return NextResponse.json({ success: true, deletedCount: result.changes })
-  } catch (err) {
-    console.error("[Cleanup API Error]", err)
+  if (!backendRes.ok) {
     return NextResponse.json({ error: "Failed to run cleanup" }, { status: 500 })
   }
+
+  const result = await backendRes.json()
+  return NextResponse.json(result)
 }

@@ -46,3 +46,23 @@ async def register(req: RegisterRequest):
             "name": req.name
         }
     }
+
+class ChangePasswordRequest(BaseModel):
+    user_id: int
+    current_password: str
+    new_password: str
+
+@router.post("/auth/change-password")
+async def change_password(req: ChangePasswordRequest):
+    from db_utils import get_user_by_id, update_user_password
+    user = get_user_by_id(req.user_id)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    if not verify_password(req.current_password, user["password"]):
+        raise HTTPException(status_code=403, detail="Current password is incorrect")
+    
+    new_hash = hash_password(req.new_password)
+    update_user_password(req.user_id, new_hash)
+    
+    return {"success": True, "message": "Password updated successfully"}

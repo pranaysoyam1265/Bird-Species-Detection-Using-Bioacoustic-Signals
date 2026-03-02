@@ -1,19 +1,23 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getSession } from "@/lib/auth"
-import { getApiKeysByUser, insertApiKey, deleteApiKeyById } from "@/lib/db"
-import { randomBytes } from "crypto"
-import bcrypt from "bcryptjs"
 
 export const dynamic = "force-dynamic"
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   const user = await getSession()
   if (!user) {
     return NextResponse.json({ error: "UNAUTHORIZED" }, { status: 401 })
   }
 
-  const keys = getApiKeysByUser(user.id)
-  return NextResponse.json({ api_keys: keys })
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+  const backendRes = await fetch(`${API_URL}/settings/${user.id}/keys`)
+
+  if (!backendRes.ok) {
+    return NextResponse.json({ error: "FAILED_TO_FETCH_KEYS" }, { status: 500 })
+  }
+
+  const result = await backendRes.json()
+  return NextResponse.json(result)
 }
 
 export async function POST(req: NextRequest) {
@@ -23,23 +27,20 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json().catch(() => null)
-  if (!body || !body.name || typeof body.name !== "string") {
-    return NextResponse.json({ error: "Key name is required" }, { status: 400 })
+
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+  const backendRes = await fetch(`${API_URL}/settings/${user.id}/keys`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body || {}),
+  })
+
+  if (!backendRes.ok) {
+    return NextResponse.json({ error: "FAILED_TO_CREATE_KEY" }, { status: 500 })
   }
 
-  const id = crypto.randomUUID()
-  const rawKey = `bsk_${randomBytes(24).toString("hex")}`
-
-  // Hash the key before storing — the raw key is only ever returned once
-  const keyHash = await bcrypt.hash(rawKey, 10)
-  insertApiKey(user.id, id, body.name, keyHash)
-
-  return NextResponse.json({
-    id,
-    name: body.name,
-    key: rawKey, // Only sent back once — store it safely!
-    created_at: new Date().toISOString()
-  })
+  const result = await backendRes.json()
+  return NextResponse.json(result, { status: 201 })
 }
 
 export async function DELETE(req: NextRequest) {
@@ -49,16 +50,19 @@ export async function DELETE(req: NextRequest) {
   }
 
   const { searchParams } = new URL(req.url)
-  const id = searchParams.get("id")
-
-  if (!id) {
-    return NextResponse.json({ error: "Missing API Key ID" }, { status: 400 })
+  const keyId = searchParams.get("id")
+  if (!keyId) {
+    return NextResponse.json({ error: "MISSING_KEY_ID" }, { status: 400 })
   }
 
-  const success = deleteApiKeyById(user.id, id)
-  if (!success) {
-    return NextResponse.json({ error: "API Key not found or belongs to another user" }, { status: 404 })
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+  const backendRes = await fetch(`${API_URL}/settings/${user.id}/keys/${keyId}`, {
+    method: "DELETE",
+  })
+
+  if (!backendRes.ok) {
+    return NextResponse.json({ error: "FAILED_TO_DELETE_KEY" }, { status: 500 })
   }
 
-  return NextResponse.json({ success: true })
+  return NextResponse.json({ deleted: true })
 }

@@ -1,40 +1,20 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getSession } from "@/lib/auth"
-import { insertDetection, getAllApiKeys, getUserSettings, findUserById } from "@/lib/db"
-import { randomUUID } from "crypto"
-import bcrypt from "bcryptjs"
 
-const FASTAPI_URL = process.env.FASTAPI_URL || "http://localhost:8000"
+const FASTAPI_URL = process.env.FASTAPI_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
 
 /**
  * Proxy route for bird detection.
- * In a split architecture, the frontend can call the backend directly,
- * but this route is maintained for backward compatibility and to handle 
- * authenticated sessions before forwarding to the ML service.
+ * Forwards audio to the FastAPI backend for ML inference.
+ * The backend handles database persistence.
  */
 export const dynamic = "force-dynamic"
 
 export async function POST(req: NextRequest) {
-  let user = await getSession()
+  const user = await getSession()
 
-  // ── Auth check ──
   if (!user) {
-    // Check for API Key if no session cookie
-    const apiKeyHeader = req.headers.get("x-api-key") || req.headers.get("authorization")?.replace("Bearer ", "")
-    if (apiKeyHeader) {
-      const allKeys = getAllApiKeys()
-      for (const keyRow of allKeys) {
-        const matches = await bcrypt.compare(apiKeyHeader, keyRow.key_hash)
-        if (matches) {
-          const dbUser = findUserById(keyRow.user_id)
-          if (dbUser) { user = dbUser; break }
-        }
-      }
-    }
-
-    if (!user) {
-      return NextResponse.json({ error: "UNAUTHORIZED: Missing or invalid API key/session" }, { status: 401 })
-    }
+    return NextResponse.json({ error: "UNAUTHORIZED: Missing or invalid session" }, { status: 401 })
   }
 
   try {
@@ -49,7 +29,7 @@ export async function POST(req: NextRequest) {
     const fileName = audioEntry.name || "upload.wav"
     const fileType = audioEntry.type || "audio/wav"
 
-    // ── Build a fresh multipart body manually ──
+    // ── Build a fresh multipart body ──
     const fileBytes = Buffer.from(await audioEntry.arrayBuffer())
     const blob = new Blob([fileBytes], { type: fileType })
     const outgoing = new FormData()
@@ -80,46 +60,6 @@ export async function POST(req: NextRequest) {
     }
 
     const result = await fastApiRes.json()
-
-    // ── Save to database ──
-    const now = new Date()
-
-    const detectionRecord = {
-      id: randomUUID(),
-      user_id: user.id,
-      filename: fileName,
-      date: now.toISOString().split("T")[0],
-      time: now.toTimeString().split(" ")[0],
-      duration: Math.round(result.duration),
-      top_species: result.top_species,
-      top_scientific: result.top_scientific,
-      top_confidence: result.top_confidence,
-      predictions: JSON.stringify(result.predictions),
-      segments: JSON.stringify(result.segments),
-      audio_url: null,
-    }
-
-    insertDetection(detectionRecord)
-
-    // ── Check Webhooks ──
-    const settings = getUserSettings(user.id)
-    if (settings && typeof settings.webhookUrl === "string" && settings.webhookUrl.startsWith("http")) {
-      // Fire and forget — we don't await this to avoid blocking the response
-      fetch(settings.webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event: "detection.completed",
-          timestamp: new Date().toISOString(),
-          data: {
-            ...detectionRecord,
-            predictions: result.predictions,
-            segments: result.segments
-          }
-        })
-      }).catch(err => console.error("[Webhook Error]:", err))
-    }
-
     return NextResponse.json(result)
   } catch (err) {
     console.error("[/api/detect] Error:", err)

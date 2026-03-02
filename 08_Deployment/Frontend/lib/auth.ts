@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import { cookies } from "next/headers"
-import { findUserById, type SafeUser } from "./db"
+import type { SafeUser } from "./db"
 
 const JWT_SECRET = process.env.JWT_SECRET || "birdsense-dev-secret"
 const TOKEN_EXPIRY = "7d"

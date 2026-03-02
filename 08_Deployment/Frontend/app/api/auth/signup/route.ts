@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 import { signupSchema } from "@/lib/validations"
-import { findUserByEmail, createUser } from "@/lib/db"
-import { hashPassword, setAuthCookie } from "@/lib/auth"
+import { setAuthCookie } from "@/lib/auth"
 
 export const dynamic = "force-dynamic"
 
@@ -21,21 +20,27 @@ export async function POST(request: Request) {
 
     const { email, password, name } = result.data
 
-    // Check if email already exists
-    const existing = findUserByEmail(email)
-    if (existing) {
+    // ── Call Backend Registration ──
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+    const backendRes = await fetch(`${API_URL}/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, name }),
+    })
+
+    if (!backendRes.ok) {
+      const err = await backendRes.json().catch(() => ({ detail: "Registration failed" }))
+      const status = backendRes.status === 400 ? 409 : backendRes.status
       return NextResponse.json(
-        { error: "EMAIL_ALREADY_EXISTS" },
-        { status: 409 }
+        { error: err.detail || "REGISTRATION_FAILED" },
+        { status }
       )
     }
 
-    // Hash password and create user
-    const hashed = await hashPassword(password)
-    const user = createUser(email, hashed, name)
+    const { user } = await backendRes.json()
 
-    // Set auth cookie
-    await setAuthCookie(user.id)
+    // Set auth cookie locally
+    await setAuthCookie(user)
 
     return NextResponse.json({ user }, { status: 201 })
   } catch (error) {
