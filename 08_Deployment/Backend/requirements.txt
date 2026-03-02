@@ -10,6 +10,7 @@ passlib==1.7.4
 # Database and validation
 sqlalchemy==2.0.25
 pydantic==2.7.0
+email-validator==2.1.0.post1
 
 # Audio processing
 librosa==0.10.2
