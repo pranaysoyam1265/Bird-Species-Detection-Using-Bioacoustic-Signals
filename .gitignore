@@ -6,19 +6,49 @@ __pycache__/
 .Python
 env/
 venv/
+ENV/
+.venv
 .env
 *.egg-info/
 dist/
 build/
 .eggs/
+.pytest_cache/
 
 # Raw audio files only (too large)
 01_Raw_Data/Audio_Recordings/
 01_Raw_Data/External_Data/BirdCLEF_Spectrograms_NOT_USED_28975_images/
-01_Raw_Data/Metadata/  # Contains port numbers in bird data CSVs - causes false positive secret scan
+01_Raw_Data/Metadata/
 
-# Training labels and splits (contains port numbers in data)
+# Training labels and splits
 04_Labels/Train_Val_Test_Split/
+
+# Processed data (generated, not source)
+02_Processed_Data/
+
+# ── Large binary files (model weights) ──
+*.pth
+*.pt
+*.onnx
+*.h5
+*.pkl
+*.joblib
+05_Model/Saved_Models/
+
+# ── Next.js build output ──
+.next/
+
+# ── Database files ──
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# ── Deployment artifacts ──
+.vercel/
+.netlify/
+08_Deployment/Backend/uploads/
 
 # Utility logs and state files
 09_Utils/Logs/
@@ -27,34 +57,18 @@ build/
 # Temp and cache files
 *.tmp
 *.bak
-.DS_Store
 .cache/
-*.swp
-*.swo
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-.vscode/
 .env.local
-
-# Virtual environments
-venv/
-env/
-ENV/
-.venv
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Only exclude truly redundant intermediate files
+# Node
 node_modules/
-__pycache__/
-.pytest_cache/
-.egg-info/
-
-# Local Netlify folder
-.netlify
