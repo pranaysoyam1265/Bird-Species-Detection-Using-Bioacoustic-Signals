@@ -24,6 +24,7 @@ from services.inference import (
 from db_utils import insert_detection
 import uuid
 from datetime import datetime
+from typing import Optional
 
 logger = logging.getLogger("birdsense.detect")
 
