@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/

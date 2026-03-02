@@ -1,0 +1,7 @@
+__pycache__
+.git
+.gitignore
+.env
+*.md
+uploads/*
+test_server.py
