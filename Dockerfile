@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy requirements and install (CPU-only PyTorch for smaller image)
 COPY 08_Deployment/Backend/requirements.txt .
-RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu -r requirements.txt
+RUN pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu -r requirements.txt
 
 # Copy backend source code (excluding large model files)
 COPY 08_Deployment/Backend/config.py 08_Deployment/Backend/main.py 08_Deployment/Backend/db_utils.py ./
