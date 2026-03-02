@@ -1,0 +1,13 @@
+# FastAPI Backend for BirdSense ML Inference
+fastapi==0.115.0
+uvicorn[standard]==0.30.0
+python-multipart==0.0.9
+# CPU-only PyTorch (installed via --index-url in Dockerfile)
+torch==2.3.0
+timm==1.0.3
+librosa==0.10.2
+soundfile==0.12.1
+noisereduce==3.0.2
+numpy==1.26.4
+pydantic==2.7.0
+slowapi==0.1.9
