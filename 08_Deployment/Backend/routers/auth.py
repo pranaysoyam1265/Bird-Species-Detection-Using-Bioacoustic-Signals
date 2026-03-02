@@ -1,16 +1,16 @@
-from fastapi import APIRouter, HTTPException, Depends
-from pydantic import BaseModel, EmailStr
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 from db_utils import get_user_by_email, create_user, hash_password, verify_password
 from typing import Optional
 
 router = APIRouter()
 
 class LoginRequest(BaseModel):
-    email: EmailStr
+    email: str
     password: str
 
 class RegisterRequest(BaseModel):
-    email: EmailStr
+    email: str
     password: str
     name: Optional[str] = None
 
