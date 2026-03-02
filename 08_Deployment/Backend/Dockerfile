@@ -21,6 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY config.py main.py db_utils.py ./
 COPY routers ./routers
 COPY services ./services
+COPY models ./models
 
 # Create required directories (models downloaded at runtime via start.sh)
 RUN mkdir -p /app/uploads /app/models/checkpoints /app/labels

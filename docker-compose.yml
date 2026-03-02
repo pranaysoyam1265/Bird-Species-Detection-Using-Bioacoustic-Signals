@@ -15,11 +15,11 @@ services:
       - DEVICE=cpu
       - FASTAPI_PORT=8000
       - ALLOWED_ORIGINS=http://localhost:3000,http://frontend:3000
-      - MODEL_PATH=/models/best_model_v3.pth
-      - LABEL_MAPPING_PATH=/labels/label_mapping_v3.json
+      - MODEL_PATH=/app/models/best_model_v3.pth
+      - LABEL_MAPPING_PATH=/app/labels/label_mapping_v3.json
     volumes:
-      - ./05_Model/Saved_Models:/models:ro
-      - ./04_Labels/Processed_Labels:/labels:ro
+      - ./05_Model/Saved_Models:/app/models/checkpoints:ro
+      - ./04_Labels/Processed_Labels:/app/labels:ro
       - backend-uploads:/app/uploads
     restart: unless-stopped
     healthcheck:
