@@ -53,10 +53,18 @@ export async function POST(req: NextRequest) {
     })
 
     if (!fastApiRes.ok) {
-      const err = await fastApiRes.json().catch(() => ({ detail: "Inference failed" }))
-      console.error("[/api/detect] FastAPI error:", fastApiRes.status, err)
+      const rawText = await fastApiRes.text();
+      let errDetail = "Inference failed";
+      try {
+        const errJson = JSON.parse(rawText);
+        errDetail = errJson.detail || errJson.error || "Unknown FastAPI error";
+      } catch (e) {
+        errDetail = `Non-JSON response (Status ${fastApiRes.status}): ${rawText.substring(0, 150)}...`;
+      }
+
+      console.error("[/api/detect] FastAPI error:", fastApiRes.status, errDetail);
       return NextResponse.json(
-        { error: err.detail || "DETECTION_FAILED" },
+        { error: "DETECTION_FAILED", detail: errDetail },
         { status: fastApiRes.status },
       )
     }
