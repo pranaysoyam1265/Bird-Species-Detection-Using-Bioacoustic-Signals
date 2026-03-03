@@ -35,6 +35,10 @@ MAX_SIZE_BYTES = AUDIO_CONFIG["max_file_size_mb"] * 1024 * 1024
 MAX_DURATION_S = AUDIO_CONFIG["max_duration_minutes"] * 60
 
 
+@router.options("/detect")
+async def detect_options():
+    return {"message": "CORS preflight OK"}
+
 @router.post(
     "/detect",
     response_model=DetectResponse,
