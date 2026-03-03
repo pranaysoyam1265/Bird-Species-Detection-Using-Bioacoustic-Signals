@@ -39,7 +39,7 @@ MODEL_CONFIG = {
 AUDIO_CONFIG = {
     "sample_rate": 22050,
     "chunk_duration": 5.0,     # seconds
-    "chunk_overlap": 0.5,      # 50% overlap
+    "chunk_overlap": 0.0,      # 0% overlap (speeds up processing 2x)
     "n_mels": 128,
     "n_fft": 2048,
     "hop_length": 512,

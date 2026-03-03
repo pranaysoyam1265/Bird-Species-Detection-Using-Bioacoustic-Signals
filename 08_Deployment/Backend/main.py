@@ -10,7 +10,10 @@ Start with:
 from __future__ import annotations
 
 import logging
+import os
 from contextlib import asynccontextmanager
+
+import torch
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -43,6 +46,11 @@ async def lifespan(app: FastAPI):
     logger.info("=" * 60)
     logger.info("  BirdSense Backend — Starting")
     logger.info("=" * 60)
+
+    # Restrict PyTorch threads to prevent CPU thrashing
+    threads = min(4, os.cpu_count() or 1)
+    torch.set_num_threads(threads)
+    logger.info(f"PyTorch CPU threads restricted to {threads}")
 
     try:
         init_db()
