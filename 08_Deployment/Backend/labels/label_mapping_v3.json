@@ -1,0 +1,350 @@
+{
+  "Accipiter cooperii": {
+    "index": 0,
+    "english_name": "Cooper's Hawk"
+  },
+  "Aix sponsa": {
+    "index": 1,
+    "english_name": "Wood Duck"
+  },
+  "Amphispiza bilineata": {
+    "index": 2,
+    "english_name": "Black-throated Sparrow"
+  },
+  "Anas platyrhynchos": {
+    "index": 3,
+    "english_name": "Mallard"
+  },
+  "Anthus rubescens": {
+    "index": 4,
+    "english_name": "Buff-bellied Pipit"
+  },
+  "Archilochus alexandri": {
+    "index": 5,
+    "english_name": "Black-chinned Hummingbird"
+  },
+  "Artemisiospiza belli": {
+    "index": 6,
+    "english_name": "Bell's Sparrow"
+  },
+  "Baeolophus bicolor": {
+    "index": 7,
+    "english_name": "Tufted Titmouse"
+  },
+  "Botaurus lentiginosus": {
+    "index": 8,
+    "english_name": "American Bittern"
+  },
+  "Branta canadensis": {
+    "index": 9,
+    "english_name": "Canada Goose"
+  },
+  "Bubo virginianus": {
+    "index": 10,
+    "english_name": "Great Horned Owl"
+  },
+  "Bucephala albeola": {
+    "index": 11,
+    "english_name": "Bufflehead"
+  },
+  "Buteo jamaicensis": {
+    "index": 12,
+    "english_name": "Red-tailed Hawk"
+  },
+  "Buteo platypterus": {
+    "index": 13,
+    "english_name": "Broad-winged Hawk"
+  },
+  "Calidris bairdii": {
+    "index": 14,
+    "english_name": "Baird's Sandpiper"
+  },
+  "Calypte anna": {
+    "index": 15,
+    "english_name": "Anna's Hummingbird"
+  },
+  "Cardellina pusilla": {
+    "index": 16,
+    "english_name": "Wilson's Warbler"
+  },
+  "Cardinalis cardinalis": {
+    "index": 17,
+    "english_name": "Northern Cardinal"
+  },
+  "Catharus guttatus": {
+    "index": 18,
+    "english_name": "Hermit Thrush"
+  },
+  "Catharus ustulatus": {
+    "index": 19,
+    "english_name": "Swainson's Thrush"
+  },
+  "Certhia americana": {
+    "index": 20,
+    "english_name": "Brown Creeper"
+  },
+  "Chroicocephalus philadelphia": {
+    "index": 21,
+    "english_name": "Bonaparte's Gull"
+  },
+  "Coccyzus erythropthalmus": {
+    "index": 22,
+    "english_name": "Black-billed Cuckoo"
+  },
+  "Colaptes auratus": {
+    "index": 23,
+    "english_name": "Northern Flicker"
+  },
+  "Contopus virens": {
+    "index": 24,
+    "english_name": "Eastern Wood Pewee"
+  },
+  "Corvus brachyrhynchos": {
+    "index": 25,
+    "english_name": "American Crow"
+  },
+  "Cyanocitta cristata": {
+    "index": 26,
+    "english_name": "Blue Jay"
+  },
+  "Dolichonyx oryzivorus": {
+    "index": 27,
+    "english_name": "Bobolink"
+  },
+  "Dryobates pubescens": {
+    "index": 28,
+    "english_name": "Downy Woodpecker"
+  },
+  "Dryocopus pileatus": {
+    "index": 29,
+    "english_name": "Pileated Woodpecker"
+  },
+  "Empidonax alnorum": {
+    "index": 30,
+    "english_name": "Alder Flycatcher"
+  },
+  "Euphagus cyanocephalus": {
+    "index": 31,
+    "english_name": "Brewer's Blackbird"
+  },
+  "Falco sparverius": {
+    "index": 32,
+    "english_name": "American Kestrel"
+  },
+  "Geothlypis trichas": {
+    "index": 33,
+    "english_name": "Common Yellowthroat"
+  },
+  "Haliaeetus leucocephalus": {
+    "index": 34,
+    "english_name": "Bald Eagle"
+  },
+  "Hirundo rustica": {
+    "index": 35,
+    "english_name": "Barn Swallow"
+  },
+  "Icterus bullockii": {
+    "index": 36,
+    "english_name": "Bullock's Oriole"
+  },
+  "Icterus galbula": {
+    "index": 37,
+    "english_name": "Baltimore Oriole"
+  },
+  "Junco hyemalis": {
+    "index": 38,
+    "english_name": "Dark-eyed Junco"
+  },
+  "Mareca americana": {
+    "index": 39,
+    "english_name": "American Wigeon"
+  },
+  "Megaceryle alcyon": {
+    "index": 40,
+    "english_name": "Belted Kingfisher"
+  },
+  "Melanerpes carolinus": {
+    "index": 41,
+    "english_name": "Red-bellied Woodpecker"
+  },
+  "Melospiza melodia": {
+    "index": 42,
+    "english_name": "Song Sparrow"
+  },
+  "Mergus merganser": {
+    "index": 43,
+    "english_name": "Common Merganser"
+  },
+  "Mniotilta varia": {
+    "index": 44,
+    "english_name": "Black-and-white Warbler"
+  },
+  "Molothrus ater": {
+    "index": 45,
+    "english_name": "Brown-headed Cowbird"
+  },
+  "Myadestes townsendi": {
+    "index": 46,
+    "english_name": "Townsend's Solitaire"
+  },
+  "Myiarchus cinerascens": {
+    "index": 47,
+    "english_name": "Ash-throated Flycatcher"
+  },
+  "Passerella iliaca": {
+    "index": 48,
+    "english_name": "Red Fox Sparrow"
+  },
+  "Passerina caerulea": {
+    "index": 49,
+    "english_name": "Blue Grosbeak"
+  },
+  "Pheucticus melanocephalus": {
+    "index": 50,
+    "english_name": "Black-headed Grosbeak"
+  },
+  "Pica hudsonia": {
+    "index": 51,
+    "english_name": "Black-billed Magpie"
+  },
+  "Poecile atricapillus": {
+    "index": 52,
+    "english_name": "Black-capped Chickadee"
+  },
+  "Polioptila caerulea": {
+    "index": 53,
+    "english_name": "Blue-grey Gnatcatcher"
+  },
+  "Psaltriparus minimus": {
+    "index": 54,
+    "english_name": "American Bushtit"
+  },
+  "Recurvirostra americana": {
+    "index": 55,
+    "english_name": "American Avocet"
+  },
+  "Riparia riparia": {
+    "index": 56,
+    "english_name": "Sand Martin"
+  },
+  "Sayornis nigricans": {
+    "index": 57,
+    "english_name": "Black Phoebe"
+  },
+  "Sayornis phoebe": {
+    "index": 58,
+    "english_name": "Eastern Phoebe"
+  },
+  "Scolopax minor": {
+    "index": 59,
+    "english_name": "American Woodcock"
+  },
+  "Selasphorus platycercus": {
+    "index": 60,
+    "english_name": "Broad-tailed Hummingbird"
+  },
+  "Setophaga americana": {
+    "index": 61,
+    "english_name": "Northern Parula"
+  },
+  "Setophaga caerulescens": {
+    "index": 62,
+    "english_name": "Black-throated Blue Warbler"
+  },
+  "Setophaga coronata": {
+    "index": 63,
+    "english_name": "Myrtle Warbler"
+  },
+  "Setophaga fusca": {
+    "index": 64,
+    "english_name": "Blackburnian Warbler"
+  },
+  "Setophaga nigrescens": {
+    "index": 65,
+    "english_name": "Black-throated Grey Warbler"
+  },
+  "Setophaga petechia": {
+    "index": 66,
+    "english_name": "Mangrove Warbler"
+  },
+  "Setophaga ruticilla": {
+    "index": 67,
+    "english_name": "American Redstart"
+  },
+  "Setophaga striata": {
+    "index": 68,
+    "english_name": "Blackpoll Warbler"
+  },
+  "Setophaga virens": {
+    "index": 69,
+    "english_name": "Black-throated Green Warbler"
+  },
+  "Sialia sialis": {
+    "index": 70,
+    "english_name": "Eastern Bluebird"
+  },
+  "Sitta carolinensis": {
+    "index": 71,
+    "english_name": "White-breasted Nuthatch"
+  },
+  "Spatula discors": {
+    "index": 72,
+    "english_name": "Blue-winged Teal"
+  },
+  "Spinus tristis": {
+    "index": 73,
+    "english_name": "American Goldfinch"
+  },
+  "Spizella breweri": {
+    "index": 74,
+    "english_name": "Brewer's Sparrow"
+  },
+  "Spizella passerina": {
+    "index": 75,
+    "english_name": "Chipping Sparrow"
+  },
+  "Spizelloides arborea": {
+    "index": 76,
+    "english_name": "American Tree Sparrow"
+  },
+  "Strix varia": {
+    "index": 77,
+    "english_name": "Barred Owl"
+  },
+  "Thryomanes bewickii": {
+    "index": 78,
+    "english_name": "Bewick's Wren"
+  },
+  "Thryothorus ludovicianus": {
+    "index": 79,
+    "english_name": "Carolina Wren"
+  },
+  "Toxostoma rufum": {
+    "index": 80,
+    "english_name": "Brown Thrasher"
+  },
+  "Turdus migratorius": {
+    "index": 81,
+    "english_name": "American Robin"
+  },
+  "Tyrannus tyrannus": {
+    "index": 82,
+    "english_name": "Eastern Kingbird"
+  },
+  "Vermivora cyanoptera": {
+    "index": 83,
+    "english_name": "Blue-winged Warbler"
+  },
+  "Vireo solitarius": {
+    "index": 84,
+    "english_name": "Blue-headed Vireo"
+  },
+  "Zenaida macroura": {
+    "index": 85,
+    "english_name": "Mourning Dove"
+  },
+  "Zonotrichia albicollis": {
+    "index": 86,
+    "english_name": "White-throated Sparrow"
+  }
+}

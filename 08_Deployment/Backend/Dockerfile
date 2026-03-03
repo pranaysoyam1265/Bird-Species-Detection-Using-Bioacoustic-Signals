@@ -22,6 +22,7 @@ COPY config.py main.py db_utils.py ./
 COPY routers ./routers
 COPY services ./services
 COPY models ./models
+COPY labels ./labels
 
 # Create required directories (models downloaded at runtime via start.sh)
 RUN mkdir -p /app/uploads /app/models/checkpoints /app/labels
