@@ -142,8 +142,11 @@ export async function detectAudio(
 
   const res = await fetch("/api/detect", { method: "POST", body: form })
   if (!res.ok) {
-    const err = await res.json().catch(() => ({ error: "DETECTION_FAILED" }))
-    throw new Error(err.error || err.detail || "Detection failed")
+    const errorData = await res.json().catch(() => ({ error: "Inference failed" }))
+    const msg = errorData.detail
+      ? `${errorData.error || "Error"}: ${errorData.detail}`
+      : (errorData.error || "Analysis failed")
+    throw new Error(msg)
   }
 
   const result = await res.json()
