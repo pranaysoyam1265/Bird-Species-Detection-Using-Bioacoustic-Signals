@@ -5,6 +5,10 @@ Paths, model config, and audio processing parameters.
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+# Load local .env file if it exists
+load_dotenv()
 
 # ── Paths ──────────────────────────────────────────────────────
 BACKEND_DIR = Path(__file__).parent
