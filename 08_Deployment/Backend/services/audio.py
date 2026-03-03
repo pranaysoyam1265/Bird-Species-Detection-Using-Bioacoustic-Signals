@@ -112,6 +112,7 @@ def process_audio_to_spectrograms(
     audio: np.ndarray,
     sr: int | None = None,
     target_shape: tuple[int, int] = (128, 216),
+    chunk_duration: float | None = None,
 ) -> list[tuple[np.ndarray, float, float]]:
     """
     Chunk audio and convert each chunk to a mel spectrogram.
@@ -120,7 +121,7 @@ def process_audio_to_spectrograms(
         list of (spectrogram, start_time, end_time)
     """
     sr = sr or AUDIO_CONFIG["sample_rate"]
-    chunks = chunk_audio(audio, sr)
+    chunks = chunk_audio(audio, sr, chunk_duration=chunk_duration)
 
     spectrograms: list[tuple[np.ndarray, float, float]] = []
 

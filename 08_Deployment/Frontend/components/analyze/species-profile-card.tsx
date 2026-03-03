@@ -148,7 +148,7 @@ export function SpeciesProfileCard({ species, scientificName }: SpeciesProfileCa
   const [mapOpen, setMapOpen] = useState(false)
 
   return (
-    <div className="border-2 border-foreground border-l-4 border-l-[#22c55e] bg-gradient-to-br from-[#22c55e]/5 to-background">
+    <div className="border-2 border-foreground border-l-4 border-l-[#22c55e] bg-gradient-to-br from-[#22c55e]/5 to-background overflow-hidden">
       <div className="border-b-2 border-foreground px-4 py-2">
         <span className="font-mono text-xs tracking-[0.25em] uppercase text-foreground font-bold">
           SPECIES PROFILE
@@ -187,7 +187,7 @@ export function SpeciesProfileCard({ species, scientificName }: SpeciesProfileCa
           </div>
 
           {/* Size / weight / migratory */}
-          <div className="grid grid-cols-3 gap-2 border border-foreground/20 divide-x divide-foreground/20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 border border-foreground/20 sm:divide-x divide-y sm:divide-y-0 divide-foreground/20">
             <div className="px-3 py-2 text-center">
               <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground block mb-1">LENGTH</span>
               <span className="font-mono text-sm font-bold text-foreground">{data.bodyLength}</span>

@@ -46,6 +46,7 @@ async def detect(
     top_k: int = Form(5, ge=1, le=87, description="Number of top predictions"),
     confidence_threshold: float = Form(0.001, ge=0.0, le=1.0, description="Minimum confidence to include"),
     noise_reduction: bool = Form(False, description="Apply noise reduction before inference"),
+    chunk_duration: float = Form(5.0, ge=2.0, le=10.0, description="Duration of each audio chunk in seconds"),
     user_id: Optional[int] = Form(None, description="User ID for history saving"),
 ):
     """
@@ -95,7 +96,7 @@ async def detect(
             audio = reduce_noise(audio, sr)
 
         # ── Generate spectrograms ──
-        spectrograms_data = process_audio_to_spectrograms(audio, sr)
+        spectrograms_data = process_audio_to_spectrograms(audio, sr, chunk_duration=chunk_duration)
         if not spectrograms_data:
             raise HTTPException(status_code=400, detail="Audio too short to produce any chunks")
 

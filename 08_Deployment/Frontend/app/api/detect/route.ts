@@ -40,9 +40,11 @@ export async function POST(req: NextRequest) {
     const topK = incoming.get("top_k")
     const confThresh = incoming.get("confidence_threshold")
     const noiseRed = incoming.get("noise_reduction")
+    const chunkDur = incoming.get("chunk_duration")
     if (topK) outgoing.append("top_k", topK as string)
     if (confThresh) outgoing.append("confidence_threshold", confThresh as string)
     if (noiseRed) outgoing.append("noise_reduction", noiseRed as string)
+    if (chunkDur) outgoing.append("chunk_duration", chunkDur as string)
 
     // ── Forward to FastAPI ──
     const fastApiRes = await fetch(`${FASTAPI_URL}/detect`, {

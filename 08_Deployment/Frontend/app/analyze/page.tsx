@@ -25,7 +25,7 @@ import { SPECIES_META } from "@/lib/species-meta"
 import { useToast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
-import { Menu, X, Zap, Loader2, Upload, Mic, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react"
+import { Menu, X, Zap, Loader2, Upload, Mic, PanelLeftClose, PanelLeftOpen, Search, RotateCcw } from "lucide-react"
 
 // ── Types ──
 type PageState = "idle" | "loading" | "uploaded" | "analyzing" | "results" | "error"
@@ -119,6 +119,7 @@ export default function AnalyzePage() {
         topK: settings.topK,
         confidenceThreshold: settings.minConfidence,
         noiseReduction: settings.noiseReduction,
+        chunkDuration: settings.chunkDuration,
       })
       setResults(record)
       setPageState("results")
@@ -309,14 +310,14 @@ export default function AnalyzePage() {
         <div className="flex-1 space-y-4 lg:space-y-6 min-w-0">
 
           {/* Top row: Upload/Record toggle + Status bar */}
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
             {/* Input mode toggle (Upload / Record) */}
             {pageState === "idle" ? (
               <div className="flex gap-0 border-2 border-foreground w-fit">
                 <button
                   type="button"
                   onClick={() => setInputMode("upload")}
-                  className={`flex items-center gap-2 px-5 py-2.5 font-mono text-xs tracking-[0.15em] uppercase cursor-pointer transition-none ${inputMode === "upload"
+                  className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase cursor-pointer transition-none ${inputMode === "upload"
                     ? "bg-foreground text-background font-bold"
                     : "bg-background text-foreground hover:bg-muted"
                     }`}
@@ -326,7 +327,7 @@ export default function AnalyzePage() {
                 <button
                   type="button"
                   onClick={() => setInputMode("record")}
-                  className={`flex items-center gap-2 px-5 py-2.5 font-mono text-xs tracking-[0.15em] uppercase cursor-pointer transition-none border-l-2 border-foreground ${inputMode === "record"
+                  className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase cursor-pointer transition-none border-l-2 border-foreground ${inputMode === "record"
                     ? "bg-foreground text-background font-bold"
                     : "bg-background text-foreground hover:bg-muted"
                     }`}
@@ -337,17 +338,17 @@ export default function AnalyzePage() {
             ) : <div />}
 
             {/* Status bar */}
-            <div className="border border-foreground/30 bg-muted/30 px-3 py-2 font-mono text-xs tracking-[0.15em] uppercase text-muted-foreground flex items-center gap-2 shrink-0">
-              <span className="text-accent/60 select-none">SYS_STATUS:</span>
-              <span className="inline-flex items-center gap-1 text-foreground font-bold">
+            <div className="border border-foreground/30 bg-muted/30 px-3 py-2 font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase text-muted-foreground flex items-center gap-2 shrink-0 min-w-0 max-w-full overflow-hidden">
+              <span className="text-accent/60 select-none shrink-0">SYS_STATUS:</span>
+              <span className="inline-flex items-center gap-1 text-foreground font-bold min-w-0 truncate">
                 {pageState === "idle" && "AWAITING INPUT"}
                 {pageState === "loading" && "DECODING..."}
                 {pageState === "uploaded" && "READY"}
                 {pageState === "analyzing" && "PROCESSING..."}
                 {pageState === "results" && "COMPLETE"}
                 {pageState === "error" && "ERROR"}
-                {analyzeError && <span className="text-red-500 ml-2 normal-case text-[9px]">{analyzeError}</span>}
-                <span className="inline-block w-1.5 h-3 bg-accent animate-blink" />
+                {analyzeError && <span className="text-red-500 ml-2 normal-case text-[9px] truncate">{analyzeError}</span>}
+                <span className="inline-block w-1.5 h-3 bg-accent animate-blink shrink-0" />
               </span>
             </div>
           </div>
@@ -480,6 +481,60 @@ export default function AnalyzePage() {
                 <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground animate-blink">
                   PROCESSING AUDIO SEGMENTS...
                 </p>
+              </div>
+            )}
+
+            {/* Error state — retry or discard */}
+            {pageState === "error" && (
+              <div className="border-2 border-red-500 bg-red-500/5 p-6 space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 border-2 border-red-500 flex items-center justify-center shrink-0">
+                    <X size={16} className="text-red-500" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="font-mono text-xs tracking-[0.2em] uppercase text-red-500 font-bold block">
+                      ANALYSIS FAILED
+                    </span>
+                    <span className="font-mono text-[10px] tracking-[0.15em] text-red-400/80 block mt-0.5 break-words">
+                      {analyzeError || "An unknown error occurred during detection"}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Error tips */}
+                <div className="border border-red-500/20 bg-background p-3 space-y-1.5">
+                  <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground/60 block">
+                    TROUBLESHOOTING
+                  </span>
+                  {[
+                    "Ensure the backend server is running",
+                    "Check if the ML model file is loaded correctly",
+                    "Verify the audio file is not corrupted",
+                  ].map((tip, i) => (
+                    <p key={i} className="font-mono text-[10px] text-muted-foreground flex items-start gap-2">
+                      <span className="text-red-500/60 shrink-0">•</span>
+                      {tip}
+                    </p>
+                  ))}
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <button
+                    type="button"
+                    onClick={handleAnalyze}
+                    className="flex-1 flex items-center justify-center gap-3 py-3 border-2 border-accent bg-accent text-white font-mono text-xs tracking-[0.15em] uppercase font-bold cursor-pointer transition-none hover:bg-background hover:text-accent"
+                  >
+                    <RotateCcw size={14} /> RETRY ANALYSIS
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleAnalyzeNew}
+                    className="flex-1 flex items-center justify-center gap-3 py-3 border-2 border-foreground/30 text-muted-foreground font-mono text-xs tracking-[0.15em] uppercase cursor-pointer transition-none hover:bg-muted hover:text-foreground"
+                  >
+                    <X size={14} /> DISCARD & START OVER
+                  </button>
+                </div>
               </div>
             )}
 

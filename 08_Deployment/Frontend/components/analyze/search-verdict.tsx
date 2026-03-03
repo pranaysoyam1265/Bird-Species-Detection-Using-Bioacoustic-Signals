@@ -230,7 +230,7 @@ export function SearchVerdict({
 
         <div className="p-5 sm:p-6">
           {/* Verdict header */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-wrap items-center justify-between mb-4 gap-3">
             <div className="flex items-center gap-3">
               <div
                 className="w-10 h-10 border-2 flex items-center justify-center"
@@ -279,7 +279,7 @@ export function SearchVerdict({
           </div>
 
           {/* Stats strip */}
-          <div className="flex gap-4 mt-4 pt-3 border-t border-foreground/10">
+          <div className="flex flex-wrap gap-3 sm:gap-4 mt-4 pt-3 border-t border-foreground/10">
             {[
               { label: "SEGMENTS", value: String(targetSegments.length) },
               { label: "TOTAL TIME", value: `${targetSegments.reduce((a, s) => a + (s.endTime - s.startTime), 0).toFixed(1)}s` },

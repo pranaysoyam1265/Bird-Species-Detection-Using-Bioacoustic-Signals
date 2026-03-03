@@ -131,13 +131,14 @@ export async function deleteDetectionsApi(ids: string[]): Promise<void> {
  */
 export async function detectAudio(
   file: File,
-  options: { topK?: number; confidenceThreshold?: number; noiseReduction?: boolean } = {},
+  options: { topK?: number; confidenceThreshold?: number; noiseReduction?: boolean; chunkDuration?: number } = {},
 ): Promise<DetectionRecord> {
   const form = new FormData()
   form.append("audio_file", file)
   if (options.topK) form.append("top_k", String(options.topK))
   if (options.confidenceThreshold != null) form.append("confidence_threshold", String(options.confidenceThreshold / 100))
   if (options.noiseReduction) form.append("noise_reduction", "true")
+  if (options.chunkDuration) form.append("chunk_duration", String(options.chunkDuration))
 
   const res = await fetch("/api/detect", { method: "POST", body: form })
   if (!res.ok) {

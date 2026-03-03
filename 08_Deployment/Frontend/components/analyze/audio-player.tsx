@@ -413,7 +413,7 @@ export function AudioPlayer({ file, onRemove, onAudioDecoded }: AudioPlayerProps
       </div>
 
       {/* Controls */}
-      <div className="border-t-2 border-foreground px-4 py-3 flex items-center gap-3">
+      <div className="border-t-2 border-foreground px-3 sm:px-4 py-3 flex flex-wrap items-center gap-2 sm:gap-3">
         {/* Play/Pause */}
         <button
           type="button"
@@ -480,7 +480,7 @@ export function AudioPlayer({ file, onRemove, onAudioDecoded }: AudioPlayerProps
           step={0.01}
           value={currentTime}
           onChange={seek}
-          className="flex-1 h-1 appearance-none bg-foreground/20 outline-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:border-0"
+          className="flex-1 min-w-0 h-1 appearance-none bg-foreground/20 outline-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:border-0"
         />
 
         {/* Time display */}

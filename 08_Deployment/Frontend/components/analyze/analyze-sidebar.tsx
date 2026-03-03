@@ -61,7 +61,7 @@ export function AnalyzeSidebar({ settings, onSettingsChange, hasResults, onAnaly
   )
 
   return (
-    <aside className="w-full lg:w-[280px] lg:min-w-[280px] flex flex-col gap-4 border-l-4 border-l-accent pl-0 relative">
+    <aside className="w-full lg:w-[280px] lg:min-w-[280px] flex flex-col gap-4 border-l-4 border-l-accent pl-0 relative overflow-hidden">
 
       {/* ── ANALYSIS SETTINGS ── */}
       <div className="border-2 border-foreground bg-background">
