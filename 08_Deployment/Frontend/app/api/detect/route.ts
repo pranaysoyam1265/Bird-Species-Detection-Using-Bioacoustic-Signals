@@ -9,6 +9,7 @@ const FASTAPI_URL = process.env.FASTAPI_URL || process.env.NEXT_PUBLIC_API_URL |
  * The backend handles database persistence.
  */
 export const dynamic = "force-dynamic"
+export const maxDuration = 60 // Max timeout for Vercel functions (Pro: 300s, Hobby: 10s)
 
 export async function POST(req: NextRequest) {
   const user = await getSession()
@@ -72,9 +73,12 @@ export async function POST(req: NextRequest) {
     const result = await fastApiRes.json()
     return NextResponse.json(result)
   } catch (err) {
-    console.error("[/api/detect] Error:", err)
+    console.error("[/api/detect] Critical Error:", err)
     return NextResponse.json(
-      { error: "DETECTION_FAILED", detail: String(err) },
+      {
+        error: "PROXY_ERROR",
+        detail: err instanceof Error ? err.message : String(err)
+      },
       { status: 500 },
     )
   }
