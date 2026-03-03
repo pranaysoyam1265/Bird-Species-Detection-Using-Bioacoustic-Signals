@@ -145,7 +145,7 @@ export async function detectAudio(
 
   // Try direct backend if configured (to bypass Vercel 10s timeout), else use proxy
   const apiUrl = process.env.NEXT_PUBLIC_API_URL
-    ? `${process.env.NEXT_PUBLIC_API_URL}/detect`
+    ? `${process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, '')}/detect`
     : "/api/detect"
 
   const res = await fetch(apiUrl, { method: "POST", body: form })
