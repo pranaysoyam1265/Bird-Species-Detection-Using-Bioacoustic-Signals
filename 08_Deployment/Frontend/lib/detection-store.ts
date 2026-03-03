@@ -125,13 +125,15 @@ export async function deleteDetectionsApi(ids: string[]): Promise<void> {
   }
 }
 
-/**
- * Send audio to the server for ML detection.
- * Returns the detection result if successful.
- */
 export async function detectAudio(
   file: File,
-  options: { topK?: number; confidenceThreshold?: number; noiseReduction?: boolean; chunkDuration?: number } = {},
+  options: {
+    topK?: number;
+    confidenceThreshold?: number;
+    noiseReduction?: boolean;
+    chunkDuration?: number;
+    userId?: number;
+  } = {},
 ): Promise<DetectionRecord> {
   const form = new FormData()
   form.append("audio_file", file)
@@ -139,8 +141,14 @@ export async function detectAudio(
   if (options.confidenceThreshold != null) form.append("confidence_threshold", String(options.confidenceThreshold / 100))
   if (options.noiseReduction) form.append("noise_reduction", "true")
   if (options.chunkDuration) form.append("chunk_duration", String(options.chunkDuration))
+  if (options.userId) form.append("user_id", String(options.userId))
 
-  const res = await fetch("/api/detect", { method: "POST", body: form })
+  // Try direct backend if configured (to bypass Vercel 10s timeout), else use proxy
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+    ? `${process.env.NEXT_PUBLIC_API_URL}/detect`
+    : "/api/detect"
+
+  const res = await fetch(apiUrl, { method: "POST", body: form })
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({ error: "Inference failed" }))
     const msg = errorData.detail

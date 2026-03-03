@@ -120,6 +120,7 @@ export default function AnalyzePage() {
         confidenceThreshold: settings.minConfidence,
         noiseReduction: settings.noiseReduction,
         chunkDuration: settings.chunkDuration,
+        userId: user?.id,
       })
       setResults(record)
       setPageState("results")
