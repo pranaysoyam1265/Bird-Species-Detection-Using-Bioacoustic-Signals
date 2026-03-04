@@ -104,19 +104,19 @@ function PillLabel({
       <rect
         x={x}
         y={y}
-        width={80}
-        height={26}
-        rx={13}
+        width={120}
+        height={36}
+        rx={18}
         fill="none"
         stroke="hsl(var(--foreground))"
         strokeWidth={1.5}
       />
       <text
-        x={x + 40}
-        y={y + 17}
+        x={x + 60}
+        y={y + 23}
         textAnchor="middle"
         fill="hsl(var(--foreground))"
-        fontSize={10}
+        fontSize={13}
         fontFamily="var(--font-mono), monospace"
         fontWeight={500}
         letterSpacing="0.05em"
@@ -158,8 +158,8 @@ export function WorkflowDiagram() {
               key={`left-line-${i}`}
               x1={centerX - 40}
               y1={centerY}
-              x2={pillX + 80}
-              y2={pillY + 13}
+              x2={pillX + 120}
+              y2={pillY + 18}
               stroke="hsl(var(--border))"
               strokeWidth={1}
               initial={{ pathLength: 0, opacity: 0 }}
@@ -179,7 +179,7 @@ export function WorkflowDiagram() {
               x1={centerX + 40}
               y1={centerY}
               x2={pillX}
-              y2={pillY + 13}
+              y2={pillY + 18}
               stroke="hsl(var(--border))"
               strokeWidth={1}
               initial={{ pathLength: 0, opacity: 0 }}
@@ -198,10 +198,10 @@ export function WorkflowDiagram() {
               key={`left-packet-${i}`}
               r={3}
               fill="var(--accent-hex)"
-              initial={{ cx: pillX + 80, cy: pillY + 13 }}
+              initial={{ cx: pillX + 120, cy: pillY + 18 }}
               animate={{
-                cx: [pillX + 80, centerX - 40],
-                cy: [pillY + 13, centerY],
+                cx: [pillX + 120, centerX - 40],
+                cy: [pillY + 18, centerY],
               }}
               transition={{
                 duration: 1.8,
@@ -225,7 +225,7 @@ export function WorkflowDiagram() {
               initial={{ cx: centerX + 40, cy: centerY }}
               animate={{
                 cx: [centerX + 40, pillX],
-                cy: [centerY, pillY + 13],
+                cy: [centerY, pillY + 18],
               }}
               transition={{
                 duration: 1.8,
