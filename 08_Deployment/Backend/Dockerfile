@@ -27,6 +27,14 @@ COPY labels ./labels
 # Create required directories (models downloaded at runtime via start.sh)
 RUN mkdir -p /app/uploads /app/models/checkpoints /app/labels
 
+# ── Anti-Thrashing Optimization ──
+# Render only provides a fraction of a CPU on the free tier, but PyTorch
+# will attempt to spawn 32+ threads based on the host physical machine.
+# This strictly limits PyTorch to 2 threads, preventing total server lockup.
+ENV OMP_NUM_THREADS=2
+ENV MKL_NUM_THREADS=2
+ENV OPENBLAS_NUM_THREADS=2
+
 EXPOSE 8000
 
 COPY start.sh .
