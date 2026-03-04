@@ -3,10 +3,9 @@ import json
 from pathlib import Path
 from datetime import datetime
 from typing import Optional, List, Dict, Any
-from passlib.context import CryptContext
+import bcrypt
 
 DB_PATH = Path(__file__).parent / "birdsense.db"
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
@@ -58,10 +57,14 @@ def init_db():
 
 # --- Auth Helpers ---
 def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(password.encode('utf-8'), salt).decode('utf-8')
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
+    try:
+        return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
+    except ValueError:
+        return False
 
 def get_user_by_email(email: str):
     with get_db_connection() as conn:
