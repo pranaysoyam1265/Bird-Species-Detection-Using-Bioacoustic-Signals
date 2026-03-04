@@ -4,9 +4,7 @@ import { useState } from "react"
 import { MapPin } from "lucide-react"
 import { SpeciesMapModal } from "@/components/analyze/species-map-modal"
 import { SPECIES_META } from "@/lib/species-meta"
-
-const DEFAULT_BIRD_IMG =
-  "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=600&h=400&fit=crop"
+import { useSpeciesImage } from "@/hooks/use-species-image"
 
 /* ── Per-species profile data: conservation, size, migration, behaviour, fun fact ── */
 const P: Record<string, [string, string, string, string, string, string, string]> = {
@@ -114,7 +112,6 @@ function statusColor(s: string): string {
 function getData(species: string) {
   const row = P[species]
   if (row) return {
-    img: DEFAULT_BIRD_IMG,
     conservation: row[0], conservationColor: row[1],
     bodyLength: row[2], weight: row[3], migratory: row[4],
     behaviour: row[5], funFact: row[6],
@@ -122,7 +119,6 @@ function getData(species: string) {
   // Fallback using SPECIES_META
   const meta = SPECIES_META[species]
   if (meta) return {
-    img: DEFAULT_BIRD_IMG,
     conservation: meta.status === "rare" ? "Near Threatened" : meta.status === "uncommon" ? "Least Concern" : "Least Concern",
     conservationColor: meta.status === "rare" ? "text-yellow-500" : "text-green-500",
     bodyLength: "—", weight: "—",
@@ -131,7 +127,6 @@ function getData(species: string) {
     funFact: `Part of the ${meta.family} family. Vocalizes between ${meta.freqLow}–${meta.freqHigh} kHz.`,
   }
   return {
-    img: DEFAULT_BIRD_IMG,
     conservation: "Data Deficient", conservationColor: "text-muted-foreground",
     bodyLength: "—", weight: "—", migratory: "Unknown",
     behaviour: "Behaviour data not available.", funFact: "Part of BirdSense's 87-species detection library.",
@@ -145,6 +140,7 @@ interface SpeciesProfileCardProps {
 
 export function SpeciesProfileCard({ species, scientificName }: SpeciesProfileCardProps) {
   const data = getData(species)
+  const { src: birdImg, loading: imgLoading } = useSpeciesImage(species, scientificName)
   const [mapOpen, setMapOpen] = useState(false)
 
   return (
@@ -157,11 +153,17 @@ export function SpeciesProfileCard({ species, scientificName }: SpeciesProfileCa
 
       <div className="flex flex-col sm:flex-row">
         {/* Left — Large bird image */}
-        <div className="sm:w-[260px] sm:min-w-[260px] h-[240px] sm:h-auto border-b-2 sm:border-b-0 sm:border-r-2 border-foreground overflow-hidden bg-foreground/5 relative">
+        <div className="sm:w-[260px] sm:min-w-[260px] h-[280px] sm:h-auto border-b-2 sm:border-b-0 sm:border-r-2 border-foreground overflow-hidden bg-foreground/5 relative">
+          {imgLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-foreground/5">
+              <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground animate-pulse">LOADING...</span>
+            </div>
+          )}
           <img
-            src={data.img}
+            src={birdImg}
             alt={species}
-            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 25%" }}
+            className={`w-full h-full object-cover scale-110 transition-opacity duration-300 ${imgLoading ? 'opacity-0' : 'opacity-100'}`}
           />
           {/* Name overlay */}
           <div className="absolute bottom-0 left-0 right-0 bg-black/70 px-3 py-2">

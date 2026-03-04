@@ -267,10 +267,10 @@ export function Navbar() {
                   {/* Status dot */}
                   {user && (
                     <div className={`absolute bottom-0.5 right-0.5 w-2 h-2 rounded-full ring-2 ring-background ${apiStatus === "online"
-                        ? "bg-[#22c55e]"
-                        : apiStatus === "offline"
-                          ? "bg-red-400"
-                          : "bg-yellow-400 animate-pulse"
+                      ? "bg-[#22c55e]"
+                      : apiStatus === "offline"
+                        ? "bg-red-400"
+                        : "bg-yellow-400 animate-pulse"
                       }`} />
                   )}
                 </motion.div>

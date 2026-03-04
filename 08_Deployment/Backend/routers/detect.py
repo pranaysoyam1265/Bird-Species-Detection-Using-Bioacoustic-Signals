@@ -131,16 +131,18 @@ async def detect(
                 idx_int = int(idx)
                 aggregated.setdefault(idx_int, []).append(float(prob))
 
-        # Average confidence per species, sort descending
-        avg_preds = [
-            (idx, sum(confs) / len(confs))
+        # For final confidence per species, use the MAX confidence across all chunks
+        # Averaging penalizes a species heavily if it only sings in a small part of a long audio file
+        agg_preds = [
+            (idx, max(confs))
             for idx, confs in aggregated.items()
         ]
-        avg_preds.sort(key=lambda x: x[1], reverse=True)
-        avg_preds = avg_preds[:top_k]
+        agg_preds.sort(key=lambda x: x[1], reverse=True)
+        agg_preds = agg_preds[:top_k]
+
 
         # ── Build response ──
-        top_idx, top_conf = avg_preds[0] if avg_preds else (0, 0.0)
+        top_idx, top_conf = agg_preds[0] if agg_preds else (0, 0.0)
 
         result_predictions = [
             Prediction(
@@ -148,7 +150,7 @@ async def detect(
                 scientific=get_scientific_name(idx),
                 confidence=round(conf * 100, 2),
             )
-            for idx, conf in avg_preds
+            for idx, conf in agg_preds
             if conf * 100 >= confidence_threshold * 100
         ]
 
