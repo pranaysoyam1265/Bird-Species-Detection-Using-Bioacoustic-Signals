@@ -9,9 +9,9 @@ const MAX_SIZE_PX = 256 // resize uploaded images to this square
 /**
  * Read the saved avatar data-URI (or null if none).
  */
-export function getAvatar(): string | null {
+export function getAvatar(userId: number | string = "guest"): string | null {
   try {
-    return localStorage.getItem(AVATAR_KEY)
+    return localStorage.getItem(`${AVATAR_KEY}-${userId}`)
   } catch {
     return null
   }
@@ -20,9 +20,9 @@ export function getAvatar(): string | null {
 /**
  * Delete the saved avatar.
  */
-export function clearAvatar(): void {
+export function clearAvatar(userId: number | string = "guest"): void {
   try {
-    localStorage.removeItem(AVATAR_KEY)
+    localStorage.removeItem(`${AVATAR_KEY}-${userId}`)
   } catch { /* */ }
 }
 
@@ -30,7 +30,7 @@ export function clearAvatar(): void {
  * Process an image File, resize it to a square, and save as a JPEG data-URI.
  * Returns the data-URI on success.
  */
-export function saveAvatarFromFile(file: File): Promise<string> {
+export function saveAvatarFromFile(file: File, userId: number | string = "guest"): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.onerror = () => reject(new Error("Failed to read file"))
@@ -49,7 +49,7 @@ export function saveAvatarFromFile(file: File): Promise<string> {
         ctx.drawImage(img, sx, sy, min, min, 0, 0, MAX_SIZE_PX, MAX_SIZE_PX)
         const dataUri = canvas.toDataURL("image/jpeg", 0.8)
         try {
-          localStorage.setItem(AVATAR_KEY, dataUri)
+          localStorage.setItem(`${AVATAR_KEY}-${userId}`, dataUri)
         } catch {
           reject(new Error("Storage full"))
           return

@@ -41,7 +41,7 @@ export function Navbar() {
 
   /* ── avatar ── */
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
-  useEffect(() => { setAvatarUrl(getAvatar()) }, [])
+  useEffect(() => { setAvatarUrl(getAvatar(user?.id)) }, [user?.id])
 
   const initials = user?.name
     ? user.name.slice(0, 2).toUpperCase()
@@ -55,7 +55,8 @@ export function Navbar() {
     const g = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening"
     let name = user?.name || user?.email?.split("@")[0] || "Researcher"
     try {
-      const saved = localStorage.getItem("birdsense-profile")
+      const profileKey = `birdsense-profile-${user?.id || "guest"}`
+      const saved = localStorage.getItem(profileKey)
       if (saved) { const p = JSON.parse(saved); if (p.name) name = p.name }
     } catch { /* */ }
     return `${g}, ${name}`
@@ -293,7 +294,8 @@ export function Navbar() {
                       <p className="font-mono text-xs tracking-wider text-foreground font-bold truncate">
                         {(() => {
                           try {
-                            const s = localStorage.getItem("birdsense-profile")
+                            const profileKey = `birdsense-profile-${user?.id || "guest"}`
+                            const s = localStorage.getItem(profileKey)
                             if (s) { const p = JSON.parse(s); if (p.name) return p.name }
                           } catch { /* */ }
                           return user.name || user.email

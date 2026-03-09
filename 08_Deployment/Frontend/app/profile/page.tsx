@@ -88,8 +88,12 @@ export default function ProfilePage() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    setAvatarUrl(getAvatar())
-  }, [])
+    if (user) {
+      setAvatarUrl(getAvatar(user.id))
+    } else {
+      setAvatarUrl(getAvatar())
+    }
+  }, [user])
 
   const startEditing = () => {
     const saved = getSavedProfile()
@@ -103,7 +107,8 @@ export default function ProfilePage() {
 
   const saveEdits = () => {
     try {
-      localStorage.setItem("birdsense-profile", JSON.stringify({
+      const profileKey = `birdsense-profile-${user?.id || "guest"}`
+      localStorage.setItem(profileKey, JSON.stringify({
         name: editName, email: editEmail, role: editRole, org: editOrg, bio: editBio,
       }))
     } catch { /* */ }
@@ -132,7 +137,8 @@ export default function ProfilePage() {
   /* ── Helper to read saved profile ── */
   function getSavedProfile(): { name?: string; email?: string; role?: string; org?: string; bio?: string } {
     try {
-      const raw = localStorage.getItem("birdsense-profile")
+      const profileKey = `birdsense-profile-${user?.id || "guest"}`
+      const raw = localStorage.getItem(profileKey)
       if (raw) return JSON.parse(raw)
     } catch { /* */ }
     return {}
@@ -221,7 +227,7 @@ export default function ProfilePage() {
               {editing && avatarUrl && (
                 <button
                   type="button"
-                  onClick={() => { clearAvatar(); setAvatarUrl(null) }}
+                  onClick={() => { clearAvatar(user?.id); setAvatarUrl(null) }}
                   className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white flex items-center justify-center font-mono text-xs font-bold cursor-pointer border border-background z-10"
                   aria-label="Remove avatar"
                 >
@@ -240,7 +246,7 @@ export default function ProfilePage() {
                   const f = e.target.files?.[0]
                   if (!f) return
                   try {
-                    const uri = await saveAvatarFromFile(f)
+                    const uri = await saveAvatarFromFile(f, user?.id)
                     setAvatarUrl(uri)
                   } catch { /* */ }
                   e.target.value = ""
