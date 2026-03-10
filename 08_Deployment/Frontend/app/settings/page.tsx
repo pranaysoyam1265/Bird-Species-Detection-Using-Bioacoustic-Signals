@@ -39,6 +39,7 @@ import {
   EyeOff,
   Plus,
   X,
+  Save,
 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { getDetections, deleteDetections } from "@/lib/detection-store"
@@ -93,6 +94,8 @@ export default function SettingsPage() {
   const [historyCount, setHistoryCount] = useState(0)
   const [storageSizeMB, setStorageSizeMB] = useState("0.0")
   const [confirmClear, setConfirmClear] = useState(false)
+  const [dirty, setDirty] = useState(false)
+  const [saving, setSaving] = useState(false)
 
   // System Health state
   const [sysHealth, setSysHealth] = useState<{ status: string, numSpecies: number, device: string } | null>(null)
@@ -253,11 +256,7 @@ export default function SettingsPage() {
 
     const propName = propMap[key]
     if (propName) {
-      await fetch("/api/settings", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(buildSettingsObject({ [propName]: value }))
-      }).catch(err => console.error(err))
+      setDirty(true)
     }
   }
 
@@ -416,6 +415,7 @@ export default function SettingsPage() {
     setAutoClearDays(0)
     setWebhookUrl("")
     setApiKeys([])
+    setDirty(true)
     toast({ title: "Preferences reset to defaults" })
   }
 
@@ -499,6 +499,53 @@ export default function SettingsPage() {
   const handleWebhookSave = () => {
     savePref(PREF_KEYS.webhookUrl, webhookUrl)
     toast({ title: webhookUrl ? "Webhook URL saved" : "Webhook URL cleared" })
+  }
+
+  const saveAllSettings = async () => {
+    setSaving(true)
+    try {
+      const settingsObj = buildSettingsObject()
+      // Write to localStorage as well
+      Object.entries(PREF_KEYS).forEach(([, key]) => {
+        const propMap: Record<string, string> = {
+          [PREF_KEYS.notifications]: "notifications",
+          [PREF_KEYS.audioPreview]: "audioPreview",
+          [PREF_KEYS.pageSize]: "pageSize",
+          [PREF_KEYS.accentColor]: "accentColor",
+          [PREF_KEYS.fontSize]: "fontSize",
+          [PREF_KEYS.scanlines]: "scanlines",
+          [PREF_KEYS.confidenceThreshold]: "confidenceThreshold",
+          [PREF_KEYS.defaultInputMode]: "defaultInputMode",
+          [PREF_KEYS.defaultTopK]: "defaultTopK",
+          [PREF_KEYS.spectrogramColorMap]: "spectrogramColorMap",
+          [PREF_KEYS.autoClear]: "autoClear",
+          [PREF_KEYS.webhookUrl]: "webhookUrl",
+        }
+        const prop = propMap[key]
+        if (prop && prop in settingsObj) {
+          try {
+            const val = (settingsObj as Record<string, unknown>)[prop]
+            localStorage.setItem(key, typeof val === "string" ? val : JSON.stringify(val))
+          } catch { /* */ }
+        }
+      })
+
+      const res = await fetch("/api/settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(settingsObj),
+      })
+      if (res.ok) {
+        setDirty(false)
+        toast({ title: "Settings saved successfully" })
+      } else {
+        toast({ title: "Failed to save settings" })
+      }
+    } catch {
+      toast({ title: "Network error while saving" })
+    } finally {
+      setSaving(false)
+    }
   }
 
   /* ── Reusable components ── */
@@ -1012,6 +1059,21 @@ export default function SettingsPage() {
           </span>
           <span className="inline-block w-1.5 h-3 bg-accent animate-blink" />
         </div>
+        {/* ────── SAVE BUTTON ────── */}
+        {dirty && (
+          <div className="sticky bottom-4 z-20 flex justify-center">
+            <button
+              type="button"
+              onClick={saveAllSettings}
+              disabled={saving}
+              className="flex items-center gap-2 px-8 py-3 border-2 border-accent bg-accent text-white font-mono text-xs tracking-[0.2em] uppercase font-bold hover:bg-accent/90 cursor-pointer transition-none shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              <Save size={14} />
+              {saving ? "SAVING..." : "SAVE ALL SETTINGS"}
+            </button>
+          </div>
+        )}
+
       </main>
     </div>
   )
