@@ -25,7 +25,7 @@ import { SPECIES_META } from "@/lib/species-meta"
 import { useToast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
-import { Menu, X, Zap, Loader2, Upload, Mic, PanelLeftClose, PanelLeftOpen, Search, RotateCcw } from "lucide-react"
+import { Menu, X, Zap, Loader2, Upload, Mic, PanelLeftClose, PanelLeftOpen, Search, RotateCcw, AlertTriangle } from "lucide-react"
 
 // ── Types ──
 type PageState = "idle" | "loading" | "uploaded" | "analyzing" | "results" | "error"
@@ -66,6 +66,21 @@ export default function AnalyzePage() {
     searchSpecies: "",
     sensitivity: 5,
   })
+
+  // Track which settings were used for the current analysis
+  const analyzedSettingsRef = useRef<SidebarSettings | null>(null)
+
+  // Detect if current settings differ from what was analyzed
+  const settingsChanged = (() => {
+    if (!analyzedSettingsRef.current || pageState !== "results") return false
+    const a = analyzedSettingsRef.current
+    return (
+      a.noiseReduction !== settings.noiseReduction ||
+      a.chunkDuration !== settings.chunkDuration ||
+      a.topK !== settings.topK ||
+      a.minConfidence !== settings.minConfidence
+    )
+  })()
 
   const loadingStartRef = useRef(0)
 
@@ -122,6 +137,8 @@ export default function AnalyzePage() {
         chunkDuration: settings.chunkDuration,
         userId: user?.id,
       })
+      // Snapshot the settings used for this analysis
+      analyzedSettingsRef.current = { ...settings }
       setResults(record)
       setPageState("results")
     } catch (err) {
@@ -542,6 +559,40 @@ export default function AnalyzePage() {
             {/* Results (when analysis complete) */}
             {pageState === "results" && results && (
               <div className="space-y-4 lg:space-y-6">
+
+                {/* ══ LOW CONFIDENCE WARNING ═══ */}
+                {results.lowConfidenceWarning && (
+                  <div className="border-2 border-amber-500 bg-amber-500/10 px-4 py-3 flex items-start gap-3">
+                    <AlertTriangle size={18} className="text-amber-500 shrink-0 mt-0.5" />
+                    <div className="min-w-0">
+                      <span className="font-mono text-xs tracking-[0.15em] uppercase text-amber-500 font-bold block">
+                        LOW CONFIDENCE WARNING
+                      </span>
+                      <p className="font-mono text-[10px] tracking-[0.1em] text-amber-400/90 mt-1 leading-relaxed">
+                        {results.lowConfidenceWarning}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* ══ SETTINGS CHANGED — REANALYZE BANNER ═══ */}
+                {settingsChanged && (
+                  <div className="border-2 border-accent bg-accent/10 px-4 py-3 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Zap size={14} className="text-accent shrink-0" />
+                      <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-foreground/80">
+                        Analysis settings have changed since last run
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleAnalyze}
+                      className="shrink-0 flex items-center gap-2 px-4 py-2 border-2 border-accent bg-accent text-white font-mono text-[10px] tracking-[0.15em] uppercase font-bold hover:bg-accent/80 cursor-pointer transition-none"
+                    >
+                      <RotateCcw size={12} /> REANALYZE
+                    </button>
+                  </div>
+                )}
 
                 {/* ══ FOCUS VERDICT ═══ Only when a species is selected ══ */}
                 {settings.searchSpecies && (

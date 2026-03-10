@@ -96,8 +96,11 @@ async def detect(
             )
 
         # ── Optional noise reduction ──
+        noise_reduced_applied = False
         if noise_reduction:
+            original_audio = audio.copy()
             audio = reduce_noise(audio, sr)
+            noise_reduced_applied = not (audio is original_audio)
 
         # ── Generate spectrograms ──
         spectrograms_data = process_audio_to_spectrograms(audio, sr, chunk_duration=chunk_duration)
@@ -144,6 +147,16 @@ async def detect(
         # ── Build response ──
         top_idx, top_conf = agg_preds[0] if agg_preds else (0, 0.0)
 
+        # ── Low-confidence warning for non-bird audio ──
+        low_conf_warning = None
+        if top_conf * 100 < 30:
+            low_conf_warning = (
+                "The audio may not contain recognizable bird calls. "
+                "The model's highest confidence is only "
+                f"{top_conf * 100:.1f}%. Try uploading a clearer recording "
+                "with distinct bird vocalizations."
+            )
+
         result_predictions = [
             Prediction(
                 species=get_english_name(idx),
@@ -169,6 +182,8 @@ async def detect(
             top_confidence=round(top_conf * 100, 2),
             predictions=result_predictions,
             segments=result_segments,
+            noise_reduced=noise_reduced_applied,
+            low_confidence_warning=low_conf_warning,
         )
         
         # ── Save to DB if user_id provided ──

@@ -20,6 +20,8 @@ export interface DetectionRecord {
   predictions: { species: string; confidence: number }[]
   segments: DetectionSegment[]
   audioUrl?: string   // base64 data URI (omitted for large files)
+  lowConfidenceWarning?: string
+  noiseReduced?: boolean
 }
 
 const STORAGE_KEY = "birdsense_history"
@@ -179,6 +181,8 @@ export async function detectAudio(
       species: s.species,
       confidence: s.confidence,
     })),
+    lowConfidenceWarning: result.low_confidence_warning || undefined,
+    noiseReduced: result.noise_reduced || false,
   }
 
   // Also save to localStorage as cache

@@ -3,6 +3,7 @@ BirdSense Backend — Pydantic Schemas
 Request / response models for the FastAPI endpoints.
 """
 
+from typing import Optional
 from pydantic import BaseModel, Field
 
 
@@ -44,6 +45,8 @@ class DetectResponse(BaseModel):
     top_confidence: float
     predictions: list[Prediction]
     segments: list[DetectionSegment]
+    noise_reduced: bool = False
+    low_confidence_warning: Optional[str] = None
 
 
 class ErrorResponse(BaseModel):
