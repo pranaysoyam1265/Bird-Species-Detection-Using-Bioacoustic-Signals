@@ -13,6 +13,7 @@ type User = {
   id: number
   email: string
   name: string | null
+  role: string
   created_at: string
   updated_at: string
 }
@@ -21,6 +22,7 @@ type AuthContextType = {
   user: User | null
   loading: boolean
   error: string | null
+  isAdmin: boolean
   login: (email: string, password: string) => Promise<boolean>
   signup: (email: string, password: string, confirmPassword: string, name?: string) => Promise<boolean>
   logout: () => Promise<void>
@@ -109,8 +111,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const clearError = useCallback(() => setError(null), [])
 
+  const isAdmin = user?.role === "admin"
+
   return (
-    <AuthContext.Provider value={{ user, loading, error, login, signup, logout, clearError }}>
+    <AuthContext.Provider value={{ user, loading, error, isAdmin, login, signup, logout, clearError }}>
       {children}
     </AuthContext.Provider>
   )

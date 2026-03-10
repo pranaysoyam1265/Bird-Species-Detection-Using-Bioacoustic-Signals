@@ -88,12 +88,14 @@ from routers.species import router as species_router
 from routers.history import router as history_router
 from routers.auth import router as auth_router
 from routers.settings import router as settings_router
+from routers.admin import router as admin_router
 
 app.include_router(detect_router, tags=["Detection"])
 app.include_router(species_router, tags=["Species"])
 app.include_router(history_router, tags=["History"])
 app.include_router(auth_router, tags=["Authentication"])
 app.include_router(settings_router, tags=["Settings"])
+app.include_router(admin_router, tags=["Admin"])
 
 
 # ── Health Check ───────────────────────────────────────────────

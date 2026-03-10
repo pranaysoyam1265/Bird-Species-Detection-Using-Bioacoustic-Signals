@@ -34,11 +34,12 @@ export interface TokenPayload {
   userId: number;
   email: string;
   name?: string | null;
+  role: string;
 }
 
-export function signToken(user: { id: number; email: string; name?: string | null }): string {
+export function signToken(user: { id: number; email: string; name?: string | null; role?: string }): string {
   return jwt.sign(
-    { userId: user.id, email: user.email, name: user.name },
+    { userId: user.id, email: user.email, name: user.name, role: user.role || "user" },
     JWT_SECRET,
     { expiresIn: TOKEN_EXPIRY }
   )
@@ -52,7 +53,7 @@ export function verifyToken(token: string): TokenPayload | null {
   }
 }
 
-export async function setAuthCookie(user: { id: number; email: string; name?: string | null }): Promise<void> {
+export async function setAuthCookie(user: { id: number; email: string; name?: string | null; role?: string }): Promise<void> {
   const token = signToken(user)
   const cookieStore = await cookies()
   cookieStore.set(COOKIE_NAME, token, {
@@ -82,7 +83,8 @@ export async function getSession(): Promise<SafeUser | null> {
     id: payload.userId,
     email: payload.email,
     name: payload.name || null,
-    created_at: new Date().toISOString(), // Mocked as we don't have it in token
+    role: payload.role || "user",
+    created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   }
 }

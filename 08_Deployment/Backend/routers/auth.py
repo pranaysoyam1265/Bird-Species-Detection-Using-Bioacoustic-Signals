@@ -1,6 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from db_utils import get_user_by_email, create_user, hash_password, verify_password
+from db_utils import (
+    get_user_by_email, create_user, hash_password, verify_password,
+    count_users, get_user_by_id, update_user_password
+)
 from typing import Optional
 
 router = APIRouter()
@@ -27,7 +30,8 @@ async def login(req: LoginRequest):
         "user": {
             "id": user["id"],
             "email": user["email"],
-            "name": user["name"]
+            "name": user["name"],
+            "role": user["role"]
         }
     }
 
@@ -37,13 +41,16 @@ async def register(req: RegisterRequest):
         raise HTTPException(status_code=400, detail="Email already registered")
     
     hashed = hash_password(req.password)
-    user_id = create_user(req.email, hashed, req.name)
+    # First user ever registered becomes admin
+    role = "admin" if count_users() == 0 else "user"
+    user_id = create_user(req.email, hashed, req.name, role)
     
     return {
         "user": {
             "id": user_id,
             "email": req.email,
-            "name": req.name
+            "name": req.name,
+            "role": role
         }
     }
 
@@ -54,7 +61,6 @@ class ChangePasswordRequest(BaseModel):
 
 @router.post("/auth/change-password")
 async def change_password(req: ChangePasswordRequest):
-    from db_utils import get_user_by_id, update_user_password
     user = get_user_by_id(req.user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")

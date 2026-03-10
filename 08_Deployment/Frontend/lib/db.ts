@@ -83,6 +83,7 @@ export type User = {
   email: string
   password: string
   name: string | null
+  role: string
   created_at: string
   updated_at: string
 }

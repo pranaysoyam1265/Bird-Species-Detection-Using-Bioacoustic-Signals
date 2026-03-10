@@ -148,7 +148,7 @@ export default function ProfilePage() {
   const savedProfile = getSavedProfile()
   const displayName = savedProfile.name || user?.name || user?.email?.split("@")[0] || "Researcher"
   const displayEmail = savedProfile.email || user?.email || "researcher@birdsense.ai"
-  const displayRole = savedProfile.role || "Researcher • Full Access"
+  const displayRole = user?.role === "admin" ? "Admin • Full Access" : "Researcher • Full Access"
   const displayOrg = savedProfile.org || "BirdSense Lab"
   const displayBio = savedProfile.bio || "Bioacoustic researcher studying avian vocalizations."
   const joinDate = user?.created_at
@@ -289,9 +289,9 @@ export default function ProfilePage() {
                 </span>
               </div>
               <div className="flex items-center gap-1.5 justify-center sm:justify-start">
-                <Shield size={12} className="text-[#22c55e]" />
-                <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#22c55e] font-bold">
-                  VERIFIED RESEARCHER
+                <Shield size={12} className={user?.role === "admin" ? "text-accent" : "text-[#22c55e]"} />
+                <span className={`font-mono text-[10px] tracking-[0.2em] uppercase font-bold ${user?.role === "admin" ? "text-accent" : "text-[#22c55e]"}`}>
+                  {user?.role === "admin" ? "SYSTEM ADMINISTRATOR" : "VERIFIED RESEARCHER"}
                 </span>
               </div>
             </div>
@@ -366,12 +366,7 @@ export default function ProfilePage() {
               </div>
               <div className="flex-1 min-w-0">
                 <span className="font-mono text-xs tracking-[0.15em] uppercase text-foreground font-bold block">ROLE</span>
-                {editing ? (
-                  <input type="text" value={editRole} onChange={(e) => setEditRole(e.target.value)}
-                    className="w-full bg-transparent border-b border-accent/50 font-mono text-[11px] tracking-[0.1em] text-foreground outline-none mt-0.5 py-0.5" />
-                ) : (
-                  <span className="font-mono text-[9px] tracking-[0.1em] text-muted-foreground block mt-0.5">{displayRole}</span>
-                )}
+                <span className="font-mono text-[9px] tracking-[0.1em] text-muted-foreground block mt-0.5">{displayRole}</span>
               </div>
             </div>
             {/* ORGANIZATION */}

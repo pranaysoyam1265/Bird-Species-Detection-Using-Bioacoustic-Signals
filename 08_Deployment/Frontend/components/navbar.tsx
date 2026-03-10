@@ -20,6 +20,7 @@ import {
   UserCircle,
   LogOut,
   BarChart3,
+  Shield,
 
 } from "lucide-react"
 
@@ -36,7 +37,7 @@ function useClickOutside(ref: React.RefObject<HTMLElement | null>, cb: () => voi
 
 /* ─── component ─── */
 export function Navbar() {
-  const { user, logout } = useAuth()
+  const { user, logout, isAdmin } = useAuth()
   const router = useRouter()
 
   /* ── avatar ── */
@@ -331,6 +332,17 @@ export function Navbar() {
                       <BarChart3 size={16} />
                       Models
                     </Link>
+
+                    {isAdmin && (
+                      <Link
+                        href="/admin"
+                        onClick={() => setDropdownOpen(false)}
+                        className="w-full flex items-center gap-3 px-4 py-2.5 font-mono text-xs tracking-[0.15em] uppercase text-accent hover:bg-accent/10 cursor-pointer transition-none border-b border-foreground/10 no-underline"
+                      >
+                        <Shield size={16} />
+                        Admin
+                      </Link>
+                    )}
 
                     <button
                       type="button"
