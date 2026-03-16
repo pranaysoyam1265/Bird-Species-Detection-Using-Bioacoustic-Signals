@@ -179,6 +179,9 @@ export function AnalyzeSidebar({ settings, onSettingsChange, hasResults, onAnaly
           <span className="font-mono text-xs tracking-[0.25em] uppercase text-accent font-bold">
             SPECIES FOCUS
           </span>
+          <span className="font-mono text-[10px] tracking-wider text-muted-foreground ml-2">
+            ({BIRD_SPECIES.length})
+          </span>
           <span className="font-mono text-[8px] tracking-wider text-muted-foreground/50 ml-auto">OPTIONAL</span>
         </div>
         <div className="p-4 space-y-3">
