@@ -2,7 +2,7 @@
  * Shared species metadata for the BirdSense app.
  * Used by sidebar info cards, frequency highlighting, and similar-species suggestions.
  *
- * ⚠️  AUTO-GENERATED from label_mapping_v3.json — all 87 species match the ML model exactly.
+ * ⚠️  AUTO-GENERATED from label_mapping_combined.json — all 290 species match the ML model exactly.
  */
 
 export interface SpeciesMeta {
@@ -19,8 +19,8 @@ export interface SpeciesMeta {
 }
 
 /**
- * Metadata for all 87 species supported by BirdSense.
- * Keyed by common name (case-sensitive, title case) — must match label_mapping_v3.json english_name exactly.
+ * Metadata for all 290 species supported by BirdSense.
+ * Keyed by common name (case-sensitive, title case) — must match label_mapping_combined.json english_name exactly.
  */
 export const SPECIES_META: Record<string, SpeciesMeta> = {
   // ── Index 30 ──

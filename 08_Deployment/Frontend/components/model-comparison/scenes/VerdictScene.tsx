@@ -51,7 +51,7 @@ export function VerdictScene() {
           Composite Score = Accuracy × Efficiency
         </p>
         <p className="font-mono text-xs sm:text-sm tracking-wider text-accent font-bold">
-          EfficientNet-B2: 96.06 × 0.94 = 90.3
+          EfficientNet-B2: 95.03 × 0.94 = 89.3
         </p>
         <p className="font-mono text-[7px] sm:text-[8px] tracking-wider text-foreground/60 mt-1 uppercase">
           Highest balanced score across all metrics

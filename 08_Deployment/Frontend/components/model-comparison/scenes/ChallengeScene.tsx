@@ -48,7 +48,7 @@ export function ChallengeScene() {
           ))}
         </div>
         <p className="font-mono text-[7px] sm:text-[8px] tracking-[0.2em] uppercase text-muted-foreground mt-2 text-center">
-          audio_signal.wav — 87 species
+          audio_signal.wav — 290 species
         </p>
       </motion.div>
 
@@ -64,7 +64,7 @@ export function ChallengeScene() {
 
       {/* Text */}
       <div className="text-center space-y-1">
-        {["Identify 87 bird species", "from audio with maximum", "accuracy & efficiency"].map(
+        {["Identify 290 bird species", "from audio with maximum", "accuracy & efficiency"].map(
           (line, i) => (
             <motion.p
               key={i}

@@ -103,7 +103,7 @@ export function ChampionScene() {
             </div>
             <div>
               <p className="font-mono text-[7px] sm:text-[8px] tracking-wider text-foreground/40 uppercase">Species</p>
-              <p className="font-mono text-[10px] sm:text-xs font-bold text-foreground">87</p>
+              <p className="font-mono text-[10px] sm:text-xs font-bold text-foreground">290</p>
             </div>
           </div>
         </div>

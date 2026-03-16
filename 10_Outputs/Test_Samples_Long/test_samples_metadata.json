@@ -1,0 +1,832 @@
+[
+  {
+    "sample_id": 1,
+    "output_file": "XC_393960.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_393960.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 7,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "393960",
+        "duration": 12.887074829931972,
+        "filename": "XC393960.mp3"
+      },
+      {
+        "xc_id": "789575",
+        "duration": 90.0154648526077,
+        "filename": "XC789575.mp3"
+      },
+      {
+        "xc_id": "775264",
+        "duration": 45.18893424036281,
+        "filename": "XC775264.mp3"
+      },
+      {
+        "xc_id": "172821",
+        "duration": 29.088027210884352,
+        "filename": "XC172821.wav"
+      },
+      {
+        "xc_id": "177226",
+        "duration": 49.488027210884354,
+        "filename": "XC177226.wav"
+      },
+      {
+        "xc_id": "593338",
+        "duration": 71.34816326530613,
+        "filename": "XC593338.mp3"
+      },
+      {
+        "xc_id": "130499",
+        "duration": 22.24,
+        "filename": "XC130499.wav"
+      }
+    ],
+    "created_at": "2026-03-03T11:29:51.486067"
+  },
+  {
+    "sample_id": 2,
+    "output_file": "XC_599641.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_599641.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 8,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "599641",
+        "duration": 107.49600907029479,
+        "filename": "XC599641.mp3"
+      },
+      {
+        "xc_id": "600999",
+        "duration": 7.45827664399093,
+        "filename": "XC600999.mp3"
+      },
+      {
+        "xc_id": "187660",
+        "duration": 51.52,
+        "filename": "XC187660.wav"
+      },
+      {
+        "xc_id": "418002",
+        "duration": 5.116825396825397,
+        "filename": "XC418002.wav"
+      },
+      {
+        "xc_id": "473440",
+        "duration": 27.67238095238095,
+        "filename": "XC473440.mp3"
+      },
+      {
+        "xc_id": "464765",
+        "duration": 23.188072562358276,
+        "filename": "XC464765.wav"
+      },
+      {
+        "xc_id": "781039",
+        "duration": 33.671836734693876,
+        "filename": "XC781039.mp3"
+      },
+      {
+        "xc_id": "157759",
+        "duration": 76.22403628117914,
+        "filename": "XC157759.wav"
+      }
+    ],
+    "created_at": "2026-03-03T11:29:52.300000"
+  },
+  {
+    "sample_id": 3,
+    "output_file": "XC_418083.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_418083.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 2,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "418083",
+        "duration": 3.728027210884354,
+        "filename": "XC418083.wav"
+      },
+      {
+        "xc_id": "828387",
+        "duration": 887.64,
+        "filename": "XC828387.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:29:55.891498"
+  },
+  {
+    "sample_id": 4,
+    "output_file": "XC_683529.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_683529.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 9,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "683529",
+        "duration": 33.78430839002267,
+        "filename": "XC683529.mp3"
+      },
+      {
+        "xc_id": "135495",
+        "duration": 4.704036281179138,
+        "filename": "XC135495.wav"
+      },
+      {
+        "xc_id": "460991",
+        "duration": 23.484081632653062,
+        "filename": "XC460991.mp3"
+      },
+      {
+        "xc_id": "179960",
+        "duration": 18.416009070294784,
+        "filename": "XC179960.wav"
+      },
+      {
+        "xc_id": "1013839",
+        "duration": 47.86489795918367,
+        "filename": "XC1013839.mp3"
+      },
+      {
+        "xc_id": "114559",
+        "duration": 29.568027210884352,
+        "filename": "XC114559.wav"
+      },
+      {
+        "xc_id": "286592",
+        "duration": 26.128027210884355,
+        "filename": "XC286592.wav"
+      },
+      {
+        "xc_id": "582129",
+        "duration": 60.22095238095238,
+        "filename": "XC582129.mp3"
+      },
+      {
+        "xc_id": "13755",
+        "duration": 60.13387755102041,
+        "filename": "XC13755.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:29:56.974391"
+  },
+  {
+    "sample_id": 5,
+    "output_file": "XC_717935.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_717935.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 1,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "717935",
+        "duration": 582.1370068027211,
+        "filename": "XC717935.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:29:59.255111"
+  },
+  {
+    "sample_id": 6,
+    "output_file": "XC_173184.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_173184.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 7,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "173184",
+        "duration": 95.90403628117915,
+        "filename": "XC173184.wav"
+      },
+      {
+        "xc_id": "496109",
+        "duration": 51.588526077097505,
+        "filename": "XC496109.wav"
+      },
+      {
+        "xc_id": "188127",
+        "duration": 97.6718820861678,
+        "filename": "XC188127.wav"
+      },
+      {
+        "xc_id": "471705",
+        "duration": 33.04,
+        "filename": "XC471705.wav"
+      },
+      {
+        "xc_id": "730554",
+        "duration": 15.116825396825396,
+        "filename": "XC730554.mp3"
+      },
+      {
+        "xc_id": "1012908",
+        "duration": 6.587256235827664,
+        "filename": "XC1012908.mp3"
+      },
+      {
+        "xc_id": "243829",
+        "duration": 29.616009070294783,
+        "filename": "XC243829.wav"
+      }
+    ],
+    "created_at": "2026-03-03T11:29:59.978496"
+  },
+  {
+    "sample_id": 7,
+    "output_file": "XC_309889.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_309889.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 6,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "309889",
+        "duration": 44.384036281179135,
+        "filename": "XC309889.wav"
+      },
+      {
+        "xc_id": "408275",
+        "duration": 81.89387755102041,
+        "filename": "XC408275.mp3"
+      },
+      {
+        "xc_id": "379270",
+        "duration": 35.056009070294785,
+        "filename": "XC379270.wav"
+      },
+      {
+        "xc_id": "880805",
+        "duration": 46.75546485260771,
+        "filename": "XC880805.mp3"
+      },
+      {
+        "xc_id": "122807",
+        "duration": 6.164943310657597,
+        "filename": "XC122807.wav"
+      },
+      {
+        "xc_id": "893394",
+        "duration": 223.12943310657596,
+        "filename": "XC893394.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:01.307264"
+  },
+  {
+    "sample_id": 8,
+    "output_file": "XC_167793.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_167793.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 6,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "167793",
+        "duration": 56.99201814058957,
+        "filename": "XC167793.wav"
+      },
+      {
+        "xc_id": "1013729",
+        "duration": 29.231927437641723,
+        "filename": "XC1013729.mp3"
+      },
+      {
+        "xc_id": "413175",
+        "duration": 129.07201814058956,
+        "filename": "XC413175.wav"
+      },
+      {
+        "xc_id": "179630",
+        "duration": 9.264036281179138,
+        "filename": "XC179630.wav"
+      },
+      {
+        "xc_id": "503347",
+        "duration": 70.08820861678005,
+        "filename": "XC503347.mp3"
+      },
+      {
+        "xc_id": "313464",
+        "duration": 43.92,
+        "filename": "XC313464.wav"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:02.237754"
+  },
+  {
+    "sample_id": 9,
+    "output_file": "XC_1012555.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_1012555.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 9,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "1012555",
+        "duration": 52.33428571428571,
+        "filename": "XC1012555.mp3"
+      },
+      {
+        "xc_id": "574503",
+        "duration": 47.58702947845805,
+        "filename": "XC574503.mp3"
+      },
+      {
+        "xc_id": "332243",
+        "duration": 37.44,
+        "filename": "XC332243.wav"
+      },
+      {
+        "xc_id": "203711",
+        "duration": 6.656009070294784,
+        "filename": "XC203711.wav"
+      },
+      {
+        "xc_id": "253854",
+        "duration": 76.80734693877551,
+        "filename": "XC253854.wav"
+      },
+      {
+        "xc_id": "206082",
+        "duration": 49.68,
+        "filename": "XC206082.wav"
+      },
+      {
+        "xc_id": "125579",
+        "duration": 4.440861678004535,
+        "filename": "XC125579.wav"
+      },
+      {
+        "xc_id": "304582",
+        "duration": 9.104036281179138,
+        "filename": "XC304582.wav"
+      },
+      {
+        "xc_id": "846023",
+        "duration": 114.18834467120182,
+        "filename": "XC846023.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:03.224863"
+  },
+  {
+    "sample_id": 10,
+    "output_file": "XC_381036.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_381036.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 4,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "381036",
+        "duration": 114.89668934240363,
+        "filename": "XC381036.wav"
+      },
+      {
+        "xc_id": "409609",
+        "duration": 63.58403628117914,
+        "filename": "XC409609.wav"
+      },
+      {
+        "xc_id": "323471",
+        "duration": 32.052290249433106,
+        "filename": "XC323471.wav"
+      },
+      {
+        "xc_id": "862917",
+        "duration": 129.31201814058957,
+        "filename": "XC862917.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:04.272401"
+  },
+  {
+    "sample_id": 11,
+    "output_file": "XC_373488.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_373488.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 7,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "373488",
+        "duration": 68.62403628117914,
+        "filename": "XC373488.wav"
+      },
+      {
+        "xc_id": "445622",
+        "duration": 62.384036281179135,
+        "filename": "XC445622.wav"
+      },
+      {
+        "xc_id": "1013277",
+        "duration": 5.983673469387755,
+        "filename": "XC1013277.mp3"
+      },
+      {
+        "xc_id": "420250",
+        "duration": 7.292562358276644,
+        "filename": "XC420250.wav"
+      },
+      {
+        "xc_id": "304644",
+        "duration": 58.75201814058957,
+        "filename": "XC304644.mp3"
+      },
+      {
+        "xc_id": "562016",
+        "duration": 32.38235827664399,
+        "filename": "XC562016.mp3"
+      },
+      {
+        "xc_id": "575514",
+        "duration": 65.69795918367348,
+        "filename": "XC575514.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:05.126804"
+  },
+  {
+    "sample_id": 12,
+    "output_file": "XC_184516.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_184516.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 4,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "184516",
+        "duration": 4.139818594104308,
+        "filename": "XC184516.wav"
+      },
+      {
+        "xc_id": "128249",
+        "duration": 13.06126984126984,
+        "filename": "XC128249.wav"
+      },
+      {
+        "xc_id": "327706",
+        "duration": 67.40603174603174,
+        "filename": "XC327706.wav"
+      },
+      {
+        "xc_id": "460096",
+        "duration": 270.09600907029477,
+        "filename": "XC460096.wav"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:05.682502"
+  },
+  {
+    "sample_id": 13,
+    "output_file": "XC_497494.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_497494.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 5,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "497494",
+        "duration": 208.78403628117914,
+        "filename": "XC497494.wav"
+      },
+      {
+        "xc_id": "304270",
+        "duration": 15.699637188208618,
+        "filename": "XC304270.wav"
+      },
+      {
+        "xc_id": "935610",
+        "duration": 32.31573696145125,
+        "filename": "XC935610.mp3"
+      },
+      {
+        "xc_id": "306387",
+        "duration": 39.344036281179136,
+        "filename": "XC306387.wav"
+      },
+      {
+        "xc_id": "203984",
+        "duration": 12.36,
+        "filename": "XC203984.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:06.301651"
+  },
+  {
+    "sample_id": 14,
+    "output_file": "XC_742968.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_742968.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 7,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "742968",
+        "duration": 21.90222222222222,
+        "filename": "XC742968.mp3"
+      },
+      {
+        "xc_id": "730539",
+        "duration": 6.394829931972789,
+        "filename": "XC730539.mp3"
+      },
+      {
+        "xc_id": "741590",
+        "duration": 22.54657596371882,
+        "filename": "XC741590.mp3"
+      },
+      {
+        "xc_id": "323472",
+        "duration": 102.28380952380952,
+        "filename": "XC323472.wav"
+      },
+      {
+        "xc_id": "920144",
+        "duration": 6.9360090702947845,
+        "filename": "XC920144.mp3"
+      },
+      {
+        "xc_id": "178015",
+        "duration": 94.44802721088435,
+        "filename": "XC178015.wav"
+      },
+      {
+        "xc_id": "793716",
+        "duration": 93.67510204081633,
+        "filename": "XC793716.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:07.344285"
+  },
+  {
+    "sample_id": 15,
+    "output_file": "XC_133080.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_133080.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 6,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "133080",
+        "duration": 10.292244897959185,
+        "filename": "XC133080.mp3"
+      },
+      {
+        "xc_id": "423449",
+        "duration": 140.91201814058957,
+        "filename": "XC423449.wav"
+      },
+      {
+        "xc_id": "443809",
+        "duration": 9.92657596371882,
+        "filename": "XC443809.wav"
+      },
+      {
+        "xc_id": "1062459",
+        "duration": 5.835192743764172,
+        "filename": "XC1062459.mp3"
+      },
+      {
+        "xc_id": "565024",
+        "duration": 77.32807256235827,
+        "filename": "XC565024.mp3"
+      },
+      {
+        "xc_id": "728347",
+        "duration": 75.99995464852607,
+        "filename": "XC728347.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:08.251401"
+  },
+  {
+    "sample_id": 16,
+    "output_file": "XC_864675.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_864675.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 3,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "864675",
+        "duration": 137.49600907029478,
+        "filename": "XC864675.mp3"
+      },
+      {
+        "xc_id": "793408",
+        "duration": 31.738775510204082,
+        "filename": "XC793408.mp3"
+      },
+      {
+        "xc_id": "690392",
+        "duration": 287.53138321995465,
+        "filename": "XC690392.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:10.498201"
+  },
+  {
+    "sample_id": 17,
+    "output_file": "XC_275782.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_275782.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 6,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "275782",
+        "duration": 25.536009070294785,
+        "filename": "XC275782.wav"
+      },
+      {
+        "xc_id": "598456",
+        "duration": 70.50448979591837,
+        "filename": "XC598456.mp3"
+      },
+      {
+        "xc_id": "122816",
+        "duration": 92.57800453514739,
+        "filename": "XC122816.wav"
+      },
+      {
+        "xc_id": "188511",
+        "duration": 58.04412698412698,
+        "filename": "XC188511.wav"
+      },
+      {
+        "xc_id": "391448",
+        "duration": 39.26204081632653,
+        "filename": "XC391448.mp3"
+      },
+      {
+        "xc_id": "638558",
+        "duration": 17.31918367346939,
+        "filename": "XC638558.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:11.505079"
+  },
+  {
+    "sample_id": 18,
+    "output_file": "XC_114560.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_114560.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 8,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "114560",
+        "duration": 19.104036281179138,
+        "filename": "XC114560.wav"
+      },
+      {
+        "xc_id": "839232",
+        "duration": 10.61061224489796,
+        "filename": "XC839232.mp3"
+      },
+      {
+        "xc_id": "609990",
+        "duration": 28.8,
+        "filename": "XC609990.mp3"
+      },
+      {
+        "xc_id": "132695",
+        "duration": 8.96,
+        "filename": "XC132695.wav"
+      },
+      {
+        "xc_id": "475090",
+        "duration": 24.163310657596373,
+        "filename": "XC475090.wav"
+      },
+      {
+        "xc_id": "860758",
+        "duration": 28.555238095238096,
+        "filename": "XC860758.mp3"
+      },
+      {
+        "xc_id": "381502",
+        "duration": 1.3440362811791384,
+        "filename": "XC381502.wav"
+      },
+      {
+        "xc_id": "690876",
+        "duration": 308.49786848072563,
+        "filename": "XC690876.mp3"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:13.261812"
+  },
+  {
+    "sample_id": 19,
+    "output_file": "XC_753790.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_753790.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 3,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "753790",
+        "duration": 47.29750566893424,
+        "filename": "XC753790.mp3"
+      },
+      {
+        "xc_id": "370251",
+        "duration": 185.55201814058958,
+        "filename": "XC370251.wav"
+      },
+      {
+        "xc_id": "234215",
+        "duration": 76.10503401360545,
+        "filename": "XC234215.wav"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:13.772866"
+  },
+  {
+    "sample_id": 20,
+    "output_file": "XC_686881.wav",
+    "output_path": "C:\\Users\\prana\\OneDrive\\Desktop\\ML Conf-BioFSL\\10_Outputs\\Test_Samples_Long\\XC_686881.wav",
+    "target_duration": 300,
+    "actual_duration": 300.0,
+    "num_recordings_used": 10,
+    "failed_to_load": 0,
+    "source_recordings": [
+      {
+        "xc_id": "686881",
+        "duration": 10.750839002267574,
+        "filename": "XC686881.mp3"
+      },
+      {
+        "xc_id": "173822",
+        "duration": 5.16,
+        "filename": "XC173822.mp3"
+      },
+      {
+        "xc_id": "691464",
+        "duration": 75.68789115646258,
+        "filename": "XC691464.mp3"
+      },
+      {
+        "xc_id": "313532",
+        "duration": 20.928027210884355,
+        "filename": "XC313532.wav"
+      },
+      {
+        "xc_id": "1037504",
+        "duration": 95.25600907029478,
+        "filename": "XC1037504.mp3"
+      },
+      {
+        "xc_id": "209874",
+        "duration": 6.003628117913832,
+        "filename": "XC209874.wav"
+      },
+      {
+        "xc_id": "280896",
+        "duration": 22.831020408163266,
+        "filename": "XC280896.mp3"
+      },
+      {
+        "xc_id": "809949",
+        "duration": 9.165986394557823,
+        "filename": "XC809949.mp3"
+      },
+      {
+        "xc_id": "350663",
+        "duration": 34.336009070294786,
+        "filename": "XC350663.wav"
+      },
+      {
+        "xc_id": "171994",
+        "duration": 52.67251700680272,
+        "filename": "XC171994.wav"
+      }
+    ],
+    "created_at": "2026-03-03T11:30:15.014620"
+  }
+]

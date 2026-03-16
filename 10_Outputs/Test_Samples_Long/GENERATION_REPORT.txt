@@ -1,0 +1,249 @@
+======================================================================
+LONG TEST SAMPLES GENERATION REPORT
+======================================================================
+
+Generated: 2026-03-03 11:30:15
+Output Directory: C:\Users\prana\OneDrive\Desktop\ML Conf-BioFSL\10_Outputs\Test_Samples_Long
+
+GENERATION PARAMETERS:
+  • Target Duration: 300 seconds (5.0 minutes)
+  • Sample Rate: 22050 Hz
+  • Number of Samples: 20
+
+SAMPLE DETAILS:
+
+Sample 001: test_composite_001.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 7 Xeno-Canto recordings
+  Source Recordings:
+    - XC393960.mp3 (XC393960) - 12.9s
+    - XC789575.mp3 (XC789575) - 90.0s
+    - XC775264.mp3 (XC775264) - 45.2s
+    - XC172821.wav (XC172821) - 29.1s
+    - XC177226.wav (XC177226) - 49.5s
+    - XC593338.mp3 (XC593338) - 71.3s
+    - XC130499.wav (XC130499) - 22.2s
+
+Sample 002: test_composite_002.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 8 Xeno-Canto recordings
+  Source Recordings:
+    - XC599641.mp3 (XC599641) - 107.5s
+    - XC600999.mp3 (XC600999) - 7.5s
+    - XC187660.wav (XC187660) - 51.5s
+    - XC418002.wav (XC418002) - 5.1s
+    - XC473440.mp3 (XC473440) - 27.7s
+    - XC464765.wav (XC464765) - 23.2s
+    - XC781039.mp3 (XC781039) - 33.7s
+    - XC157759.wav (XC157759) - 76.2s
+
+Sample 003: test_composite_003.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 2 Xeno-Canto recordings
+  Source Recordings:
+    - XC418083.wav (XC418083) - 3.7s
+    - XC828387.mp3 (XC828387) - 887.6s
+
+Sample 004: test_composite_004.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 9 Xeno-Canto recordings
+  Source Recordings:
+    - XC683529.mp3 (XC683529) - 33.8s
+    - XC135495.wav (XC135495) - 4.7s
+    - XC460991.mp3 (XC460991) - 23.5s
+    - XC179960.wav (XC179960) - 18.4s
+    - XC1013839.mp3 (XC1013839) - 47.9s
+    - XC114559.wav (XC114559) - 29.6s
+    - XC286592.wav (XC286592) - 26.1s
+    - XC582129.mp3 (XC582129) - 60.2s
+    - XC13755.mp3 (XC13755) - 60.1s
+
+Sample 005: test_composite_005.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 1 Xeno-Canto recordings
+  Source Recordings:
+    - XC717935.mp3 (XC717935) - 582.1s
+
+Sample 006: test_composite_006.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 7 Xeno-Canto recordings
+  Source Recordings:
+    - XC173184.wav (XC173184) - 95.9s
+    - XC496109.wav (XC496109) - 51.6s
+    - XC188127.wav (XC188127) - 97.7s
+    - XC471705.wav (XC471705) - 33.0s
+    - XC730554.mp3 (XC730554) - 15.1s
+    - XC1012908.mp3 (XC1012908) - 6.6s
+    - XC243829.wav (XC243829) - 29.6s
+
+Sample 007: test_composite_007.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 6 Xeno-Canto recordings
+  Source Recordings:
+    - XC309889.wav (XC309889) - 44.4s
+    - XC408275.mp3 (XC408275) - 81.9s
+    - XC379270.wav (XC379270) - 35.1s
+    - XC880805.mp3 (XC880805) - 46.8s
+    - XC122807.wav (XC122807) - 6.2s
+    - XC893394.mp3 (XC893394) - 223.1s
+
+Sample 008: test_composite_008.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 6 Xeno-Canto recordings
+  Source Recordings:
+    - XC167793.wav (XC167793) - 57.0s
+    - XC1013729.mp3 (XC1013729) - 29.2s
+    - XC413175.wav (XC413175) - 129.1s
+    - XC179630.wav (XC179630) - 9.3s
+    - XC503347.mp3 (XC503347) - 70.1s
+    - XC313464.wav (XC313464) - 43.9s
+
+Sample 009: test_composite_009.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 9 Xeno-Canto recordings
+  Source Recordings:
+    - XC1012555.mp3 (XC1012555) - 52.3s
+    - XC574503.mp3 (XC574503) - 47.6s
+    - XC332243.wav (XC332243) - 37.4s
+    - XC203711.wav (XC203711) - 6.7s
+    - XC253854.wav (XC253854) - 76.8s
+    - XC206082.wav (XC206082) - 49.7s
+    - XC125579.wav (XC125579) - 4.4s
+    - XC304582.wav (XC304582) - 9.1s
+    - XC846023.mp3 (XC846023) - 114.2s
+
+Sample 010: test_composite_010.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 4 Xeno-Canto recordings
+  Source Recordings:
+    - XC381036.wav (XC381036) - 114.9s
+    - XC409609.wav (XC409609) - 63.6s
+    - XC323471.wav (XC323471) - 32.1s
+    - XC862917.mp3 (XC862917) - 129.3s
+
+Sample 011: test_composite_011.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 7 Xeno-Canto recordings
+  Source Recordings:
+    - XC373488.wav (XC373488) - 68.6s
+    - XC445622.wav (XC445622) - 62.4s
+    - XC1013277.mp3 (XC1013277) - 6.0s
+    - XC420250.wav (XC420250) - 7.3s
+    - XC304644.mp3 (XC304644) - 58.8s
+    - XC562016.mp3 (XC562016) - 32.4s
+    - XC575514.mp3 (XC575514) - 65.7s
+
+Sample 012: test_composite_012.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 4 Xeno-Canto recordings
+  Source Recordings:
+    - XC184516.wav (XC184516) - 4.1s
+    - XC128249.wav (XC128249) - 13.1s
+    - XC327706.wav (XC327706) - 67.4s
+    - XC460096.wav (XC460096) - 270.1s
+
+Sample 013: test_composite_013.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 5 Xeno-Canto recordings
+  Source Recordings:
+    - XC497494.wav (XC497494) - 208.8s
+    - XC304270.wav (XC304270) - 15.7s
+    - XC935610.mp3 (XC935610) - 32.3s
+    - XC306387.wav (XC306387) - 39.3s
+    - XC203984.mp3 (XC203984) - 12.4s
+
+Sample 014: test_composite_014.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 7 Xeno-Canto recordings
+  Source Recordings:
+    - XC742968.mp3 (XC742968) - 21.9s
+    - XC730539.mp3 (XC730539) - 6.4s
+    - XC741590.mp3 (XC741590) - 22.5s
+    - XC323472.wav (XC323472) - 102.3s
+    - XC920144.mp3 (XC920144) - 6.9s
+    - XC178015.wav (XC178015) - 94.4s
+    - XC793716.mp3 (XC793716) - 93.7s
+
+Sample 015: test_composite_015.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 6 Xeno-Canto recordings
+  Source Recordings:
+    - XC133080.mp3 (XC133080) - 10.3s
+    - XC423449.wav (XC423449) - 140.9s
+    - XC443809.wav (XC443809) - 9.9s
+    - XC1062459.mp3 (XC1062459) - 5.8s
+    - XC565024.mp3 (XC565024) - 77.3s
+    - XC728347.mp3 (XC728347) - 76.0s
+
+Sample 016: test_composite_016.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 3 Xeno-Canto recordings
+  Source Recordings:
+    - XC864675.mp3 (XC864675) - 137.5s
+    - XC793408.mp3 (XC793408) - 31.7s
+    - XC690392.mp3 (XC690392) - 287.5s
+
+Sample 017: test_composite_017.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 6 Xeno-Canto recordings
+  Source Recordings:
+    - XC275782.wav (XC275782) - 25.5s
+    - XC598456.mp3 (XC598456) - 70.5s
+    - XC122816.wav (XC122816) - 92.6s
+    - XC188511.wav (XC188511) - 58.0s
+    - XC391448.mp3 (XC391448) - 39.3s
+    - XC638558.mp3 (XC638558) - 17.3s
+
+Sample 018: test_composite_018.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 8 Xeno-Canto recordings
+  Source Recordings:
+    - XC114560.wav (XC114560) - 19.1s
+    - XC839232.mp3 (XC839232) - 10.6s
+    - XC609990.mp3 (XC609990) - 28.8s
+    - XC132695.wav (XC132695) - 9.0s
+    - XC475090.wav (XC475090) - 24.2s
+    - XC860758.mp3 (XC860758) - 28.6s
+    - XC381502.wav (XC381502) - 1.3s
+    - XC690876.mp3 (XC690876) - 308.5s
+
+Sample 019: test_composite_019.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 3 Xeno-Canto recordings
+  Source Recordings:
+    - XC753790.mp3 (XC753790) - 47.3s
+    - XC370251.wav (XC370251) - 185.6s
+    - XC234215.wav (XC234215) - 76.1s
+
+Sample 020: test_composite_020.wav
+  Duration: 300.0 seconds (5.00 minutes)
+  Created from: 10 Xeno-Canto recordings
+  Source Recordings:
+    - XC686881.mp3 (XC686881) - 10.8s
+    - XC173822.mp3 (XC173822) - 5.2s
+    - XC691464.mp3 (XC691464) - 75.7s
+    - XC313532.wav (XC313532) - 20.9s
+    - XC1037504.mp3 (XC1037504) - 95.3s
+    - XC209874.wav (XC209874) - 6.0s
+    - XC280896.mp3 (XC280896) - 22.8s
+    - XC809949.mp3 (XC809949) - 9.2s
+    - XC350663.wav (XC350663) - 34.3s
+    - XC171994.wav (XC171994) - 52.7s
+
+======================================================================
+STATISTICS:
+======================================================================
+Total Samples Created: 20
+Total Audio Duration: 6000.0 seconds
+Total Audio Duration: 100.0 minutes
+Average Duration/Sample: 300.0 seconds
+Total Unique Recordings Used: 118
+
+======================================================================
+NEXT STEPS:
+======================================================================
+1. All test samples are in WAV format (22050 Hz sample rate)
+2. Samples are named: test_composite_XYZ.wav
+3. Use these for model testing/evaluation
+4. Metadata available in: test_samples_metadata.json
+5. Manifest CSV available in: test_samples_manifest.csv

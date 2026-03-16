@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 
 const LOG_LINES = [
   "> Initializing BirdSense pipeline...",
-  "> Loading species model: 87 classes",
+  "> Loading species model: 290 classes",
   "> Model weights loaded: 156MB",
   "> Processing audio: field_recording.wav",
   "> Generating mel-spectrogram...",

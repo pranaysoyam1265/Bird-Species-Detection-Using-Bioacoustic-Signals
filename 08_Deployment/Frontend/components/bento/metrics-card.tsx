@@ -70,9 +70,9 @@ export function MetricsCard() {
         <span className="inline-block h-2 w-2 bg-accent" />
       </div>
       <div className="flex-1 flex flex-col justify-center gap-6 p-6">
-        <ScrambleNumber target="96.06%" label="Test Accuracy" delay={500} />
-        <ScrambleNumber target="98.74%" label="Top-5 Accuracy" delay={800} />
-        <ScrambleNumber target="87" label="Species Detected" delay={1100} />
+        <ScrambleNumber target="95.03%" label="Test Accuracy" delay={500} />
+        <ScrambleNumber target="98.26%" label="Top-5 Accuracy" delay={800} />
+        <ScrambleNumber target="290" label="Species Detected" delay={1100} />
         <ScrambleNumber target="47ms" label="Inference Latency" delay={1400} />
       </div>
     </div>

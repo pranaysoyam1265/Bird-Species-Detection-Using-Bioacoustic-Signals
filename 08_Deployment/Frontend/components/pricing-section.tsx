@@ -70,7 +70,7 @@ const FEATURES: Feature[] = [
     tag: "HIGHLIGHTED",
     description: "Search your recordings for specific bird species you're looking for.",
     bullets: [
-      "Target any of 87 species",
+      "Target any of 290 species",
       "Adjustable detection sensitivity",
       "Temporal detection timeline",
       "Pinpoint exact timestamps",
@@ -235,7 +235,7 @@ export function FeaturesSection() {
             Explore our core features
           </h2>
           <p className="text-xs lg:text-sm font-mono text-muted-foreground leading-relaxed max-w-md">
-            Powerful AI-driven bird detection with real-time analysis, advanced visualization, and intelligent species search across 87 North American birds.
+            Powerful AI-driven bird detection with real-time analysis, advanced visualization, and intelligent species search across 290 North American birds.
           </p>
         </div>
         <StatusLine />

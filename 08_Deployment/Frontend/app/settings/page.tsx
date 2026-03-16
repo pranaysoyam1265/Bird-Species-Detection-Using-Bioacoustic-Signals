@@ -1022,7 +1022,7 @@ export default function SettingsPage() {
               {sysHealth ? sysHealth.status.toUpperCase() : "FETCHING..."}
             </span>
           </Row>
-          <Row icon={<Database size={14} />} label="MODEL" description={`BioacousticFSL CNN • ${sysHealth?.numSpecies || 87} species`}>
+          <Row icon={<Database size={14} />} label="MODEL" description={`BioacousticFSL CNN • ${sysHealth?.numSpecies || 290} species`}>
             <span className="font-mono text-xs font-bold text-foreground">
               {sysHealth ? sysHealth.device || "CPU" : "Unknown"}
             </span>

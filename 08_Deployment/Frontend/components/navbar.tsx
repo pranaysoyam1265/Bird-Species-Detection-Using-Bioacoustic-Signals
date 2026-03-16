@@ -77,7 +77,7 @@ export function Navbar() {
   const notifications = [
     detectionCount > 0 && { text: `${detectionCount} detection(s) in history`, time: "recent" },
     { text: "EfficientNet-B2 model loaded", time: "system" },
-    { text: "87 species available for detection", time: "system" },
+    { text: "290 species available for detection", time: "system" },
   ].filter(Boolean) as { text: string; time: string }[]
 
   /* ── avatar dropdown ── */

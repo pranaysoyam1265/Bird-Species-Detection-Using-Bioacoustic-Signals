@@ -1,0 +1,1452 @@
+{
+  "Accipiter cooperii": {
+    "index": 0,
+    "english_name": "Cooper's Hawk",
+    "phase": "Phase 1"
+  },
+  "Aix sponsa": {
+    "index": 1,
+    "english_name": "Wood Duck",
+    "phase": "Phase 1"
+  },
+  "Amphispiza bilineata": {
+    "index": 2,
+    "english_name": "Black-throated Sparrow",
+    "phase": "Phase 1"
+  },
+  "Anas platyrhynchos": {
+    "index": 3,
+    "english_name": "Mallard",
+    "phase": "Phase 1"
+  },
+  "Anthus rubescens": {
+    "index": 4,
+    "english_name": "Buff-bellied Pipit",
+    "phase": "Phase 1"
+  },
+  "Archilochus alexandri": {
+    "index": 5,
+    "english_name": "Black-chinned Hummingbird",
+    "phase": "Phase 1"
+  },
+  "Artemisiospiza belli": {
+    "index": 6,
+    "english_name": "Bell's Sparrow",
+    "phase": "Phase 1"
+  },
+  "Baeolophus bicolor": {
+    "index": 7,
+    "english_name": "Tufted Titmouse",
+    "phase": "Phase 1"
+  },
+  "Botaurus lentiginosus": {
+    "index": 8,
+    "english_name": "American Bittern",
+    "phase": "Phase 1"
+  },
+  "Branta canadensis": {
+    "index": 9,
+    "english_name": "Canada Goose",
+    "phase": "Phase 1"
+  },
+  "Bubo virginianus": {
+    "index": 10,
+    "english_name": "Great Horned Owl",
+    "phase": "Phase 1"
+  },
+  "Bucephala albeola": {
+    "index": 11,
+    "english_name": "Bufflehead",
+    "phase": "Phase 1"
+  },
+  "Buteo jamaicensis": {
+    "index": 12,
+    "english_name": "Red-tailed Hawk",
+    "phase": "Phase 1"
+  },
+  "Buteo platypterus": {
+    "index": 13,
+    "english_name": "Broad-winged Hawk",
+    "phase": "Phase 1"
+  },
+  "Calidris bairdii": {
+    "index": 14,
+    "english_name": "Baird's Sandpiper",
+    "phase": "Phase 1"
+  },
+  "Calypte anna": {
+    "index": 15,
+    "english_name": "Anna's Hummingbird",
+    "phase": "Phase 1"
+  },
+  "Cardellina pusilla": {
+    "index": 16,
+    "english_name": "Wilson's Warbler",
+    "phase": "Phase 1"
+  },
+  "Cardinalis cardinalis": {
+    "index": 17,
+    "english_name": "Northern Cardinal",
+    "phase": "Phase 1"
+  },
+  "Catharus guttatus": {
+    "index": 18,
+    "english_name": "Hermit Thrush",
+    "phase": "Phase 1"
+  },
+  "Catharus ustulatus": {
+    "index": 19,
+    "english_name": "Swainson's Thrush",
+    "phase": "Phase 1"
+  },
+  "Certhia americana": {
+    "index": 20,
+    "english_name": "Brown Creeper",
+    "phase": "Phase 1"
+  },
+  "Chroicocephalus philadelphia": {
+    "index": 21,
+    "english_name": "Bonaparte's Gull",
+    "phase": "Phase 1"
+  },
+  "Coccyzus erythropthalmus": {
+    "index": 22,
+    "english_name": "Black-billed Cuckoo",
+    "phase": "Phase 1"
+  },
+  "Colaptes auratus": {
+    "index": 23,
+    "english_name": "Northern Flicker",
+    "phase": "Phase 1"
+  },
+  "Contopus virens": {
+    "index": 24,
+    "english_name": "Eastern Wood Pewee",
+    "phase": "Phase 1"
+  },
+  "Corvus brachyrhynchos": {
+    "index": 25,
+    "english_name": "American Crow",
+    "phase": "Phase 1"
+  },
+  "Cyanocitta cristata": {
+    "index": 26,
+    "english_name": "Blue Jay",
+    "phase": "Phase 1"
+  },
+  "Dolichonyx oryzivorus": {
+    "index": 27,
+    "english_name": "Bobolink",
+    "phase": "Phase 1"
+  },
+  "Dryobates pubescens": {
+    "index": 28,
+    "english_name": "Downy Woodpecker",
+    "phase": "Phase 1"
+  },
+  "Dryocopus pileatus": {
+    "index": 29,
+    "english_name": "Pileated Woodpecker",
+    "phase": "Phase 1"
+  },
+  "Empidonax alnorum": {
+    "index": 30,
+    "english_name": "Alder Flycatcher",
+    "phase": "Phase 1"
+  },
+  "Euphagus cyanocephalus": {
+    "index": 31,
+    "english_name": "Brewer's Blackbird",
+    "phase": "Phase 1"
+  },
+  "Falco sparverius": {
+    "index": 32,
+    "english_name": "American Kestrel",
+    "phase": "Phase 1"
+  },
+  "Geothlypis trichas": {
+    "index": 33,
+    "english_name": "Common Yellowthroat",
+    "phase": "Phase 1"
+  },
+  "Haliaeetus leucocephalus": {
+    "index": 34,
+    "english_name": "Bald Eagle",
+    "phase": "Phase 1"
+  },
+  "Hirundo rustica": {
+    "index": 35,
+    "english_name": "Barn Swallow",
+    "phase": "Phase 1"
+  },
+  "Icterus bullockii": {
+    "index": 36,
+    "english_name": "Bullock's Oriole",
+    "phase": "Phase 1"
+  },
+  "Icterus galbula": {
+    "index": 37,
+    "english_name": "Baltimore Oriole",
+    "phase": "Phase 1"
+  },
+  "Junco hyemalis": {
+    "index": 38,
+    "english_name": "Dark-eyed Junco",
+    "phase": "Phase 1"
+  },
+  "Mareca americana": {
+    "index": 39,
+    "english_name": "American Wigeon",
+    "phase": "Phase 1"
+  },
+  "Megaceryle alcyon": {
+    "index": 40,
+    "english_name": "Belted Kingfisher",
+    "phase": "Phase 1"
+  },
+  "Melanerpes carolinus": {
+    "index": 41,
+    "english_name": "Red-bellied Woodpecker",
+    "phase": "Phase 1"
+  },
+  "Melospiza melodia": {
+    "index": 42,
+    "english_name": "Song Sparrow",
+    "phase": "Phase 1"
+  },
+  "Mergus merganser": {
+    "index": 43,
+    "english_name": "Common Merganser",
+    "phase": "Phase 1"
+  },
+  "Mniotilta varia": {
+    "index": 44,
+    "english_name": "Black-and-white Warbler",
+    "phase": "Phase 1"
+  },
+  "Molothrus ater": {
+    "index": 45,
+    "english_name": "Brown-headed Cowbird",
+    "phase": "Phase 1"
+  },
+  "Myadestes townsendi": {
+    "index": 46,
+    "english_name": "Townsend's Solitaire",
+    "phase": "Phase 1"
+  },
+  "Myiarchus cinerascens": {
+    "index": 47,
+    "english_name": "Ash-throated Flycatcher",
+    "phase": "Phase 1"
+  },
+  "Passerella iliaca": {
+    "index": 48,
+    "english_name": "Red Fox Sparrow",
+    "phase": "Phase 1"
+  },
+  "Passerina caerulea": {
+    "index": 49,
+    "english_name": "Blue Grosbeak",
+    "phase": "Phase 1"
+  },
+  "Pheucticus melanocephalus": {
+    "index": 50,
+    "english_name": "Black-headed Grosbeak",
+    "phase": "Phase 1"
+  },
+  "Pica hudsonia": {
+    "index": 51,
+    "english_name": "Black-billed Magpie",
+    "phase": "Phase 1"
+  },
+  "Poecile atricapillus": {
+    "index": 52,
+    "english_name": "Black-capped Chickadee",
+    "phase": "Phase 1"
+  },
+  "Polioptila caerulea": {
+    "index": 53,
+    "english_name": "Blue-grey Gnatcatcher",
+    "phase": "Phase 1"
+  },
+  "Psaltriparus minimus": {
+    "index": 54,
+    "english_name": "American Bushtit",
+    "phase": "Phase 1"
+  },
+  "Recurvirostra americana": {
+    "index": 55,
+    "english_name": "American Avocet",
+    "phase": "Phase 1"
+  },
+  "Riparia riparia": {
+    "index": 56,
+    "english_name": "Sand Martin",
+    "phase": "Phase 1"
+  },
+  "Sayornis nigricans": {
+    "index": 57,
+    "english_name": "Black Phoebe",
+    "phase": "Phase 1"
+  },
+  "Sayornis phoebe": {
+    "index": 58,
+    "english_name": "Eastern Phoebe",
+    "phase": "Phase 1"
+  },
+  "Scolopax minor": {
+    "index": 59,
+    "english_name": "American Woodcock",
+    "phase": "Phase 1"
+  },
+  "Selasphorus platycercus": {
+    "index": 60,
+    "english_name": "Broad-tailed Hummingbird",
+    "phase": "Phase 1"
+  },
+  "Setophaga americana": {
+    "index": 61,
+    "english_name": "Northern Parula",
+    "phase": "Phase 1"
+  },
+  "Setophaga caerulescens": {
+    "index": 62,
+    "english_name": "Black-throated Blue Warbler",
+    "phase": "Phase 1"
+  },
+  "Setophaga coronata": {
+    "index": 63,
+    "english_name": "Myrtle Warbler",
+    "phase": "Phase 1"
+  },
+  "Setophaga fusca": {
+    "index": 64,
+    "english_name": "Blackburnian Warbler",
+    "phase": "Phase 1"
+  },
+  "Setophaga nigrescens": {
+    "index": 65,
+    "english_name": "Black-throated Grey Warbler",
+    "phase": "Phase 1"
+  },
+  "Setophaga petechia": {
+    "index": 66,
+    "english_name": "Mangrove Warbler",
+    "phase": "Phase 1"
+  },
+  "Setophaga ruticilla": {
+    "index": 67,
+    "english_name": "American Redstart",
+    "phase": "Phase 1"
+  },
+  "Setophaga striata": {
+    "index": 68,
+    "english_name": "Blackpoll Warbler",
+    "phase": "Phase 1"
+  },
+  "Setophaga virens": {
+    "index": 69,
+    "english_name": "Black-throated Green Warbler",
+    "phase": "Phase 1"
+  },
+  "Sialia sialis": {
+    "index": 70,
+    "english_name": "Eastern Bluebird",
+    "phase": "Phase 1"
+  },
+  "Sitta carolinensis": {
+    "index": 71,
+    "english_name": "White-breasted Nuthatch",
+    "phase": "Phase 1"
+  },
+  "Spatula discors": {
+    "index": 72,
+    "english_name": "Blue-winged Teal",
+    "phase": "Phase 1"
+  },
+  "Spinus tristis": {
+    "index": 73,
+    "english_name": "American Goldfinch",
+    "phase": "Phase 1"
+  },
+  "Spizella breweri": {
+    "index": 74,
+    "english_name": "Brewer's Sparrow",
+    "phase": "Phase 1"
+  },
+  "Spizella passerina": {
+    "index": 75,
+    "english_name": "Chipping Sparrow",
+    "phase": "Phase 1"
+  },
+  "Spizelloides arborea": {
+    "index": 76,
+    "english_name": "American Tree Sparrow",
+    "phase": "Phase 1"
+  },
+  "Strix varia": {
+    "index": 77,
+    "english_name": "Barred Owl",
+    "phase": "Phase 1"
+  },
+  "Thryomanes bewickii": {
+    "index": 78,
+    "english_name": "Bewick's Wren",
+    "phase": "Phase 1"
+  },
+  "Thryothorus ludovicianus": {
+    "index": 79,
+    "english_name": "Carolina Wren",
+    "phase": "Phase 1"
+  },
+  "Toxostoma rufum": {
+    "index": 80,
+    "english_name": "Brown Thrasher",
+    "phase": "Phase 1"
+  },
+  "Turdus migratorius": {
+    "index": 81,
+    "english_name": "American Robin",
+    "phase": "Phase 1"
+  },
+  "Tyrannus tyrannus": {
+    "index": 82,
+    "english_name": "Eastern Kingbird",
+    "phase": "Phase 1"
+  },
+  "Vermivora cyanoptera": {
+    "index": 83,
+    "english_name": "Blue-winged Warbler",
+    "phase": "Phase 1"
+  },
+  "Vireo solitarius": {
+    "index": 84,
+    "english_name": "Blue-headed Vireo",
+    "phase": "Phase 1"
+  },
+  "Zenaida macroura": {
+    "index": 85,
+    "english_name": "Mourning Dove",
+    "phase": "Phase 1"
+  },
+  "Zonotrichia albicollis": {
+    "index": 86,
+    "english_name": "White-throated Sparrow",
+    "phase": "Phase 1"
+  },
+  "Antigone canadensis": {
+    "index": 87,
+    "english_name": "Sandhill Crane",
+    "phase": "Phase 2"
+  },
+  "Callipepla gambelii": {
+    "index": 88,
+    "english_name": "Gambel's Quail",
+    "phase": "Phase 2"
+  },
+  "Vireo gilvus": {
+    "index": 89,
+    "english_name": "Warbling Vireo",
+    "phase": "Phase 2"
+  },
+  "Chordeiles minor": {
+    "index": 90,
+    "english_name": "Common Nighthawk",
+    "phase": "Phase 2"
+  },
+  "Rallus limicola": {
+    "index": 91,
+    "english_name": "Virginia Rail",
+    "phase": "Phase 2"
+  },
+  "Empidonax minimus": {
+    "index": 92,
+    "english_name": "Least Flycatcher",
+    "phase": "Phase 2"
+  },
+  "Vireo olivaceus": {
+    "index": 93,
+    "english_name": "Red-eyed Vireo",
+    "phase": "Phase 2"
+  },
+  "Anser caerulescens": {
+    "index": 94,
+    "english_name": "Snow Goose",
+    "phase": "Phase 2"
+  },
+  "Porzana carolina": {
+    "index": 95,
+    "english_name": "Sora",
+    "phase": "Phase 2"
+  },
+  "Callipepla californica": {
+    "index": 96,
+    "english_name": "California Quail",
+    "phase": "Phase 2"
+  },
+  "Gallinula galeata": {
+    "index": 97,
+    "english_name": "Common Gallinule",
+    "phase": "Phase 2"
+  },
+  "Antrostomus vociferus": {
+    "index": 98,
+    "english_name": "Eastern Whip-poor-will",
+    "phase": "Phase 2"
+  },
+  "Geococcyx californianus": {
+    "index": 99,
+    "english_name": "Greater Roadrunner",
+    "phase": "Phase 2"
+  },
+  "Colinus virginianus": {
+    "index": 100,
+    "english_name": "Northern Bobwhite",
+    "phase": "Phase 2"
+  },
+  "Gallinago delicata": {
+    "index": 101,
+    "english_name": "Wilson's Snipe",
+    "phase": "Phase 2"
+  },
+  "Phalaenoptilus nuttallii": {
+    "index": 102,
+    "english_name": "Common Poorwill",
+    "phase": "Phase 2"
+  },
+  "Actitis macularius": {
+    "index": 103,
+    "english_name": "Spotted Sandpiper",
+    "phase": "Phase 2"
+  },
+  "Meleagris gallopavo": {
+    "index": 104,
+    "english_name": "Wild Turkey",
+    "phase": "Phase 2"
+  },
+  "Lampornis clemenciae": {
+    "index": 105,
+    "english_name": "Blue-throated Mountaingem",
+    "phase": "Phase 2"
+  },
+  "Antrostomus carolinensis": {
+    "index": 106,
+    "english_name": "Chuck-will's-widow",
+    "phase": "Phase 2"
+  },
+  "Coccyzus americanus": {
+    "index": 107,
+    "english_name": "Yellow-billed Cuckoo",
+    "phase": "Phase 2"
+  },
+  "Fulica americana": {
+    "index": 108,
+    "english_name": "American Coot",
+    "phase": "Phase 2"
+  },
+  "Podilymbus podiceps": {
+    "index": 109,
+    "english_name": "Pied-billed Grebe",
+    "phase": "Phase 2"
+  },
+  "Eugenes fulgens": {
+    "index": 110,
+    "english_name": "Rivoli's Hummingbird",
+    "phase": "Phase 2"
+  },
+  "Calypte costae": {
+    "index": 111,
+    "english_name": "Costa's Hummingbird",
+    "phase": "Phase 2"
+  },
+  "Selasphorus rufus": {
+    "index": 112,
+    "english_name": "Rufous Hummingbird",
+    "phase": "Phase 2"
+  },
+  "Charadrius vociferus": {
+    "index": 113,
+    "english_name": "Killdeer",
+    "phase": "Phase 2"
+  },
+  "Oreortyx pictus": {
+    "index": 114,
+    "english_name": "Mountain Quail",
+    "phase": "Phase 2"
+  },
+  "Chaetura pelagica": {
+    "index": 115,
+    "english_name": "Chimney Swift",
+    "phase": "Phase 2"
+  },
+  "Selasphorus sasin": {
+    "index": 116,
+    "english_name": "Allen's Hummingbird",
+    "phase": "Phase 2"
+  },
+  "Branta hutchinsii": {
+    "index": 117,
+    "english_name": "Cackling Goose",
+    "phase": "Phase 2"
+  },
+  "Antrostomus arizonae": {
+    "index": 118,
+    "english_name": "Mexican Whip-poor-will",
+    "phase": "Phase 2"
+  },
+  "Vireo philadelphicus": {
+    "index": 119,
+    "english_name": "Philadelphia Vireo",
+    "phase": "Phase 2"
+  },
+  "Mareca strepera": {
+    "index": 120,
+    "english_name": "Gadwall",
+    "phase": "Phase 2"
+  },
+  "Empidonax traillii": {
+    "index": 121,
+    "english_name": "Willow Flycatcher",
+    "phase": "Phase 2"
+  },
+  "Anas carolinensis": {
+    "index": 122,
+    "english_name": "Green-winged Teal",
+    "phase": "Phase 2"
+  },
+  "Cyrtonyx montezumae": {
+    "index": 123,
+    "english_name": "Montezuma Quail",
+    "phase": "Phase 2"
+  },
+  "Tympanuchus phasianellus": {
+    "index": 124,
+    "english_name": "Sharp-tailed Grouse",
+    "phase": "Phase 2"
+  },
+  "Calidris minutilla": {
+    "index": 125,
+    "english_name": "Least Sandpiper",
+    "phase": "Phase 2"
+  },
+  "Cygnus buccinator": {
+    "index": 126,
+    "english_name": "Trumpeter Swan",
+    "phase": "Phase 2"
+  },
+  "Anas rubripes": {
+    "index": 127,
+    "english_name": "American Black Duck",
+    "phase": "Phase 2"
+  },
+  "Melanitta americana": {
+    "index": 128,
+    "english_name": "Black Scoter",
+    "phase": "Phase 2"
+  },
+  "Larus delawarensis": {
+    "index": 129,
+    "english_name": "Ring-billed Gull",
+    "phase": "Phase 2"
+  },
+  "Aythya collaris": {
+    "index": 130,
+    "english_name": "Ring-necked Duck",
+    "phase": "Phase 2"
+  },
+  "Clangula hyemalis": {
+    "index": 131,
+    "english_name": "Long-tailed Duck",
+    "phase": "Phase 2"
+  },
+  "Leuconotopicus villosus": {
+    "index": 132,
+    "english_name": "Hairy Woodpecker",
+    "phase": "Phase 2"
+  },
+  "Callipepla squamata": {
+    "index": 133,
+    "english_name": "Scaled Quail",
+    "phase": "Phase 2"
+  },
+  "Tympanuchus cupido": {
+    "index": 134,
+    "english_name": "Greater Prairie Chicken",
+    "phase": "Phase 2"
+  },
+  "Cynanthus latirostris": {
+    "index": 135,
+    "english_name": "Broad-billed Hummingbird",
+    "phase": "Phase 2"
+  },
+  "Limnodromus griseus": {
+    "index": 136,
+    "english_name": "Short-billed Dowitcher",
+    "phase": "Phase 2"
+  },
+  "Tringa flavipes": {
+    "index": 137,
+    "english_name": "Lesser Yellowlegs",
+    "phase": "Phase 2"
+  },
+  "Cistothorus palustris": {
+    "index": 138,
+    "english_name": "Marsh Wren",
+    "phase": "Phase 2"
+  },
+  "Anser albifrons": {
+    "index": 139,
+    "english_name": "Greater White-fronted Goose",
+    "phase": "Phase 2"
+  },
+  "Spatula clypeata": {
+    "index": 140,
+    "english_name": "Northern Shoveler",
+    "phase": "Phase 2"
+  },
+  "Empidonax flaviventris": {
+    "index": 141,
+    "english_name": "Yellow-bellied Flycatcher",
+    "phase": "Phase 2"
+  },
+  "Corthylio calendula": {
+    "index": 142,
+    "english_name": "Ruby-crowned Kinglet",
+    "phase": "Phase 2"
+  },
+  "Archilochus colubris": {
+    "index": 143,
+    "english_name": "Ruby-throated Hummingbird",
+    "phase": "Phase 2"
+  },
+  "Tringa solitaria": {
+    "index": 144,
+    "english_name": "Solitary Sandpiper",
+    "phase": "Phase 2"
+  },
+  "Lagopus leucura": {
+    "index": 145,
+    "english_name": "White-tailed Ptarmigan",
+    "phase": "Phase 2"
+  },
+  "Empidonax difficilis": {
+    "index": 146,
+    "english_name": "Pacific-slope Flycatcher",
+    "phase": "Phase 2"
+  },
+  "Myiarchus crinitus": {
+    "index": 147,
+    "english_name": "Great Crested Flycatcher",
+    "phase": "Phase 2"
+  },
+  "Tringa melanoleuca": {
+    "index": 148,
+    "english_name": "Greater Yellowlegs",
+    "phase": "Phase 2"
+  },
+  "Catharus fuscescens": {
+    "index": 149,
+    "english_name": "Veery",
+    "phase": "Phase 2"
+  },
+  "Chordeiles acutipennis": {
+    "index": 150,
+    "english_name": "Lesser Nighthawk",
+    "phase": "Phase 2"
+  },
+  "Rallus elegans": {
+    "index": 151,
+    "english_name": "King Rail",
+    "phase": "Phase 2"
+  },
+  "Gavia immer": {
+    "index": 152,
+    "english_name": "Common Loon",
+    "phase": "Phase 2"
+  },
+  "Tamiasciurus hudsonicus": {
+    "index": 153,
+    "english_name": "North American Red Squirrel",
+    "phase": "Phase 2"
+  },
+  "Dendrocygna autumnalis": {
+    "index": 154,
+    "english_name": "Black-bellied Whistling Duck",
+    "phase": "Phase 2"
+  },
+  "Empidonax hammondii": {
+    "index": 155,
+    "english_name": "Hammond's Flycatcher",
+    "phase": "Phase 2"
+  },
+  "Bonasa umbellus": {
+    "index": 156,
+    "english_name": "Ruffed Grouse",
+    "phase": "Phase 2"
+  },
+  "Himantopus mexicanus": {
+    "index": 157,
+    "english_name": "Black-necked Stilt",
+    "phase": "Phase 2"
+  },
+  "Dumetella carolinensis": {
+    "index": 158,
+    "english_name": "Grey Catbird",
+    "phase": "Phase 2"
+  },
+  "Haemorhous purpureus": {
+    "index": 159,
+    "english_name": "Purple Finch",
+    "phase": "Phase 2"
+  },
+  "Contopus cooperi": {
+    "index": 160,
+    "english_name": "Olive-sided Flycatcher",
+    "phase": "Phase 2"
+  },
+  "Cygnus columbianus": {
+    "index": 161,
+    "english_name": "Tundra Swan",
+    "phase": "Phase 2"
+  },
+  "Centrocercus urophasianus": {
+    "index": 162,
+    "english_name": "Sage Grouse",
+    "phase": "Phase 2"
+  },
+  "Sphyrapicus varius": {
+    "index": 163,
+    "english_name": "Yellow-bellied Sapsucker",
+    "phase": "Phase 2"
+  },
+  "Troglodytes hiemalis": {
+    "index": 164,
+    "english_name": "Winter Wren",
+    "phase": "Phase 2"
+  },
+  "Aeronautes saxatalis": {
+    "index": 165,
+    "english_name": "White-throated Swift",
+    "phase": "Phase 2"
+  },
+  "Aechmophorus occidentalis": {
+    "index": 166,
+    "english_name": "Western Grebe",
+    "phase": "Phase 2"
+  },
+  "Larus smithsonianus": {
+    "index": 167,
+    "english_name": "American Herring Gull",
+    "phase": "Phase 2"
+  },
+  "Anser rossii": {
+    "index": 168,
+    "english_name": "Ross's Goose",
+    "phase": "Phase 2"
+  },
+  "Lagopus lagopus": {
+    "index": 169,
+    "english_name": "Willow Ptarmigan",
+    "phase": "Phase 2"
+  },
+  "Zenaida asiatica": {
+    "index": 170,
+    "english_name": "White-winged Dove",
+    "phase": "Phase 2"
+  },
+  "Falco columbarius": {
+    "index": 171,
+    "english_name": "Merlin",
+    "phase": "Phase 2"
+  },
+  "Vireo cassinii": {
+    "index": 172,
+    "english_name": "Cassin's Vireo",
+    "phase": "Phase 2"
+  },
+  "Regulus satrapa": {
+    "index": 173,
+    "english_name": "Golden-crowned Kinglet",
+    "phase": "Phase 2"
+  },
+  "Branta bernicla": {
+    "index": 174,
+    "english_name": "Brant Goose",
+    "phase": "Phase 2"
+  },
+  "Larus glaucescens": {
+    "index": 175,
+    "english_name": "Glaucous-winged Gull",
+    "phase": "Phase 2"
+  },
+  "Struthio camelus": {
+    "index": 176,
+    "english_name": "Common Ostrich",
+    "phase": "Phase 2"
+  },
+  "Aythya americana": {
+    "index": 177,
+    "english_name": "Redhead",
+    "phase": "Phase 2"
+  },
+  "Spinus pinus": {
+    "index": 178,
+    "english_name": "Pine Siskin",
+    "phase": "Phase 2"
+  },
+  "Aegolius acadicus": {
+    "index": 179,
+    "english_name": "Northern Saw-whet Owl",
+    "phase": "Phase 2"
+  },
+  "Dendragapus fuliginosus": {
+    "index": 180,
+    "english_name": "Sooty Grouse",
+    "phase": "Phase 2"
+  },
+  "Aramus guarauna": {
+    "index": 181,
+    "english_name": "Limpkin",
+    "phase": "Phase 2"
+  },
+  "Sitta canadensis": {
+    "index": 182,
+    "english_name": "Red-breasted Nuthatch",
+    "phase": "Phase 2"
+  },
+  "Larus brachyrhynchus": {
+    "index": 183,
+    "english_name": "Short-billed Gull",
+    "phase": "Phase 2"
+  },
+  "Rallus obsoletus": {
+    "index": 184,
+    "english_name": "Ridgway's Rail",
+    "phase": "Phase 2"
+  },
+  "Rallus crepitans": {
+    "index": 185,
+    "english_name": "Clapper Rail",
+    "phase": "Phase 2"
+  },
+  "Contopus sordidulus": {
+    "index": 186,
+    "english_name": "Western Wood Pewee",
+    "phase": "Phase 2"
+  },
+  "Pseudacris crucifer": {
+    "index": 187,
+    "english_name": "Spring Peeper",
+    "phase": "Phase 2"
+  },
+  "Anas acuta": {
+    "index": 188,
+    "english_name": "Northern Pintail",
+    "phase": "Phase 2"
+  },
+  "Nyctidromus albicollis": {
+    "index": 189,
+    "english_name": "Pauraque",
+    "phase": "Phase 2"
+  },
+  "Selasphorus calliope": {
+    "index": 190,
+    "english_name": "Calliope Hummingbird",
+    "phase": "Phase 2"
+  },
+  "Amazilia yucatanensis": {
+    "index": 191,
+    "english_name": "Buff-bellied Hummingbird",
+    "phase": "Phase 2"
+  },
+  "Laterallus jamaicensis": {
+    "index": 192,
+    "english_name": "Black Rail",
+    "phase": "Phase 2"
+  },
+  "Vireo flavifrons": {
+    "index": 193,
+    "english_name": "Yellow-throated Vireo",
+    "phase": "Phase 2"
+  },
+  "Phasianus colchicus": {
+    "index": 194,
+    "english_name": "Common Pheasant",
+    "phase": "Phase 2"
+  },
+  "Vireo huttoni": {
+    "index": 195,
+    "english_name": "Hutton's Vireo",
+    "phase": "Phase 2"
+  },
+  "Tachycineta bicolor": {
+    "index": 196,
+    "english_name": "Tree Swallow",
+    "phase": "Phase 2"
+  },
+  "Pseudacris regilla": {
+    "index": 197,
+    "english_name": "Pacific Treefrog",
+    "phase": "Phase 2"
+  },
+  "Petrochelidon pyrrhonota": {
+    "index": 198,
+    "english_name": "American Cliff Swallow",
+    "phase": "Phase 2"
+  },
+  "Troglodytes pacificus": {
+    "index": 199,
+    "english_name": "Pacific Wren",
+    "phase": "Phase 2"
+  },
+  "Spizella pallida": {
+    "index": 200,
+    "english_name": "Clay-colored Sparrow",
+    "phase": "Phase 2"
+  },
+  "Canachites canadensis": {
+    "index": 201,
+    "english_name": "Spruce Grouse",
+    "phase": "Phase 2"
+  },
+  "Coturnicops noveboracensis": {
+    "index": 202,
+    "english_name": "Yellow Rail",
+    "phase": "Phase 2"
+  },
+  "Charadrius semipalmatus": {
+    "index": 203,
+    "english_name": "Semipalmated Plover",
+    "phase": "Phase 2"
+  },
+  "Canis latrans": {
+    "index": 204,
+    "english_name": "Coyote",
+    "phase": "Phase 2"
+  },
+  "Melanitta perspicillata": {
+    "index": 205,
+    "english_name": "Surf Scoter",
+    "phase": "Phase 2"
+  },
+  "Oxyura jamaicensis": {
+    "index": 206,
+    "english_name": "Ruddy Duck",
+    "phase": "Phase 2"
+  },
+  "Dendragapus obscurus": {
+    "index": 207,
+    "english_name": "Dusky Grouse",
+    "phase": "Phase 2"
+  },
+  "Perdix perdix": {
+    "index": 208,
+    "english_name": "Grey Partridge",
+    "phase": "Phase 2"
+  },
+  "Columbina inca": {
+    "index": 209,
+    "english_name": "Inca Dove",
+    "phase": "Phase 2"
+  },
+  "Chlidonias niger": {
+    "index": 210,
+    "english_name": "Black Tern",
+    "phase": "Phase 2"
+  },
+  "Bombycilla cedrorum": {
+    "index": 211,
+    "english_name": "Cedar Waxwing",
+    "phase": "Phase 2"
+  },
+  "Catharus bicknelli": {
+    "index": 212,
+    "english_name": "Bicknell's Thrush",
+    "phase": "Phase 2"
+  },
+  "Hesperiphona vespertina": {
+    "index": 213,
+    "english_name": "Evening Grosbeak",
+    "phase": "Phase 2"
+  },
+  "Bucephala clangula": {
+    "index": 214,
+    "english_name": "Common Goldeneye",
+    "phase": "Phase 2"
+  },
+  "Ortalis vetula": {
+    "index": 215,
+    "english_name": "Plain Chachalaca",
+    "phase": "Phase 2"
+  },
+  "Patagioenas fasciata": {
+    "index": 216,
+    "english_name": "Band-tailed Pigeon",
+    "phase": "Phase 2"
+  },
+  "Picoides dorsalis": {
+    "index": 217,
+    "english_name": "American Three-toed Woodpecker",
+    "phase": "Phase 2"
+  },
+  "Tamiasciurus douglasii": {
+    "index": 218,
+    "english_name": "Douglas's Squirrel",
+    "phase": "Phase 2"
+  },
+  "Tympanuchus pallidicinctus": {
+    "index": 219,
+    "english_name": "Lesser Prairie Chicken",
+    "phase": "Phase 2"
+  },
+  "Crotophaga ani": {
+    "index": 220,
+    "english_name": "Smooth-billed Ani",
+    "phase": "Phase 2"
+  },
+  "Streptopelia decaocto": {
+    "index": 221,
+    "english_name": "Eurasian Collared Dove",
+    "phase": "Phase 2"
+  },
+  "Podiceps auritus": {
+    "index": 222,
+    "english_name": "Horned Grebe",
+    "phase": "Phase 2"
+  },
+  "Lophodytes cucullatus": {
+    "index": 223,
+    "english_name": "Hooded Merganser",
+    "phase": "Phase 2"
+  },
+  "Ardea herodias": {
+    "index": 224,
+    "english_name": "Great Blue Heron",
+    "phase": "Phase 2"
+  },
+  "Allonemobius allardi": {
+    "index": 225,
+    "english_name": "Allard’s ground cricket",
+    "phase": "Phase 2"
+  },
+  "Sphyrapicus ruber": {
+    "index": 226,
+    "english_name": "Red-breasted Sapsucker",
+    "phase": "Phase 2"
+  },
+  "Picoides arcticus": {
+    "index": 227,
+    "english_name": "Black-backed Woodpecker",
+    "phase": "Phase 2"
+  },
+  "Dendrocygna bicolor": {
+    "index": 228,
+    "english_name": "Fulvous Whistling Duck",
+    "phase": "Phase 2"
+  },
+  "Antrostomus ridgwayi": {
+    "index": 229,
+    "english_name": "Buff-collared Nightjar",
+    "phase": "Phase 2"
+  },
+  "Limosa haemastica": {
+    "index": 230,
+    "english_name": "Hudsonian Godwit",
+    "phase": "Phase 2"
+  },
+  "Cyanocitta stelleri": {
+    "index": 231,
+    "english_name": "Steller's Jay",
+    "phase": "Phase 2"
+  },
+  "Poecile hudsonicus": {
+    "index": 232,
+    "english_name": "Boreal Chickadee",
+    "phase": "Phase 2"
+  },
+  "Chaetura vauxi": {
+    "index": 233,
+    "english_name": "Vaux's Swift",
+    "phase": "Phase 2"
+  },
+  "Aechmophorus clarkii": {
+    "index": 234,
+    "english_name": "Clark's Grebe",
+    "phase": "Phase 2"
+  },
+  "Pandion haliaetus": {
+    "index": 235,
+    "english_name": "Western Osprey",
+    "phase": "Phase 2"
+  },
+  "Hylocichla mustelina": {
+    "index": 236,
+    "english_name": "Wood Thrush",
+    "phase": "Phase 2"
+  },
+  "Bucephala islandica": {
+    "index": 237,
+    "english_name": "Barrow's Goldeneye",
+    "phase": "Phase 2"
+  },
+  "Calothorax lucifer": {
+    "index": 238,
+    "english_name": "Lucifer Sheartail",
+    "phase": "Phase 2"
+  },
+  "Leucolia violiceps": {
+    "index": 239,
+    "english_name": "Violet-crowned Hummingbird",
+    "phase": "Phase 2"
+  },
+  "Crotophaga sulcirostris": {
+    "index": 240,
+    "english_name": "Groove-billed Ani",
+    "phase": "Phase 2"
+  },
+  "Columbina passerina": {
+    "index": 241,
+    "english_name": "Common Ground Dove",
+    "phase": "Phase 2"
+  },
+  "Troglodytes aedon": {
+    "index": 242,
+    "english_name": "House Wren",
+    "phase": "Phase 2"
+  },
+  "Anas fulvigula": {
+    "index": 243,
+    "english_name": "Mottled Duck",
+    "phase": "Phase 2"
+  },
+  "Anas diazi": {
+    "index": 244,
+    "english_name": "Mexican Duck",
+    "phase": "Phase 2"
+  },
+  "Lagopus muta": {
+    "index": 245,
+    "english_name": "Rock Ptarmigan",
+    "phase": "Phase 2"
+  },
+  "Haematopus bachmani": {
+    "index": 246,
+    "english_name": "Black Oystercatcher",
+    "phase": "Phase 2"
+  },
+  "Butorides virescens": {
+    "index": 247,
+    "english_name": "Green Heron",
+    "phase": "Phase 2"
+  },
+  "Ixoreus naevius": {
+    "index": 248,
+    "english_name": "Varied Thrush",
+    "phase": "Phase 2"
+  },
+  "Pinicola enucleator": {
+    "index": 249,
+    "english_name": "Pine Grosbeak",
+    "phase": "Phase 2"
+  },
+  "Somateria fischeri": {
+    "index": 250,
+    "english_name": "Spectacled Eider",
+    "phase": "Phase 2"
+  },
+  "Podiceps grisegena": {
+    "index": 251,
+    "english_name": "Red-necked Grebe",
+    "phase": "Phase 2"
+  },
+  "Sterna hirundo": {
+    "index": 252,
+    "english_name": "Common Tern",
+    "phase": "Phase 2"
+  },
+  "Nycticorax nycticorax": {
+    "index": 253,
+    "english_name": "Black-crowned Night Heron",
+    "phase": "Phase 2"
+  },
+  "Empidonax oberholseri": {
+    "index": 254,
+    "english_name": "American Dusky Flycatcher",
+    "phase": "Phase 2"
+  },
+  "Corvus corax": {
+    "index": 255,
+    "english_name": "Northern Raven",
+    "phase": "Phase 2"
+  },
+  "Branta sandvicensis": {
+    "index": 256,
+    "english_name": "Nene",
+    "phase": "Phase 2"
+  },
+  "Spatula cyanoptera": {
+    "index": 257,
+    "english_name": "Cinnamon Teal",
+    "phase": "Phase 2"
+  },
+  "Pavo cristatus": {
+    "index": 258,
+    "english_name": "Indian Peafowl",
+    "phase": "Phase 2"
+  },
+  "Somateria mollissima": {
+    "index": 259,
+    "english_name": "Common Eider",
+    "phase": "Phase 2"
+  },
+  "Limosa fedoa": {
+    "index": 260,
+    "english_name": "Marbled Godwit",
+    "phase": "Phase 2"
+  },
+  "Tringa semipalmata": {
+    "index": 261,
+    "english_name": "Willet",
+    "phase": "Phase 2"
+  },
+  "Haemorhous mexicanus": {
+    "index": 262,
+    "english_name": "House Finch",
+    "phase": "Phase 2"
+  },
+  "Loxia leucoptera": {
+    "index": 263,
+    "english_name": "Two-barred Crossbill",
+    "phase": "Phase 2"
+  },
+  "Calcarius pictus": {
+    "index": 264,
+    "english_name": "Smith's Longspur",
+    "phase": "Phase 2"
+  },
+  "Anaxyrus americanus": {
+    "index": 265,
+    "english_name": "American Toad",
+    "phase": "Phase 2"
+  },
+  "Alopochen aegyptiaca": {
+    "index": 266,
+    "english_name": "Egyptian Goose",
+    "phase": "Phase 2"
+  },
+  "Alectoris chukar": {
+    "index": 267,
+    "english_name": "Chukar Partridge",
+    "phase": "Phase 2"
+  },
+  "Saucerottia beryllina": {
+    "index": 268,
+    "english_name": "Berylline Hummingbird",
+    "phase": "Phase 2"
+  },
+  "Leptotila verreauxi": {
+    "index": 269,
+    "english_name": "White-tipped Dove",
+    "phase": "Phase 2"
+  },
+  "Porphyrio martinica": {
+    "index": 270,
+    "english_name": "Purple Gallinule",
+    "phase": "Phase 2"
+  },
+  "Numenius hudsonicus": {
+    "index": 271,
+    "english_name": "Hudsonian Whimbrel",
+    "phase": "Phase 2"
+  },
+  "Circus hudsonius": {
+    "index": 272,
+    "english_name": "Northern Harrier",
+    "phase": "Phase 2"
+  },
+  "Sphyrapicus nuchalis": {
+    "index": 273,
+    "english_name": "Red-naped Sapsucker",
+    "phase": "Phase 2"
+  },
+  "Poecile gambeli": {
+    "index": 274,
+    "english_name": "Mountain Chickadee",
+    "phase": "Phase 2"
+  },
+  "Progne subis": {
+    "index": 275,
+    "english_name": "Purple Martin",
+    "phase": "Phase 2"
+  },
+  "Gryllus pennsylvanicus": {
+    "index": 276,
+    "english_name": "Fall Field Cricket",
+    "phase": "Phase 2"
+  },
+  "Aquarana grylio": {
+    "index": 277,
+    "english_name": "Pig Frog",
+    "phase": "Phase 2"
+  },
+  "Somateria spectabilis": {
+    "index": 278,
+    "english_name": "King Eider",
+    "phase": "Phase 2"
+  },
+  "Mergus serrator": {
+    "index": 279,
+    "english_name": "Red-breasted Merganser",
+    "phase": "Phase 2"
+  },
+  "Fulica alai": {
+    "index": 280,
+    "english_name": "Hawaiian Coot",
+    "phase": "Phase 2"
+  },
+  "Bartramia longicauda": {
+    "index": 281,
+    "english_name": "Upland Sandpiper",
+    "phase": "Phase 2"
+  },
+  "Alca torda": {
+    "index": 282,
+    "english_name": "Razorbill",
+    "phase": "Phase 2"
+  },
+  "Ixobrychus exilis": {
+    "index": 283,
+    "english_name": "Least Bittern",
+    "phase": "Phase 2"
+  },
+  "Accipiter gentilis": {
+    "index": 284,
+    "english_name": "Northern Goshawk",
+    "phase": "Phase 2"
+  },
+  "Empidonax virescens": {
+    "index": 285,
+    "english_name": "Acadian Flycatcher",
+    "phase": "Phase 2"
+  },
+  "Perisoreus canadensis": {
+    "index": 286,
+    "english_name": "Canada Jay",
+    "phase": "Phase 2"
+  },
+  "Cistothorus stellaris": {
+    "index": 287,
+    "english_name": "Sedge Wren",
+    "phase": "Phase 2"
+  },
+  "Cygnus olor": {
+    "index": 288,
+    "english_name": "Mute Swan",
+    "phase": "Phase 2"
+  },
+  "Histrionicus histrionicus": {
+    "index": 289,
+    "english_name": "Harlequin Duck",
+    "phase": "Phase 2"
+  }
+}

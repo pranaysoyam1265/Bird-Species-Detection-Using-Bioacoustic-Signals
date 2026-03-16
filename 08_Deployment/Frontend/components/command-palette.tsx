@@ -33,7 +33,7 @@ export function CommandPalette() {
     { id: "home", label: "Home", description: "Go to landing page", icon: <Home size={14} />, action: () => router.push("/"), category: "page" },
     { id: "analyze", label: "Analyze", description: "Detect bird species from audio", icon: <Mic size={14} />, action: () => router.push("/analyze"), category: "page" },
     { id: "results", label: "Results", description: "View detection history", icon: <History size={14} />, action: () => router.push("/results"), category: "page" },
-    { id: "species", label: "Species Database", description: "Browse 87 species", icon: <Bird size={14} />, action: () => router.push("/species"), category: "page" },
+    { id: "species", label: "Species Database", description: "Browse 290 species", icon: <Bird size={14} />, action: () => router.push("/species"), category: "page" },
     { id: "profile", label: "Profile", description: "Account & activity", icon: <User size={14} />, action: () => router.push("/profile"), category: "page" },
     { id: "settings", label: "Settings", description: "Preferences & data", icon: <Settings size={14} />, action: () => router.push("/settings"), category: "page" },
   ], [router])

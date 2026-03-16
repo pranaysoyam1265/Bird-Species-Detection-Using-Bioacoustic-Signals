@@ -44,7 +44,7 @@ const NAV_LINKS: NavLink[] = [
   {
     href: "/species",
     label: "SPECIES",
-    description: "Browse 87 species",
+    description: "Browse 290 species",
     icon: <Bird size={16} />,
   },
   {
@@ -234,7 +234,7 @@ export function NavSidebar({ className }: NavSidebarProps) {
               </span>
             </div>
             <p className="font-mono text-[9px] tracking-[0.15em] uppercase text-muted-foreground">
-              87 SPECIES • 96.06% ACC • MODEL v3.2
+              290 SPECIES • 95.03% ACC • MODEL v2.0
             </p>
           </div>
 

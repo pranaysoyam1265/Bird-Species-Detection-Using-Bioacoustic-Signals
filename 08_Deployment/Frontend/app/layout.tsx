@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'BirdSense | AI-Powered Bird Species Detection from Audio',
   description:
-    'BirdSense is a deep learning system that identifies 87 North American bird species from audio recordings with 96% accuracy. Upload field recordings, analyze spectrograms, and get confidence-scored species predictions in seconds.',
+    'BirdSense is a deep learning system that identifies 290 North American bird species from audio recordings with 95% accuracy. Upload field recordings, analyze spectrograms, and get confidence-scored species predictions in seconds.',
   keywords: [
     'bird species detection',
     'bioacoustic AI',
@@ -56,14 +56,14 @@ export const metadata: Metadata = {
     locale: 'en_US',
     title: 'BirdSense | AI-Powered Bird Species Detection from Audio',
     description:
-      'Identify 87 bird species from audio with 96% accuracy. Deep learning bioacoustic analysis with spectrogram visualization and confidence scoring.',
+      'Identify 290 bird species from audio with 95% accuracy. Deep learning bioacoustic analysis with spectrogram visualization and confidence scoring.',
     siteName: 'BirdSense',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'BirdSense | AI Bird Species Detection',
     description:
-      'Deep learning system identifying 87 North American bird species from audio recordings. 96% accuracy. Spectrogram analysis. Confidence scoring.',
+      'Deep learning system identifying 290 North American bird species from audio recordings. 95% accuracy. Spectrogram analysis. Confidence scoring.',
     creator: '@birdsense',
   },
   category: 'technology',

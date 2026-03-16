@@ -72,10 +72,10 @@ function AnalysisCounter() {
 
 /* ── stat block ── */
 const STATS = [
-  { label: "SPECIES_DETECTED", value: "87" },
-  { label: "TEST_ACCURACY", value: "96.06%" },
+  { label: "SPECIES_DETECTED", value: "290" },
+  { label: "TEST_ACCURACY", value: "95.03%" },
   { label: "AUDIO_SAMPLES", value: "2.8M+" },
-  { label: "TOP_5_ACCURACY", value: "98.74%" },
+  { label: "TOP_5_ACCURACY", value: "98.26%" },
 ]
 
 function StatBlock({ label, value, index }: { label: string; value: string; index: number }) {
@@ -439,7 +439,7 @@ export function AboutSection() {
                 <p className="text-xs lg:text-sm font-mono text-muted-foreground leading-relaxed">
                   BirdSense processes raw audio recordings through a deep learning
                   pipeline trained on 2.8M+ samples. Mel-spectrograms are extracted,
-                  fed into a convolutional classifier, and matched against 87 North
+                  fed into a convolutional classifier, and matched against 290 North
                   American bird species with confidence scoring.
                 </p>
                 <p className="text-xs lg:text-sm font-mono text-muted-foreground leading-relaxed">

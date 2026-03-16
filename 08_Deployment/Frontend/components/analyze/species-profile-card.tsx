@@ -129,7 +129,7 @@ function getData(species: string) {
   return {
     conservation: "Data Deficient", conservationColor: "text-muted-foreground",
     bodyLength: "—", weight: "—", migratory: "Unknown",
-    behaviour: "Behaviour data not available.", funFact: "Part of BirdSense's 87-species detection library.",
+    behaviour: "Behaviour data not available.", funFact: "Part of BirdSense's 290-species detection library.",
   }
 }
 

@@ -36,7 +36,7 @@ interface Species {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SPECIES DATA — built from the real 87-species ML model
+   SPECIES DATA — built from the real 290-species ML model
    ═══════════════════════════════════════════════════════════════ */
 
 const ALL_SPECIES: Species[] = Object.values(SPECIES_META)

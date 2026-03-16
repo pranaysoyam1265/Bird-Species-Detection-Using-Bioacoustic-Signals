@@ -57,7 +57,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.45, ease }}
           className="text-xs lg:text-sm text-muted-foreground max-w-md mb-6 leading-relaxed font-mono"
         >
-          BirdSense is the AI-powered detection layer between field recordings and species identification. 96% accuracy. 87 species. Spectrogram-level analysis.
+          BirdSense is the AI-powered detection layer between field recordings and species identification. 95% accuracy. 290 species. Spectrogram-level analysis.
         </motion.p>
 
         <motion.button

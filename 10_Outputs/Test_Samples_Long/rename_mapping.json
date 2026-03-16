@@ -1,0 +1,300 @@
+[
+  {
+    "sample_id": 1,
+    "old_name": "test_composite_001.wav",
+    "new_name": "XC_393960_789575_775264_172821_177226_593338_130499.wav",
+    "xc_ids": [
+      "393960",
+      "789575",
+      "775264",
+      "172821",
+      "177226",
+      "593338",
+      "130499"
+    ],
+    "num_xc_ids": 7,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 2,
+    "old_name": "test_composite_002.wav",
+    "new_name": "XC_599641_600999_187660_418002_473440_464765_781039_157759.wav",
+    "xc_ids": [
+      "599641",
+      "600999",
+      "187660",
+      "418002",
+      "473440",
+      "464765",
+      "781039",
+      "157759"
+    ],
+    "num_xc_ids": 8,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 3,
+    "old_name": "test_composite_003.wav",
+    "new_name": "XC_418083_828387.wav",
+    "xc_ids": [
+      "418083",
+      "828387"
+    ],
+    "num_xc_ids": 2,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 4,
+    "old_name": "test_composite_004.wav",
+    "new_name": "XC_683529_135495_460991_179960_1013839_114559_286592_582129_13755.wav",
+    "xc_ids": [
+      "683529",
+      "135495",
+      "460991",
+      "179960",
+      "1013839",
+      "114559",
+      "286592",
+      "582129",
+      "13755"
+    ],
+    "num_xc_ids": 9,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 5,
+    "old_name": "test_composite_005.wav",
+    "new_name": "XC_717935.wav",
+    "xc_ids": [
+      "717935"
+    ],
+    "num_xc_ids": 1,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 6,
+    "old_name": "test_composite_006.wav",
+    "new_name": "XC_173184_496109_188127_471705_730554_1012908_243829.wav",
+    "xc_ids": [
+      "173184",
+      "496109",
+      "188127",
+      "471705",
+      "730554",
+      "1012908",
+      "243829"
+    ],
+    "num_xc_ids": 7,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 7,
+    "old_name": "test_composite_007.wav",
+    "new_name": "XC_309889_408275_379270_880805_122807_893394.wav",
+    "xc_ids": [
+      "309889",
+      "408275",
+      "379270",
+      "880805",
+      "122807",
+      "893394"
+    ],
+    "num_xc_ids": 6,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 8,
+    "old_name": "test_composite_008.wav",
+    "new_name": "XC_167793_1013729_413175_179630_503347_313464.wav",
+    "xc_ids": [
+      "167793",
+      "1013729",
+      "413175",
+      "179630",
+      "503347",
+      "313464"
+    ],
+    "num_xc_ids": 6,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 9,
+    "old_name": "test_composite_009.wav",
+    "new_name": "XC_1012555_574503_332243_203711_253854_206082_125579_304582_846023.wav",
+    "xc_ids": [
+      "1012555",
+      "574503",
+      "332243",
+      "203711",
+      "253854",
+      "206082",
+      "125579",
+      "304582",
+      "846023"
+    ],
+    "num_xc_ids": 9,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 10,
+    "old_name": "test_composite_010.wav",
+    "new_name": "XC_381036_409609_323471_862917.wav",
+    "xc_ids": [
+      "381036",
+      "409609",
+      "323471",
+      "862917"
+    ],
+    "num_xc_ids": 4,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 11,
+    "old_name": "test_composite_011.wav",
+    "new_name": "XC_373488_445622_1013277_420250_304644_562016_575514.wav",
+    "xc_ids": [
+      "373488",
+      "445622",
+      "1013277",
+      "420250",
+      "304644",
+      "562016",
+      "575514"
+    ],
+    "num_xc_ids": 7,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 12,
+    "old_name": "test_composite_012.wav",
+    "new_name": "XC_184516_128249_327706_460096.wav",
+    "xc_ids": [
+      "184516",
+      "128249",
+      "327706",
+      "460096"
+    ],
+    "num_xc_ids": 4,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 13,
+    "old_name": "test_composite_013.wav",
+    "new_name": "XC_497494_304270_935610_306387_203984.wav",
+    "xc_ids": [
+      "497494",
+      "304270",
+      "935610",
+      "306387",
+      "203984"
+    ],
+    "num_xc_ids": 5,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 14,
+    "old_name": "test_composite_014.wav",
+    "new_name": "XC_742968_730539_741590_323472_920144_178015_793716.wav",
+    "xc_ids": [
+      "742968",
+      "730539",
+      "741590",
+      "323472",
+      "920144",
+      "178015",
+      "793716"
+    ],
+    "num_xc_ids": 7,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 15,
+    "old_name": "test_composite_015.wav",
+    "new_name": "XC_133080_423449_443809_1062459_565024_728347.wav",
+    "xc_ids": [
+      "133080",
+      "423449",
+      "443809",
+      "1062459",
+      "565024",
+      "728347"
+    ],
+    "num_xc_ids": 6,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 16,
+    "old_name": "test_composite_016.wav",
+    "new_name": "XC_864675_793408_690392.wav",
+    "xc_ids": [
+      "864675",
+      "793408",
+      "690392"
+    ],
+    "num_xc_ids": 3,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 17,
+    "old_name": "test_composite_017.wav",
+    "new_name": "XC_275782_598456_122816_188511_391448_638558.wav",
+    "xc_ids": [
+      "275782",
+      "598456",
+      "122816",
+      "188511",
+      "391448",
+      "638558"
+    ],
+    "num_xc_ids": 6,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 18,
+    "old_name": "test_composite_018.wav",
+    "new_name": "XC_114560_839232_609990_132695_475090_860758_381502_690876.wav",
+    "xc_ids": [
+      "114560",
+      "839232",
+      "609990",
+      "132695",
+      "475090",
+      "860758",
+      "381502",
+      "690876"
+    ],
+    "num_xc_ids": 8,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 19,
+    "old_name": "test_composite_019.wav",
+    "new_name": "XC_753790_370251_234215.wav",
+    "xc_ids": [
+      "753790",
+      "370251",
+      "234215"
+    ],
+    "num_xc_ids": 3,
+    "status": "SUCCESS"
+  },
+  {
+    "sample_id": 20,
+    "old_name": "test_composite_020.wav",
+    "new_name": "XC_686881_173822_691464_313532_1037504_209874_280896_809949_350663_171994.wav",
+    "xc_ids": [
+      "686881",
+      "173822",
+      "691464",
+      "313532",
+      "1037504",
+      "209874",
+      "280896",
+      "809949",
+      "350663",
+      "171994"
+    ],
+    "num_xc_ids": 10,
+    "status": "SUCCESS"
+  }
+]
