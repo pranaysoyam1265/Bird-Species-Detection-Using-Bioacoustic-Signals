@@ -54,7 +54,7 @@ export function DetectionTimeline({ segments, totalDuration, onPlaySegment, play
       >
         <div className="flex items-center gap-3">
           <span className="font-mono text-xs tracking-[0.25em] uppercase text-foreground font-bold">
-            DETECTION TIMELINE
+            PER-SEGMENT DETECTIONS
           </span>
           <span className="font-mono text-[10px] text-accent font-bold">{segments.length} segments</span>
           {/* Mini inline preview when collapsed */}
@@ -147,8 +147,8 @@ export function DetectionTimeline({ segments, totalDuration, onPlaySegment, play
                   type="button"
                   onClick={() => onPlaySegment?.(seg.startTime, seg.endTime)}
                   className={`w-full flex items-center gap-3 px-3 py-2 border font-mono text-left cursor-pointer transition-none ${isPlaying
-                      ? "bg-accent/10 border-accent"
-                      : "border-foreground/10 hover:border-foreground/30 hover:bg-muted/30"
+                    ? "bg-accent/10 border-accent"
+                    : "border-foreground/10 hover:border-foreground/30 hover:bg-muted/30"
                     }`}
                 >
                   {/* Play/Stop icon */}

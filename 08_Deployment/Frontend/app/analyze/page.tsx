@@ -25,7 +25,7 @@ import { SPECIES_META } from "@/lib/species-meta"
 import { useToast } from "@/hooks/use-toast"
 import { useAuth } from "@/contexts/auth-context"
 import { useRouter } from "next/navigation"
-import { Menu, X, Zap, Loader2, Upload, Mic, PanelLeftClose, PanelLeftOpen, Search, RotateCcw, AlertTriangle } from "lucide-react"
+import { Menu, X, Zap, Loader2, Upload, Mic, PanelLeftClose, PanelLeftOpen, Search, RotateCcw, AlertTriangle, Info } from "lucide-react"
 
 // ── Types ──
 type PageState = "idle" | "loading" | "uploaded" | "analyzing" | "results" | "error"
@@ -593,6 +593,15 @@ export default function AnalyzePage() {
                     </button>
                   </div>
                 )}
+
+                {/* ══ CLARIFICATION TEXT ═══ */}
+                <div className="border border-accent/20 bg-accent/5 px-4 py-3 flex items-start gap-3 mt-4 mb-4">
+                  <Info size={14} className="text-accent shrink-0 mt-0.5" />
+                  <p className="font-mono text-[10px] sm:text-[11px] tracking-wider text-muted-foreground/90 leading-relaxed">
+                    <strong className="text-accent uppercase">Overall detection</strong> is computed across all audio segments.{" "}
+                    <strong className="text-accent uppercase">Per-segment detections</strong> show local chunk predictions and may differ from the final overall result.
+                  </p>
+                </div>
 
                 {/* ══ FOCUS VERDICT ═══ Only when a species is selected ══ */}
                 {settings.searchSpecies && (

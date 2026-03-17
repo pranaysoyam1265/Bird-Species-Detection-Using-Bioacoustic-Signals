@@ -307,7 +307,7 @@ export function SearchVerdict({
             <div className="flex items-center gap-2">
               <Play size={12} className="text-accent" />
               <span className="font-mono text-[13px] tracking-[0.25em] uppercase text-foreground font-bold">
-                DETECTION SEGMENTS
+                PER-SEGMENT DETECTIONS
               </span>
               <span className="font-mono text-[10px] text-accent font-bold ml-1">
                 {targetSegments.length}

@@ -128,16 +128,13 @@ def process_audio_to_spectrograms(
     for chunk, start_time, end_time in chunks:
         mel_spec = generate_mel_spectrogram(chunk, sr)
 
-        # Resize time axis to target_shape
-        if mel_spec.shape[1] > target_shape[1]:
-            mel_spec = mel_spec[:, :target_shape[1]]
-        elif mel_spec.shape[1] < target_shape[1]:
-            mel_spec = np.pad(
-                mel_spec,
-                ((0, 0), (0, target_shape[1] - mel_spec.shape[1])),
-                mode="constant",
-                constant_values=mel_spec.min(),
-            )
+        # Resize time axis to target_shape exactly as done in training
+        if mel_spec.shape != target_shape:
+            fixed = np.zeros(target_shape, dtype=np.float32)
+            h = min(mel_spec.shape[0], target_shape[0])
+            w = min(mel_spec.shape[1], target_shape[1])
+            fixed[:h, :w] = mel_spec[:h, :w]
+            mel_spec = fixed
 
         spectrograms.append((mel_spec, start_time, end_time))
 

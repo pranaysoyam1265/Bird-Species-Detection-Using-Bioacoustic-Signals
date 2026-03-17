@@ -35,24 +35,6 @@ interface Species {
   status: "common" | "uncommon" | "rare"
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   SPECIES DATA — built from the real 290-species ML model
-   ═══════════════════════════════════════════════════════════════ */
-
-const ALL_SPECIES: Species[] = Object.values(SPECIES_META)
-  .map((meta, idx) => ({
-    id: String(idx + 1),
-    commonName: meta.name,
-    scientificName: meta.scientificName,
-    family: meta.family,
-    habitat: meta.habitat,
-    callType: meta.callType,
-    status: meta.status,
-  }))
-  .sort((a, b) => a.commonName.localeCompare(b.commonName))
-
-const FAMILIES = [...new Set(ALL_SPECIES.map((s) => s.family))].sort()
-
 type SortOption = "name-asc" | "name-desc" | "family"
 type ViewMode = "grid" | "list"
 
@@ -77,7 +59,6 @@ const EXTERNAL_LINKS = {
    HELPERS
    ═══════════════════════════════════════════════════════════════ */
 
-const TOTAL_FAMILIES = FAMILIES.length
 const BATCH_SIZE = 20
 
 /* ═══════════════════════════════════════════════════════════════
@@ -115,6 +96,59 @@ export default function SpeciesPage() {
 function SpeciesPageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
+
+  /* ── Dynamic Species State ── */
+  const [allSpecies, setAllSpecies] = useState<Species[]>([])
+  const [families, setFamilies] = useState<string[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchSpecies() {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://pranaysoyam126-birdsense-backend.hf.space"
+        const res = await fetch(`${apiUrl}/species`)
+        if (res.ok) {
+          const data = await res.json()
+          const mapped = data.species.map((sp: any) => {
+            const meta = SPECIES_META[sp.english_name]
+            return {
+              id: String(sp.index),
+              commonName: sp.english_name,
+              scientificName: sp.scientific_name,
+              family: meta?.family || "Unknown",
+              habitat: meta?.habitat || "Various",
+              callType: meta?.callType || "Vocalization",
+              status: meta?.status || "common",
+            }
+          }).sort((a: Species, b: Species) => a.commonName.localeCompare(b.commonName))
+          setAllSpecies(mapped)
+          setFamilies([...new Set(mapped.map((s: Species) => s.family))] as string[])
+        } else {
+          fallbackToLocal()
+        }
+      } catch (e) {
+        fallbackToLocal()
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    function fallbackToLocal() {
+      const mapped = Object.values(SPECIES_META).map((meta, idx) => ({
+        id: String(idx + 1),
+        commonName: meta.name,
+        scientificName: meta.scientificName,
+        family: meta.family,
+        habitat: meta.habitat,
+        callType: meta.callType,
+        status: meta.status,
+      })).sort((a, b) => a.commonName.localeCompare(b.commonName))
+      setAllSpecies(mapped)
+      setFamilies([...new Set(mapped.map((s) => s.family))] as string[])
+    }
+
+    fetchSpecies()
+  }, [])
 
   /* ── State (hydrate from URL) ── */
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "")
@@ -158,7 +192,7 @@ function SpeciesPageContent() {
     e?.stopPropagation()
     setCompareIds((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : prev.length < 3 ? [...prev, id] : prev)
   }, [])
-  const compareSpecies = compareIds.map((id) => ALL_SPECIES.find((s) => s.id === id)!).filter(Boolean)
+  const compareSpecies = compareIds.map((id) => allSpecies.find((s) => s.id === id)!).filter(Boolean)
 
   /* ── Sync state → URL params ── */
   useEffect(() => {
@@ -193,7 +227,7 @@ function SpeciesPageContent() {
   /* ── Filtered + sorted list ── */
   const filteredAll = useMemo(() => {
     const q = searchQuery.toLowerCase()
-    let items = ALL_SPECIES.filter((s) => {
+    let items = allSpecies.filter((s) => {
       const matchesSearch =
         s.commonName.toLowerCase().includes(q) ||
         s.scientificName.toLowerCase().includes(q)
@@ -210,7 +244,7 @@ function SpeciesPageContent() {
       }
     })
     return items
-  }, [searchQuery, selectedFamily, sortBy])
+  }, [searchQuery, selectedFamily, sortBy, allSpecies])
 
   /* Reset visible count whenever the filter/search changes */
   useEffect(() => {
@@ -228,9 +262,15 @@ function SpeciesPageContent() {
      ══════════════════════════════════════════ */
   const statusCounts = useMemo(() => {
     const counts = { common: 0, uncommon: 0, rare: 0 }
-    ALL_SPECIES.forEach((s) => { counts[s.status]++ })
+    allSpecies.forEach((s) => { counts[s.status]++ })
     return counts
-  }, [])
+  }, [allSpecies])
+
+  if (isLoading) {
+    return <SpeciesSkeleton />
+  }
+
+  const TOTAL_FAMILIES = families.length
 
   /* ══════════════════════════════════════════
      RENDER
@@ -259,7 +299,7 @@ function SpeciesPageContent() {
                 </h1>
               </div>
               <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
-                {ALL_SPECIES.length} SPECIES • {TOTAL_FAMILIES} FAMILIES • REAL ML MODEL DATA
+                {allSpecies.length} SPECIES • {TOTAL_FAMILIES} FAMILIES
               </p>
             </div>
           </div>
@@ -299,7 +339,7 @@ function SpeciesPageContent() {
           </div>
           <div className="border-t border-foreground/10 mt-3 pt-3 flex flex-wrap gap-x-6 gap-y-1">
             <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-muted-foreground">
-              TOTAL: <span className="text-foreground font-bold">{ALL_SPECIES.length}</span> SPECIES
+              TOTAL: <span className="text-foreground font-bold">{allSpecies.length}</span> SPECIES
             </span>
             <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-muted-foreground">
               FAMILIES: <span className="text-accent font-bold">{TOTAL_FAMILIES}</span>
@@ -376,7 +416,6 @@ function SpeciesPageContent() {
           </div>
         </div>
 
-        {/* ────── FAMILY FILTERS ────── */}
         <div className="flex gap-1.5 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap scrollbar-none">
           <button
             type="button"
@@ -385,7 +424,7 @@ function SpeciesPageContent() {
           >
             ALL
           </button>
-          {FAMILIES.map((fam) => (
+          {families.map((fam) => (
             <button
               key={fam}
               type="button"
@@ -520,13 +559,12 @@ function SpeciesPageContent() {
           </>
         )}
 
-        {/* ────── STATUS BAR ────── */}
         <div className="border border-foreground/30 bg-muted/30 px-4 py-2 flex items-center gap-2">
           <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-accent/60">
             SYS_STATUS:
           </span>
           <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-foreground font-bold">
-            DATABASE LOADED • {ALL_SPECIES.length} SPECIES INDEXED
+            DATABASE LOADED • {allSpecies.length} SPECIES INDEXED
           </span>
           <span className="inline-block w-1.5 h-3 bg-accent animate-blink" />
         </div>

@@ -127,7 +127,7 @@ export function TopResultCard({ species, scientificName, confidence, onSpeciesCl
     <div className="border-2 border-foreground border-l-4 border-l-accent bg-gradient-to-br from-accent/8 to-background h-full">
       <div className="border-b-2 border-foreground px-4 py-2">
         <span className="font-mono text-xs tracking-[0.25em] uppercase text-foreground font-bold">
-          TOP DETECTION
+          OVERALL DETECTION
         </span>
       </div>
       <div className="p-6 sm:p-8 flex flex-col items-center text-center gap-4">

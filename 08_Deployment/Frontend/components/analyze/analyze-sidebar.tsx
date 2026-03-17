@@ -180,7 +180,7 @@ export function AnalyzeSidebar({ settings, onSettingsChange, hasResults, onAnaly
             SPECIES FOCUS
           </span>
           <span className="font-mono text-[10px] tracking-wider text-muted-foreground ml-2">
-            ({BIRD_SPECIES.length})
+            ({BIRD_SPECIES.length} SPECIES)
           </span>
           <span className="font-mono text-[8px] tracking-wider text-muted-foreground/50 ml-auto">OPTIONAL</span>
         </div>

@@ -127,21 +127,19 @@ async def detect(
                     "confidence": round(conf, 2),
                 })
 
-        # ── Aggregate top predictions across all chunks ──
-        aggregated: dict[int, list[float]] = {}
-        for pred in predictions_raw:
-            for idx, prob in zip(pred["top_indices"], pred["top_probs"]):
-                idx_int = int(idx)
-                aggregated.setdefault(idx_int, []).append(float(prob))
-
-        # For final confidence per species, use the MAX confidence across all chunks
-        # Averaging penalizes a species heavily if it only sings in a small part of a long audio file
-        agg_preds = [
-            (idx, max(confs))
-            for idx, confs in aggregated.items()
-        ]
-        agg_preds.sort(key=lambda x: x[1], reverse=True)
-        agg_preds = agg_preds[:top_k]
+        # ── Aggregate predictions across all chunks ──
+        if predictions_raw:
+            import numpy as np
+            # Mean pool all class probabilities across all chunks
+            avg_probs = np.mean([pred["probabilities"] for pred in predictions_raw], axis=0)
+            top_indices = np.argsort(avg_probs)[::-1][:top_k]
+            
+            agg_preds = [
+                (int(idx), float(avg_probs[idx]))
+                for idx in top_indices
+            ]
+        else:
+            agg_preds = []
 
 
         # ── Build response ──

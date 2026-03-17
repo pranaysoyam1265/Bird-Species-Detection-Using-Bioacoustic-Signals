@@ -17,12 +17,12 @@ PROJECT_ROOT = DEPLOYMENT_DIR.parent
 
 MODEL_PATH = Path(os.getenv(
     "MODEL_PATH",
-    str(BACKEND_DIR / "models" / "checkpoints" / "best_model_v3.pth"),
+    r"c:\Users\prana\OneDrive\Desktop\ML Conf-BioFSL\05_Model\Saved_Models\best_model_v3.pth",
 ))
 
 LABEL_MAPPING_PATH = Path(os.getenv(
     "LABEL_MAPPING_PATH",
-    str(BACKEND_DIR / "labels" / "label_mapping_v3.json"),
+    str(BACKEND_DIR / "labels" / "label_mapping_290.json"),
 ))
 
 UPLOAD_DIR = BACKEND_DIR / "uploads"
@@ -34,7 +34,7 @@ DEVICE = os.getenv("DEVICE", "cpu")  # "cpu" or "cuda"
 # ── Model ──────────────────────────────────────────────────────
 MODEL_CONFIG = {
     "model_name": "tf_efficientnet_b2_ns",
-    "num_classes": 87,
+    "num_classes": 290,
     "input_size": (128, 216),  # (height, width) for spectrograms
     "dropout_rate": 0.4,
 }
@@ -43,7 +43,7 @@ MODEL_CONFIG = {
 AUDIO_CONFIG = {
     "sample_rate": 22050,
     "chunk_duration": 5.0,     # seconds
-    "chunk_overlap": 0.0,      # 0% overlap (speeds up processing 2x)
+    "chunk_overlap": 0.5,      # 50% overlap (matches training pipeline)
     "n_mels": 128,
     "n_fft": 2048,
     "hop_length": 512,
